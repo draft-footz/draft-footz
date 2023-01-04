@@ -46,7 +46,6 @@ export const ButtonMenu = styled.button`
 
 // button verde de login e registro
 export const ButtonSend = styled.button`
-  max-width: 330px;
   width: 100%;
   height: 46px;
   border-radius: 4px;

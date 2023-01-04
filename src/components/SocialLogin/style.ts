@@ -13,6 +13,6 @@ export const SocialLoginButton = styled.button`
   padding: 10px;
   gap: 10px;
 
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--inputsBackground);
   border-radius: 6px;
 `;
