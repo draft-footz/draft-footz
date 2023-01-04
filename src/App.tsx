@@ -1,8 +1,11 @@
-import React from 'react';
+import React from "react";
+import { AppRoutes } from "./routes/routes";
 
 function App() {
   return (
-    <div>Teste</div>
+    <div className="App">
+      <AppRoutes />
+    </div>
   );
 }
 
