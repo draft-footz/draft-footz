@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { GlobalStyles } from "./styles/global";
+import App from "./App";
+import { GlobalStyle } from "./styles/GlobalStyles";
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
@@ -11,7 +10,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <GlobalStyles />
+    <GlobalStyle />
     <BrowserRouter>
       <App />
     </BrowserRouter>
