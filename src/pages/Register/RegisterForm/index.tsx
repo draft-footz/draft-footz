@@ -4,6 +4,8 @@ import { useForm, FormState } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "./registerSchema";
 import { AiFillEye } from "react-icons/ai";
+import { StyledFormInput } from "../../../styles/Inputs/styled";
+import { ButtonSend } from "../../../styles/Buttons/styled";
 
 interface FormInputs {
   name: string;
@@ -29,67 +31,69 @@ export const RegisterForm = () => {
   return (
     <StyledForm>
       <div className="inputsArea">
-          <fieldset>
-            <input
-              {...register("name")}
-              type="text"
-              id="name"
-              placeholder="Nome de usuário"
-            />
-            {errors.name?.message && (
-              <label htmlFor="name" className="error">
-                {errors.name?.message}
-              </label>
-            )}
-          </fieldset>
-          <fieldset>
-            <input
-              {...register("email")}
-              type="email"
-              id="email"
-              placeholder="E-mail"
-            />
-            {errors.email?.message && (
-              <label htmlFor="email" className="error">
-                {errors.email?.message}
-              </label>
-            )}
-          </fieldset>
-          <fieldset>
-            <input
-              {...register("password")}
-              type={revealPSWD ? "text" : "password"}
-              id="password"
-              placeholder="Senha"
-            />
-            <i onClick={() => setRevealPSWD(!revealPSWD)}>
-              <AiFillEye />
-            </i>
-            {errors.password?.message && (
-              <label htmlFor="password" className="error">
-                {errors.password?.message}
-              </label>
-            )}
-          </fieldset>
-          <fieldset>
-            <input
-              {...register("passwordConfirmation")}
-              type={revealConfirmPSWD ? "text" : "password"}
-              id="passwordConfirmation"
-              placeholder="Confirme a senha"
-            />
-            <i onClick={() => setRevealConfirmPSWD(!revealConfirmPSWD)}>
-              <AiFillEye />
-            </i>
-            {errors.passwordConfirmation?.message && (
-              <label htmlFor="passwordConfirmation" className="error">
-                {errors.passwordConfirmation?.message}
-              </label>
-            )}
-          </fieldset>
+        <fieldset>
+          <StyledFormInput
+            {...register("name")}
+            type="text"
+            id="name"
+            placeholder="Nome de usuário"
+          />
+          {errors.name?.message && (
+            <label htmlFor="name" className="error">
+              {errors.name?.message}
+            </label>
+          )}
+        </fieldset>
+        <fieldset>
+          <StyledFormInput
+            {...register("email")}
+            type="email"
+            id="email"
+            placeholder="E-mail"
+          />
+          {errors.email?.message && (
+            <label htmlFor="email" className="error">
+              {errors.email?.message}
+            </label>
+          )}
+        </fieldset>
+        <fieldset>
+          <StyledFormInput
+            {...register("password")}
+            type={revealPSWD ? "text" : "password"}
+            id="password"
+            placeholder="Senha"
+          />
+          <i onClick={() => setRevealPSWD(!revealPSWD)}>
+            <AiFillEye />
+          </i>
+          {errors.password?.message && (
+            <label htmlFor="password" className="error">
+              {errors.password?.message}
+            </label>
+          )}
+        </fieldset>
+        <fieldset>
+          <StyledFormInput
+            {...register("passwordConfirmation")}
+            type={revealConfirmPSWD ? "text" : "password"}
+            id="passwordConfirmation"
+            placeholder="Confirme a senha"
+          />
+          <i onClick={() => setRevealConfirmPSWD(!revealConfirmPSWD)}>
+            <AiFillEye />
+          </i>
+          {errors.passwordConfirmation?.message && (
+            <label htmlFor="passwordConfirmation" className="error">
+              {errors.passwordConfirmation?.message}
+            </label>
+          )}
+        </fieldset>
       </div>
 
-      <button disabled={!isValid} type="submit">Cadastrar</button>
+      <ButtonSend disabled={!isValid} type="submit">
+        Cadastrar
+      </ButtonSend>
     </StyledForm>
   );
 };

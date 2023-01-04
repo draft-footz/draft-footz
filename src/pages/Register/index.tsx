@@ -13,13 +13,13 @@ export const RegisterPage = () => {
         <Logo />
         <h1>Registro</h1>
         <RegisterForm />
-        <h4>Faça login com</h4>
-        <div>
+        <h4>Cadastre-se com</h4>
+        <div className="social">
           <AppleButton/>
           <GoogleButton/>
         </div>
         <div>
-          <span>Já tem conta?</span> <Link to={"/login"}>Faça login</Link>
+          <span>Já tem conta?</span> <Link to={"/login"} className="linkLogin">Login</Link>
         </div>
       </div>
     </StyledRegisterPage>
