@@ -55,6 +55,8 @@ export const ButtonSend = styled.button`
   background-color: var(--primary);
   font-size: 15px;
   font-weight: 600;
+
+  transition: 0.5s;
 `;
 
 // button logout da dashboard
