@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: 'http://127.0.0.1:3001',
-    timeout: 2000
+    baseURL: 'https://draft-footz.onrender.com/',
+    timeout: 5000
 });
