@@ -29,4 +29,8 @@ export const StyledForm = styled.form`
 
         scale: 1.2;
     }
+
+    .wrongInput{
+        border: 1px solid var(--red);
+    }
 `
