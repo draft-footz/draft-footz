@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { StyledForm } from "./style";
 import { useForm, FormState } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "./registerSchema";
+import { registerSchema } from "../../../utils/schema";
 import { AiFillEye } from "react-icons/ai";
-import { StyledFormInput } from "../../../styles/Inputs/styled";
-import { ButtonSend } from "../../../styles/Buttons/styled";
+import { StyledFormInput } from "../../../styles/Inputs/style";
+import { ButtonSend } from "../../../styles/Buttons/style";
 
 interface FormInputs {
   name: string;

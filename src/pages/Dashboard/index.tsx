@@ -1,6 +1,6 @@
 import React from "react";
-import { ButtonLogout, ButtonMenu } from "../../styles/Buttons/styled";
-import { FigureBackgroundDashboard } from "../../styles/Figures/styles";
+import { ButtonLogout, ButtonMenu } from "../../styles/Buttons/style";
+import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import { Main } from "./style";
 
 export const DashboardPage = () => {
