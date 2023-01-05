@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
-import { GlobalStyle } from "./styles/GlobalStyles";
+import { GlobalStyle } from "./styles/global";
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
