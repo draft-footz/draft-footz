@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { StyledForm } from "./style";
-import { useForm, FormState } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../../utils/schema";
 import { AiFillEye } from "react-icons/ai";
-import { StyledFormInput } from "../../../styles/Inputs/style";
+import { StyledFormInput, StyledInputMask } from "../../../styles/Inputs/style";
 import { ButtonSend } from "../../../styles/Buttons/style";
 
 interface FormInputs {
@@ -12,7 +12,7 @@ interface FormInputs {
   email: string;
   password: string;
   passwordConfirmation: string;
-  telephone: number;
+  contact: number;
 }
 
 export const RegisterForm = () => {
@@ -29,7 +29,11 @@ export const RegisterForm = () => {
   const [revealConfirmPSWD, setRevealConfirmPSWD] = useState(false);
 
   return (
-    <StyledForm>
+    <StyledForm
+      noValidate
+      action="submit"
+      onSubmit={handleSubmit((data) => console.log(data))}
+    >
       <div className="inputsArea">
         <fieldset>
           <StyledFormInput
@@ -37,6 +41,7 @@ export const RegisterForm = () => {
             type="text"
             id="name"
             placeholder="Nome de usuário"
+            className={errors.name ? "wrongInput" : undefined}
           />
           {errors.name?.message && (
             <label htmlFor="name" className="error">
@@ -50,6 +55,7 @@ export const RegisterForm = () => {
             type="email"
             id="email"
             placeholder="E-mail"
+            className={errors.email ? "wrongInput" : undefined}
           />
           {errors.email?.message && (
             <label htmlFor="email" className="error">
@@ -63,6 +69,7 @@ export const RegisterForm = () => {
             type={revealPSWD ? "text" : "password"}
             id="password"
             placeholder="Senha"
+            className={errors.password ? "wrongInput" : undefined}
           />
           <i onClick={() => setRevealPSWD(!revealPSWD)}>
             <AiFillEye />
@@ -79,6 +86,7 @@ export const RegisterForm = () => {
             type={revealConfirmPSWD ? "text" : "password"}
             id="passwordConfirmation"
             placeholder="Confirme a senha"
+            className={errors.passwordConfirmation ? "wrongInput" : undefined}
           />
           <i onClick={() => setRevealConfirmPSWD(!revealConfirmPSWD)}>
             <AiFillEye />
@@ -89,9 +97,25 @@ export const RegisterForm = () => {
             </label>
           )}
         </fieldset>
+
+        <fieldset>
+          <StyledInputMask
+            mask="(99) 99999-9999"
+            {...register("contact")}
+            id="contact"
+            placeholder="(00) 00000-0000"
+            className={errors.contact ? "wrongInput" : undefined}
+          />
+
+          {errors.contact?.message && (
+            <label htmlFor="contact" className="error">
+              {errors.contact?.message}
+            </label>
+          )}
+        </fieldset>
       </div>
 
-      <ButtonSend disabled={!isValid} type="submit">
+      <ButtonSend type="submit" className={isValid ? undefined : "invalid"}>
         Cadastrar
       </ButtonSend>
     </StyledForm>

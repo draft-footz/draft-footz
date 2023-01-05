@@ -4,12 +4,15 @@ export const GlobalStyle = createGlobalStyle`
 
 :root{
     --primary: #00B148;
+    --primaryDisabled: #00B14820;
 
     --windowBackground: rgba(33, 33, 33, 0.6);
     --inputsBackground: rgba(21, 20, 20, 0.4);
     --inputsBackgroundFocus: rgba(0, 0, 0, 0.4);
 
     --gray0: #fff;
+    --gray1: #999999;
+    --red: #F94646;
 }
 
 * {
@@ -38,7 +41,14 @@ button{
   font-weight: 600;
   font-size: 11px;
 
-  color: #F94646;
+  color: var(--red);
+}
+
+.invalid {
+    background-color: var(--primaryDisabled);
+    color: var(--gray1);
+
+    cursor: not-allowed;
 }
 
 `;
