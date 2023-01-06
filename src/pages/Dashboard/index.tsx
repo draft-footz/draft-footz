@@ -1,12 +1,43 @@
+import React, { useState, useEffect } from "react";
 import React, { useState } from "react";
 import { MyTeamBlank } from "../../components/MyTeamBlank";
 import { MyTeamDetails } from "../../components/MyTeamDetails";
 import { TournamentCreation } from "../../components/TournamentCreation";
+import { api } from "../../services/api";
 import { ButtonLogout, ButtonMenu } from "../../styles/Buttons/style";
 import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import { Main } from "./style";
+import { TournamentsViewPage } from "./TournamentsViewPage";
 
 export const DashboardPage = () => {
+  const [value, setValue] = useState(0);
+  
+  
+
+  // APAGAR ASSIM QUE FINALIZAR
+
+  useEffect(() => {
+    const loginData = {
+      email: "user@test.com",
+      password: "test123",
+    };
+
+    async function autoLogin() {
+      try {
+        const request = await api.post("/login", loginData);
+
+        localStorage.setItem("@AcessToken", request.data.accessToken);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    autoLogin()
+  }, []);
+
+  // APAGAR ASSIM QUE FINALIZAR
+  
+  
   const [value, setValue] = useState(15);
   function handleClick(num: number) {
     setValue(num);
@@ -25,18 +56,24 @@ export const DashboardPage = () => {
                 <img src="/logo.svg" alt="" />
               </figure>
               <ButtonMenu
-                onClick={() => handleClick(0)}
+                onClick={() => setValue(0)}
                 className="first-button-menu"
               >
                 Criar torneio
               </ButtonMenu>
               <ButtonMenu
-                onClick={() => handleClick(1)}
+                onClick={() => setValue(1)}
                 className="secound-button-menu"
               >
                 Meus torneios
               </ButtonMenu>
-              <ButtonMenu className="third-button-menu">Meu time</ButtonMenu>
+              <ButtonMenu
+                className="third-button-menu"
+                onClick={() => setValue(2)}
+              >
+                Meu time
+              </ButtonMenu>
+              <ButtonMenu onClick={() => setValue(3)}>Torneios</ButtonMenu>
             </div>
             <div className="div-button-logout">
               <ButtonLogout className="button-logout">
@@ -45,10 +82,10 @@ export const DashboardPage = () => {
               </ButtonLogout>
             </div>
           </div>
-          {value === 0 && <div />}
-          {value === 1 && <TournamentCreation />}
-          {value === 14 && <MyTeamBlank />}
-          {value === 15 && <MyTeamDetails />}
+          {value === 0 && <TournamentCreation />}
+          {value === 1 && <div>Criar Torneio</div>}
+          {value === 2 && <div>Meu time</div>}
+          {value === 3 && <TournamentsViewPage />}
         </section>
       </Main>
     </>
