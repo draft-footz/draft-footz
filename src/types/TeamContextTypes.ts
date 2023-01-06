@@ -5,15 +5,15 @@ export interface iTeamProvider {
 }
 
 export interface iTeamContext {
-  createNewTeam: (data: iDataNewTeam, token: string) => Promise<void>;
-  updateTeam: (data: iUpdateTeam, id: tId, token: string) => Promise<void>;
-  deleteTeam: (data: number, id: tId, token: string) => Promise<void>;
+  createNewTeam: (data: iDataNewTeam) => Promise<void>;
+  updateTeam: (data: iUpdateTeam) => Promise<void>;
+  deleteTeam: () => Promise<void>;
   getAllTeams: () => Promise<void>;
-  getMyTeam: (id: tId) => Promise<void>;
-  createNewPlayer: (data: iDataNewPlayer, token: string) => Promise<void>;
-  updatePlayer: (data: iUpdatePlayer, id: tId, token: string) => Promise<void>;
-  deletePlayer: (userId: number, id: tId, token: string) => Promise<void>;
-  getPlayersFromATeam: (id: tId) => Promise<void>;
+  getMyTeam: () => Promise<void>;
+  createNewPlayer: (data: iDataNewPlayer) => Promise<void>;
+  updatePlayer: (data: iUpdatePlayer) => Promise<void>;
+  deletePlayer: () => Promise<void>;
+  getPlayersFromATeam: () => Promise<void>;
 }
 
 export interface iDataNewTeam {
@@ -46,5 +46,3 @@ export interface iUpdatePlayer {
   contact: string;
   position: null | string;
 }
-
-export type tId = number;

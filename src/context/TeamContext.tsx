@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { api } from "../services/api";
 import {
   iDataNewPlayer,
@@ -7,13 +7,17 @@ import {
   iTeamProvider,
   iUpdatePlayer,
   iUpdateTeam,
-  tId,
 } from "../types/TeamContextTypes";
 
 const TeamContext = createContext({} as iTeamContext);
 
 export const TeamProvider = ({ children }: iTeamProvider) => {
-  async function createNewTeam(data: iDataNewTeam, token: string) {
+  //const token = localStorage.getItem("@token");
+  //const userId = localStorage.getItem("@userId");
+  //const teamId = localStorage.getItem("@teamId");
+  const [playerId, setPlayerId] = useState<number | null>(null);
+
+  async function createNewTeam(data: iDataNewTeam) {
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("teams", data);
@@ -23,24 +27,24 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  async function updateTeam(data: iUpdateTeam, id: tId, token: string) {
+  async function updateTeam(data: iUpdateTeam) {
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      const requisition = await api.patch(`teams/${id}`, data);
+      const requisition = await api.patch(`teams/${teamId}`, data);
       console.log(requisition);
     } catch (err) {
       console.log(err);
     }
   }
 
-  async function deleteTeam(userId: number, id: tId, token: string) {
+  async function deleteTeam() {
     let data = {
       userId: userId,
     };
 
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      const requisition = await api.delete(`teams/${id}`, {
+      const requisition = await api.delete(`teams/${teamId}`, {
         data: data,
       });
       console.log(requisition);
@@ -58,16 +62,16 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  async function getMyTeam(id: tId) {
+  async function getMyTeam() {
     try {
-      const requisition = await api.get(`teams/${id}`);
+      const requisition = await api.get(`teams/${teamId}`);
       console.log(requisition);
     } catch (err) {
       console.log(err);
     }
   }
 
-  async function createNewPlayer(data: iDataNewPlayer, token: string) {
+  async function createNewPlayer(data: iDataNewPlayer) {
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("players", data);
@@ -77,24 +81,24 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  async function updatePlayer(data: iUpdatePlayer, id: tId, token: string) {
+  async function updatePlayer(data: iUpdatePlayer) {
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      const requisition = await api.patch(`players/${id}`, data);
+      const requisition = await api.patch(`players/${playerId}`, data);
       console.log(requisition);
     } catch (err) {
       console.log(err);
     }
   }
 
-  async function deletePlayer(userId: number, id: tId, token: string) {
+  async function deletePlayer() {
     let data = {
       userId: userId,
     };
 
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      const requisition = await api.delete(`teams/${id}`, {
+      const requisition = await api.delete(`teams/${playerId}`, {
         data: data,
       });
       console.log(requisition);
@@ -103,9 +107,9 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  async function getPlayersFromATeam(id: tId) {
+  async function getPlayersFromATeam() {
     try {
-      const requisition = await api.get(`players?&teamId=${id}`);
+      const requisition = await api.get(`players?&teamId=${playerId}`);
       console.log(requisition);
     } catch (err) {
       console.log(err);
