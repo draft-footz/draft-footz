@@ -9,7 +9,7 @@ import {
   iUpdateTeam,
 } from "../types/TeamContextTypes";
 
-const TeamContext = createContext({} as iTeamContext);
+export const TeamContext = createContext({} as iTeamContext);
 
 export const TeamProvider = ({ children }: iTeamProvider) => {
 

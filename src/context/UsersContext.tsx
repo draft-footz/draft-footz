@@ -10,7 +10,7 @@ import {
     iUsersProvider,
 } from "../types/UsersContextTypes";
 
-const UserContext = createContext({} as iUsersContext);
+export const UserContext = createContext({} as iUsersContext);
 
 export const UsersProvider = ({ children }: iUsersProvider) => {
     const navigate = useNavigate();
