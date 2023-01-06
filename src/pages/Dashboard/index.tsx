@@ -6,7 +6,7 @@ import { Main } from "./style";
 
 export const DashboardPage = () => {
   const [value, setValue] = useState(0);
-  function clickhere(num: number) {
+  function handleClick(num: number) {
     setValue(num);
   }
 
@@ -23,13 +23,13 @@ export const DashboardPage = () => {
                 <img src="/logo.svg" alt="" />
               </figure>
               <ButtonMenu
-                onClick={() => clickhere(0)}
+                onClick={() => handleClick(0)}
                 className="first-button-menu"
               >
                 Criar torneio
               </ButtonMenu>
               <ButtonMenu
-                onClick={() => clickhere(1)}
+                onClick={() => handleClick(1)}
                 className="secound-button-menu"
               >
                 Meus torneios
