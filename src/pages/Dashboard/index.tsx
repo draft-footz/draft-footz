@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { TournamentCreation } from "../../components/TournamentCreation";
 import { ButtonLogout, ButtonMenu } from "../../styles/Buttons/style";
 import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import { Main } from "./style";
 
 export const DashboardPage = () => {
+  const [value, setValue] = useState(0);
+  function handleClick(num: number) {
+    setValue(num);
+  }
+
   return (
     <>
       <FigureBackgroundDashboard>
@@ -16,10 +22,16 @@ export const DashboardPage = () => {
               <figure className="logo">
                 <img src="/logo.svg" alt="" />
               </figure>
-              <ButtonMenu className="first-button-menu">
+              <ButtonMenu
+                onClick={() => handleClick(0)}
+                className="first-button-menu"
+              >
                 Criar torneio
               </ButtonMenu>
-              <ButtonMenu className="secound-button-menu">
+              <ButtonMenu
+                onClick={() => handleClick(1)}
+                className="secound-button-menu"
+              >
                 Meus torneios
               </ButtonMenu>
               <ButtonMenu className="third-button-menu">Meu time</ButtonMenu>
@@ -31,6 +43,8 @@ export const DashboardPage = () => {
               </ButtonLogout>
             </div>
           </div>
+          {value === 0 && <div />}
+          {value === 1 && <TournamentCreation />}
         </section>
       </Main>
     </>
