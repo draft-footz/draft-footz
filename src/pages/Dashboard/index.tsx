@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { MyTeamBlank } from "../../components/MyTeamBlank";
 import { MyTeamDetails } from "../../components/MyTeamDetails";
 import { TournamentCreation } from "../../components/TournamentCreation";
+import { Welcome } from "../../components/Welcome";
 import { api } from "../../services/api";
-import { ButtonLogout, ButtonMenu } from "../../styles/Buttons/style";
+import { ButtonMenu } from "../../styles/Buttons/style";
 import { FigureBackgroundDashboard } from "../../styles/Figures/style";
-import { Main } from "./style";
+import {
+  ButtonLogout,
+  DivButtonLogout,
+  DivLogoAndButtons,
+  DivMenu,
+  FigureLogo,
+  Main,
+  SectionDashboard,
+} from "./style";
 import { TournamentsViewPage } from "./TournamentsViewPage";
 
 export const DashboardPage = () => {
-  const [value, setValue] = useState(0);
-  
-  
-
-  // APAGAR ASSIM QUE FINALIZAR
+  // // APAGAR ASSIM QUE FINALIZAR
 
   useEffect(() => {
     const loginData = {
@@ -32,16 +37,12 @@ export const DashboardPage = () => {
       }
     }
 
-    autoLogin()
+    autoLogin();
   }, []);
 
   // APAGAR ASSIM QUE FINALIZAR
-  
-  
+
   const [value, setValue] = useState(15);
-  function handleClick(num: number) {
-    setValue(num);
-  }
 
   return (
     <>
@@ -49,44 +50,27 @@ export const DashboardPage = () => {
         <img src="/bg-dashboard.png" alt="" />
       </FigureBackgroundDashboard>
       <Main>
-        <section className="section-dashboard">
-          <div className="div-menu">
-            <div className="div-logo-and-buttons">
-              <figure className="logo">
+        <SectionDashboard>
+          <DivMenu>
+            <DivLogoAndButtons>
+              <FigureLogo>
                 <img src="/logo.svg" alt="" />
-              </figure>
-              <ButtonMenu
-                onClick={() => setValue(0)}
-                className="first-button-menu"
-              >
-                Criar torneio
-              </ButtonMenu>
-              <ButtonMenu
-                onClick={() => setValue(1)}
-                className="secound-button-menu"
-              >
-                Meus torneios
-              </ButtonMenu>
-              <ButtonMenu
-                className="third-button-menu"
-                onClick={() => setValue(2)}
-              >
-                Meu time
-              </ButtonMenu>
-              <ButtonMenu onClick={() => setValue(3)}>Torneios</ButtonMenu>
-            </div>
-            <div className="div-button-logout">
-              <ButtonLogout className="button-logout">
-                <img className="icon-logout" src="/logout.png" alt="" />
-                <p className="text-button">Fazer logout</p>
+              </FigureLogo>
+              <ButtonMenu onClick={() => setValue(0)}>Criar torneio</ButtonMenu>
+              <ButtonMenu onClick={() => setValue(1)}>Meus torneios</ButtonMenu>
+              <ButtonMenu onClick={() => setValue(2)}>Meu time</ButtonMenu>
+            </DivLogoAndButtons>
+            <DivButtonLogout>
+              <ButtonLogout>
+                <img src="/logout.png" alt="" />
+                <p>Fazer logout</p>
               </ButtonLogout>
-            </div>
-          </div>
-          {value === 0 && <TournamentCreation />}
-          {value === 1 && <div>Criar Torneio</div>}
-          {value === 2 && <div>Meu time</div>}
-          {value === 3 && <TournamentsViewPage />}
-        </section>
+            </DivButtonLogout>
+          </DivMenu>
+          {value === 0 && <div />}
+          {value === 1 && <TournamentCreation />}
+          {value === 2 && <Welcome />}
+        </SectionDashboard>
       </Main>
     </>
   );
