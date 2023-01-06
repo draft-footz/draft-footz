@@ -35,13 +35,16 @@ export const FormBox = styled.div`
         display: flex;
         flex-direction: column;
         gap: 14px;
+        
+        div {
+            display: flex;
+            justify-content: flex-end;
+        }
 
         small {
             font-weight: 700;
             font-size: 10px;
-            position: relative;
-            left: 420px;
-            top: 10px;
+            
 
             :hover {
                 cursor: pointer;
@@ -66,6 +69,10 @@ export const FormBox = styled.div`
         justify-content: center;
         gap: 35px;
         width: 100%;
+
+        @media (max-width: 850px){
+            padding: 0 10px;
+        }
     }
 
     p {
@@ -73,10 +80,18 @@ export const FormBox = styled.div`
         font-size: 14px;
         margin-top: 21px;
 
+        @media (max-width: 850px){
+            font-size: 10px;
+        }
+
         .link {
             font-weight: 700;
             font-size: 14px;
             color: var(--primary);
+
+            @media (max-width: 850px){
+            font-size: 10px;
+            }
 
             :hover{
                 cursor: pointer;

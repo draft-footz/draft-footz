@@ -8,15 +8,18 @@ import {
   iUpdatePlayer,
   iUpdateTeam,
 } from "../types/TeamContextTypes";
+
 import { UserContext } from "./UsersContext";
 
 export const TeamContext = createContext({} as iTeamContext);
 
 export const TeamProvider = ({ children }: iTeamProvider) => {
+
   const { user, token } = useContext(UserContext);
 
   const userId = user.id;
   const teamId = user.myTeam;
+
 
   const [playerId, setPlayerId] = useState<number | null>(null);
 

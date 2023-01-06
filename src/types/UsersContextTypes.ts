@@ -9,6 +9,7 @@ export interface iUsersContext {
   user: iUserData;
   token: string;
 }
+
 export interface iDataNewUser {
   email: string;
   password: string;
@@ -16,14 +17,17 @@ export interface iDataNewUser {
   contact: string;
   champion: number | null;
 }
+
 export interface iDataLogin {
   email: string;
   password: string;
 }
+
 export interface iUserUpdateTeam {
   name: string;
   logo: string;
 }
+
 export interface iUserData {
   email: string;
   name: string;
@@ -31,6 +35,7 @@ export interface iUserData {
   myTeam: number | null;
   id: number;
 }
+
 export interface iUserResponse {
   accessToken: string;
   user: {
@@ -39,5 +44,9 @@ export interface iUserResponse {
     contact?: string;
     myTeam: number | null;
     id: number;
+
   };
 }
+
+
+
