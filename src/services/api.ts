@@ -1,2 +1,6 @@
-import styled from "styled-components";
+import axios from "axios";
 
+export const api = axios.create({
+    baseURL: 'https://draft-footz.onrender.com/',
+    timeout: 5000
+});
