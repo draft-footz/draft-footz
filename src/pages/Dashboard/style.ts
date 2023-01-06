@@ -15,6 +15,7 @@ export const Main = styled.main`
     height: 80%;
     border-radius: 20px;
     overflow: hidden;
+    display: flex;
   }
   .div-menu {
     background-color: #1e1e1e;

@@ -57,7 +57,7 @@ export const LoginPage = () => {
                     <AppleButton />
                     <GoogleButton />
                 </div>
-                <p>Ainda não possuí uma conta? <Link to={"/register"} className="link">Registre-se</Link></p>
+                <p>Ainda não possui uma conta? <Link to={"/register"} className="link">Registre-se</Link></p>
             </FormBox>
         </BackgroundDiv>
     )

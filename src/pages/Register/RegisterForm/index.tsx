@@ -10,9 +10,10 @@ import { ButtonSend } from "../../../styles/Buttons/style";
 interface FormInputs {
   name: string;
   email: string;
+  emailConfirmation: string;
   password: string;
   passwordConfirmation: string;
-  contact: number;
+  contact: string;
 }
 
 export const RegisterForm = () => {
@@ -28,8 +29,8 @@ export const RegisterForm = () => {
   const [revealPSWD, setRevealPSWD] = useState(false);
   const [revealConfirmPSWD, setRevealConfirmPSWD] = useState(false);
 
-  const [eyePassword, setEyePassword] = useState(false)
-  const [eyeConfirmPassword, setEyeConfirmPassword] = useState(false)
+  const [eyePassword, setEyePassword] = useState(false);
+  const [eyeConfirmPassword, setEyeConfirmPassword] = useState(false);
 
   return (
     <StyledForm
@@ -37,13 +38,13 @@ export const RegisterForm = () => {
       action="submit"
       onSubmit={handleSubmit((data) => console.log(data))}
     >
-<div className="inputsArea">
+      <div className="inputsArea">
         <fieldset>
           <StyledFormInput
             {...register("name")}
             type="text"
             id="name"
-            placeholder="Nome de usuário"
+            placeholder="Nome de usuário *"
             className={errors.name ? "wrongInput" : undefined}
           />
           {errors.name?.message && (
@@ -57,7 +58,7 @@ export const RegisterForm = () => {
             mask="(99) 99999-9999"
             {...register("contact")}
             id="contact"
-            placeholder="Número de contato"
+            placeholder="Número de contato *"
             className={errors.contact ? "wrongInput" : undefined}
           />
           {errors.contact?.message && (
@@ -71,7 +72,7 @@ export const RegisterForm = () => {
             {...register("email")}
             type="email"
             id="email"
-            placeholder="E-mail"
+            placeholder="E-mail *"
             className={errors.email ? "wrongInput" : undefined}
           />
           {errors.email?.message && (
@@ -82,14 +83,28 @@ export const RegisterForm = () => {
         </fieldset>
         <fieldset>
           <StyledFormInput
+            {...register("emailConfirmation")}
+            type="email"
+            id="emailConfirmation"
+            placeholder="Confirme o email *"
+            className={errors.emailConfirmation ? "wrongInput" : undefined}
+          />
+          {errors.emailConfirmation?.message && (
+            <label htmlFor="emailConfirmation" className="error">
+              {errors.emailConfirmation?.message}
+            </label>
+          )}
+        </fieldset>
+        <fieldset>
+          <StyledFormInput
             {...register("password")}
             type={revealPSWD ? "text" : "password"}
             id="password"
-            placeholder="Senha"
+            placeholder="Senha *"
             className={errors.password ? "wrongInput" : undefined}
-            onBlur={() =>  {
+            onBlur={() => {
               setTimeout(() => {
-                setEyePassword(false)
+                setEyePassword(false);
               }, 100);
             }}
             onFocus={() => setEyePassword(true)}
@@ -110,11 +125,11 @@ export const RegisterForm = () => {
             {...register("passwordConfirmation")}
             type={revealConfirmPSWD ? "text" : "password"}
             id="passwordConfirmation"
-            placeholder="Confirme a senha"
+            placeholder="Confirme a senha *"
             className={errors.passwordConfirmation ? "wrongInput" : undefined}
             onBlur={() => {
               setTimeout(() => {
-                setEyeConfirmPassword(false)
+                setEyeConfirmPassword(false);
               }, 100);
             }}
             onFocus={() => setEyeConfirmPassword(true)}
@@ -129,6 +144,13 @@ export const RegisterForm = () => {
               {errors.passwordConfirmation?.message}
             </label>
           )}
+        </fieldset>
+
+        <fieldset>
+          <StyledFormInput
+            type="text"
+            placeholder="Onde nos conheceu?"
+          />
         </fieldset>
       </div>
 
