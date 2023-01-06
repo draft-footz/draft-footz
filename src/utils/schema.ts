@@ -5,10 +5,18 @@ export const registerSchema = yup.object().shape({
     .string()
     .required("O nome é obrigatório")
     .min(3, "Insira um nome válido"),
+  contact: yup
+    .string()
+    .required("Insira um número válido")
+    .min(11, "Insira um número válido"),
   email: yup
     .string()
     .required("O email é obrigatório")
     .email("Insira um email válido"),
+  emailConfirmation: yup
+  .string()
+  .required("Esse campo é obrigatório")
+  .oneOf([yup.ref("email"), null], "Os emails deveme ser iguais."),
   password: yup
     .string()
     .min(8, "A senha deve ter no mínimo 8 caracteres")

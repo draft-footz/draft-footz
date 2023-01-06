@@ -13,9 +13,15 @@ export const StyledRegisterPage = styled.div`
   align-items: center;
   justify-content: center;
 
+  transition: 1s;
+
+  padding: 50px 0;
+
+  overflow-y: auto;
+
   h1 {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125rem;
 
     align-self: left;
   }
@@ -24,21 +30,34 @@ export const StyledRegisterPage = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 20px;
 
-    width: 40%;
+    width: 650px;
 
-    padding: 45px 70px;
+    margin-top: 100px;
+
+    padding: 45px 50px;
     border-radius: 20px;
 
     background-color: var(--windowBackground);
   }
 
-  @media (max-width: 950px) {
+  @media (max-width: 1000px) {
     .window {
       width: 80%;
+      padding: 30px 55px;
+      margin-top: 0;
     }
   }
+  @media (max-width: 450px) {
+    .window {
+      width: 90%;
+      padding: 20px 35px;
+
+      gap: 10px;
+    }
+  }
+
   .social {
     display: flex;
     justify-content: center;
@@ -46,12 +65,9 @@ export const StyledRegisterPage = styled.div`
     width: 100%;
   }
 
-  @media screen {
-  }
-
   .linkLogin {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--primary);
   }
 `;
