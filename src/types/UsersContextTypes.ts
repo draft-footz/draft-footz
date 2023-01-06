@@ -7,7 +7,9 @@ export interface iUsersProvider {
 export interface iUsersContext {
     createNewUser: (data: iDataNewUser) => void;
     userLogin: (data: iDataLogin) => void;
-    updateUserTeam: (data: iUserUpdateTeam) => void;
+    updateUserTeam: (teamId: number) => void;
+    user: iUserData;
+    token: string;
 };
 
 export interface iDataNewUser {
@@ -35,3 +37,14 @@ export interface iUserData {
     myTeam: number | null;
     id: number;
 };
+
+export interface iUserResponse {
+    accessToken: string;
+    user: {
+        email: string;
+        name: string;
+        contact?: string;
+        myTeam: number | null;
+        id: number;
+    }
+}

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { createContext } from "vm";
 import { api } from "../services/api";
 import {
     iDataLogin,
     iDataNewUser,
     iUserData,
+    iUserResponse,
     iUsersContext,
     iUsersProvider,
 } from "../types/UsersContextTypes";
@@ -48,7 +48,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
 
     async function updateUserTeam(teamId: number) {
         try {
-            const requisition = await api.patch(
+            const requisition = await api.patch<iUserResponse>(
                 `users/${user.id}`,
                 {
                     headers: {

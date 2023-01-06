@@ -12,9 +12,11 @@ import {
 const TeamContext = createContext({} as iTeamContext);
 
 export const TeamProvider = ({ children }: iTeamProvider) => {
-  //const token = localStorage.getItem("@token");
-  //const userId = localStorage.getItem("@userId");
-  //const teamId = localStorage.getItem("@teamId");
+
+  const token  = localStorage.getItem("@token");
+  const userId = localStorage.getItem("@userId");
+  const teamId = localStorage.getItem("@teamId");
+
   const [playerId, setPlayerId] = useState<number | null>(null);
 
   async function createNewTeam(data: iDataNewTeam) {
