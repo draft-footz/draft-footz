@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { api } from "../services/api";
 import {
   iDataNewPlayer,
@@ -9,13 +9,15 @@ import {
   iUpdateTeam,
 } from "../types/TeamContextTypes";
 
-const TeamContext = createContext({} as iTeamContext);
+import { UserContext } from "./UsersContext";
+
+export const TeamContext = createContext({} as iTeamContext);
 
 export const TeamProvider = ({ children }: iTeamProvider) => {
+  const { user, token } = useContext(UserContext);
 
-  const token  = localStorage.getItem("@token");
-  const userId = localStorage.getItem("@userId");
-  const teamId = localStorage.getItem("@teamId");
+  const userId = user.id;
+  const teamId = user.myTeam;
 
   const [playerId, setPlayerId] = useState<number | null>(null);
 

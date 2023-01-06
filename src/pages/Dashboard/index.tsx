@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { MyTeamBlank } from "../../components/MyTeamBlank";
+import { MyTeamDetails } from "../../components/MyTeamDetails";
 import { TournamentCreation } from "../../components/TournamentCreation";
 import { api } from "../../services/api";
 import { ButtonLogout, ButtonMenu } from "../../styles/Buttons/style";
@@ -8,6 +11,8 @@ import { TournamentsViewPage } from "./TournamentsViewPage";
 
 export const DashboardPage = () => {
   const [value, setValue] = useState(0);
+  
+  
 
   // APAGAR ASSIM QUE FINALIZAR
 
@@ -31,6 +36,12 @@ export const DashboardPage = () => {
   }, []);
 
   // APAGAR ASSIM QUE FINALIZAR
+  
+  
+  const [value, setValue] = useState(15);
+  function handleClick(num: number) {
+    setValue(num);
+  }
 
   return (
     <>

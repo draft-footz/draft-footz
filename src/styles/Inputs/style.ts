@@ -22,7 +22,6 @@ export const StyledFormInput = styled.input`
 export const StyledInputMask = styled(ReactInputMask)`
   width: 100%;
   height: 40px;
-
   background-color: var(--inputsBackground);
 
   border-radius: 4px;

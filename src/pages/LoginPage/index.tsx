@@ -46,7 +46,9 @@ export const LoginPage = () => {
                     id="password"
                     {...register("password")}/>
                     {errors.password?.message && <span>{errors.password.message}</span>}
-                    <small>Esqueceu a senha?</small>
+                    <div>
+                        <small>Esqueceu a senha?</small>
+                    </div>
                     <ButtonSend
                     type="submit">Login</ButtonSend>
                 </form>
