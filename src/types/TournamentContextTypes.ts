@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
-
+type tTournamentType = "qualifiers";
+type tNumberOfTeams = 8;
 
 export interface iTournamentProvider {
     children: ReactNode;

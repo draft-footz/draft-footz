@@ -5,17 +5,18 @@ import { api } from "../services/api";
 import {
     iDataLogin,
     iDataNewUser,
+    iUserData,
     iUsersContext,
     iUsersProvider,
-    iUserUpdateTeam,
 } from "../types/UsersContextTypes";
 
 const UserContext = createContext({} as iUsersContext);
 
 export const UsersProvider = ({ children }: iUsersProvider) => {
     const navigate = useNavigate();
-    const idUser = localStorage.getItem("@team-user");
-    const token = localStorage.getItem("@acessToken");
+    
+    const [user, setUser] = useState({} as iUserData);
+    const [token, setToken] = useState('');
 
     async function createNewUser(data: iDataNewUser) {
         let newData = { ...data, myTeam: null };
@@ -30,13 +31,15 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
 
     const userLogin = async (data: iDataLogin) => {
         try {
-            const response = await api.post("/login", data);
-            console.log(response.data);
-            localStorage.setItem("@AcessToken", response.data.accessToken);
-            localStorage.setItem(
-                "@user",
-                JSON.stringify(response.data.user.id)
-            );
+            const requisition = await api.post("/login", data);
+            console.log(requisition.data);
+            localStorage.setItem("@AcessToken", requisition.data.accessToken);
+            localStorage.setItem("@user", JSON.stringify(requisition.data.user.id));
+
+            if(requisition.status === 200 ) {
+                setUser(requisition.data.user);
+                setToken(requisition.data.accessToken);
+            }
             navigate("/dashboard");
         } catch (error) {
             console.log(error);
@@ -46,8 +49,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     async function updateUserTeam(teamId: number) {
         try {
             const requisition = await api.patch(
-                `users/${idUser}`,
-
+                `users/${user.id}`,
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -58,10 +60,12 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
                     },
                 }
             );
-            console.log(requisition);
+            if(requisition.status === 200) {
+                setUser(requisition.data.user);
+            };
         } catch (err) {
             console.log(err);
-        }
+        };
     }
 
     return (
@@ -70,6 +74,8 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
                 createNewUser,
                 userLogin,
                 updateUserTeam,
+                user,
+                token
             }}
         >
             {children}
