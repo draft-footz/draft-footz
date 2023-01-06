@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { CreatePlayer } from "../../components/CreatePlayer";
+import { CreateTeam } from "../../components/CreateTeam";
+import { EditTeam } from "../../components/EditTeam";
 import { MyTeamBlank } from "../../components/MyTeamBlank";
 import { MyTeamDetails } from "../../components/MyTeamDetails";
+import { MyTeamPlayers } from "../../components/MyTeamPlayers";
 import { TournamentCreation } from "../../components/TournamentCreation";
 import { ButtonLogout, ButtonMenu } from "../../styles/Buttons/style";
 import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import { Main } from "./style";
 
 export const DashboardPage = () => {
-  const [value, setValue] = useState(15);
+  const [value, setValue] = useState(16);
   function handleClick(num: number) {
     setValue(num);
   }
@@ -49,6 +53,10 @@ export const DashboardPage = () => {
           {value === 1 && <TournamentCreation />}
           {value === 14 && <MyTeamBlank />}
           {value === 15 && <MyTeamDetails />}
+          {value === 16 && <MyTeamPlayers />}
+          {value === 18 && <CreateTeam />}
+          {value === 19 && <EditTeam />}
+          {value === 20 && <CreatePlayer />}
         </section>
       </Main>
     </>

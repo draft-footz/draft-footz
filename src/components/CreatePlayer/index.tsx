@@ -4,6 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { playerFormSchema } from "./schema";
 import { iDataNewPlayer } from "../../types/TeamContextTypes";
+import { StyledFormInput } from "../../styles/Inputs/style";
+import { ButtonSend } from "../../styles/Buttons/style";
+import { CreatePlayerStyled } from "./style";
 
 export const CreatePlayer = () => {
   const { createNewPlayer } = useContext(TeamContext);
@@ -18,13 +21,52 @@ export const CreatePlayer = () => {
   });
 
   return (
-    <>
-      <form>
-        <input />
-        <select />
-        <input />
-        <button>Cadastrar Jogador</button>
+    <CreatePlayerStyled>
+      <form
+      onSubmit={handleSubmit(createNewPlayer)}
+      noValidate>
+        <fieldset>
+          <label htmlFor="name">Nome do jogador</label>
+          <StyledFormInput
+          {...register("name")}
+          placeholder="Nome"
+          id="name"/>
+          {errors.name?.message && <span>{errors.name.message}</span>}
+        </fieldset>
+        <div>
+          <fieldset>
+            <label htmlFor="position">Posição do jogador</label>
+            <select 
+            {...register("position")}
+            name="position" 
+            id="position">
+              <option
+              value="Goleiro">Goleiro</option>
+              <option
+              value="Zagueiro">Zagueiro</option>
+              <option
+              value="Lateral Esquerdo">Lateral Esquerdo</option>
+              <option
+              value="Lateral Direito">Lateral Direito</option>
+              <option
+              value="Meia">Meia</option>
+              <option
+              value="Atacante">Atacante</option>
+            </select>
+            {errors.position?.message && <span>{errors.position.message}</span>}
+          </fieldset>
+          <fieldset>
+            <label htmlFor="number">Nº da camisa</label>
+            <StyledFormInput
+            {...register("age")}
+            placeholder="Nº"
+            id="number"/>
+            {errors.age?.message && <span>{errors.age.message}</span>}
+          </fieldset>
+        </div>
+        <ButtonSend
+        type="submit">Cadastrar jogador</ButtonSend>
       </form>
-    </>
+    </CreatePlayerStyled>
   );
 };

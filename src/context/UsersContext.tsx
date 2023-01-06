@@ -64,4 +64,20 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         } catch (err) {
             console.log(err);
         };
+    };
+
+    return (
+        <UserContext.Provider
+            value={{
+                createNewUser,
+                userLogin,
+                updateUserTeam,
+                user,
+                token
+            }}
+        >
+            {children}
+        </UserContext.Provider>
+    );
+};
 
