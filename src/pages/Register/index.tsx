@@ -1,6 +1,6 @@
 import React from "react";
 import { Logo } from "../../components/Logo";
-import { RegisterForm } from "./RegisterForm";
+import { RegisterForm } from "../../components/RegisterForm";
 import { Link } from "react-router-dom";
 import { AppleButton } from "../../components/SocialLogin/Apple";
 import { GoogleButton } from "../../components/SocialLogin/Google";

@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { TournamentProvider } from "../context/TournamentContext";
 import { Area51Page } from "../pages/Area51";
 import { DashboardPage } from "../pages/Dashboard";
@@ -15,7 +15,7 @@ export const AppRoutes = () => {
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/area51" element={<TournamentProvider><Area51Page /></TournamentProvider>} />
 
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Homepage /> } />
     </Routes>
   );
 };
