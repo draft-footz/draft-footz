@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const teamFormSchema = yup.object().shape({
+export const createTeamFormSchema = yup.object().shape({
   name: yup
     .string()
     .required("O nome é obrigatório")
