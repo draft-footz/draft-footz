@@ -14,6 +14,10 @@ export interface iTournamentContext {
     getAllTournaments: () => void;
     setTournamentChampion: (teamId: number, tournamentId: number) => void;
     tournamentData: iDataTournament | null;
+    disableButton: boolean;
+    myTournaments: iDataTournament[];
+    readingTournament: boolean;
+    setReadingTournament: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export interface iDataCreateTournament {

@@ -4,6 +4,7 @@ import { CreateTeam } from "../../components/CreateTeam";
 import { EditTeam } from "../../components/EditTeam";
 import { MyTeamBlank } from "../../components/MyTeamBlank";
 import { MyTeamDetails } from "../../components/MyTeamDetails";
+import { MyTournaments } from "../../components/MyTournaments";
 import { MyTeamPlayers } from "../../components/MyTeamPlayers";
 import { TournamentCreation } from "../../components/TournamentCreation";
 import { Welcome } from "../../components/Welcome";
@@ -48,10 +49,10 @@ export const DashboardPage = () => {
 
   // APAGAR ASSIM QUE FINALIZAR
 
+  const [value, setValue] = useState(5);
   function handleClick(num: number) {
     setValue(num);
   }
-
   return (
     <>
       <FigureBackgroundDashboard>
@@ -84,7 +85,6 @@ export const DashboardPage = () => {
           {value === 19 && <EditTeam />}
           {value === 20 && <CreatePlayer />}
         </section>
-
       </Main>
     </>
   );
