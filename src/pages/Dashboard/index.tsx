@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 // import React, { useState } from "react";
 import { MyTeamBlank } from "../../components/MyTeamBlank";
 import { MyTeamDetails } from "../../components/MyTeamDetails";
 import { TournamentCreation } from "../../components/TournamentCreation";
 import { Welcome } from "../../components/Welcome";
+import { TournamentProvider } from "../../context/TournamentContext";
 import { api } from "../../services/api";
 import { ButtonMenu } from "../../styles/Buttons/style";
 import { FigureBackgroundDashboard } from "../../styles/Figures/style";
@@ -67,9 +69,12 @@ export const DashboardPage = () => {
               </ButtonLogout>
             </DivButtonLogout>
           </DivMenu>
-          {value === 0 && <div />}
-          {value === 1 && <TournamentCreation />}
-          {value === 2 && <Welcome />}
+          <TournamentProvider>
+            {value === 0 && <div />}
+            {value === 1 && <TournamentCreation />}
+            {value === 2 && <Welcome />}
+          </TournamentProvider>
+          <ToastContainer />
         </SectionDashboard>
       </Main>
     </>
