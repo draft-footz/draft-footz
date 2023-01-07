@@ -8,7 +8,7 @@ export interface iTournamentProvider {
 };
 
 export interface iTournamentContext {
-    createNewTournament: (data: iDataTournament) => void;
+    createNewTournament: (data: iDataCreateTournament) => void;
     updateTournament: (data: iDataUpdateTournament) => void;
     getMyTournaments: () => void;
     getAllTournaments: () => void;
@@ -17,16 +17,21 @@ export interface iTournamentContext {
 };
 
 export interface iDataCreateTournament {
+    name: string;
+    type?: tTournamentType;
+    numberOfTeams?: tNumberOfTeams;
+    champion?: number | null;
+    userId: number;
+    id: number;
+};
+
+export interface iDataTournament {
+    id: number;
     userId: number;
     name: string;
     type: tTournamentType;
     numberOfTeams: tNumberOfTeams;
-    champion: number | null;
-};
-
-export interface iDataTournament extends iDataCreateTournament{
-    id: number;
-    userId: number;
+    champion?: number | null;
 };
 
 export interface iDataUpdateTournament {
