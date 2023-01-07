@@ -3,6 +3,9 @@ import { TeamContext } from "../../context/TeamContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { iDataNewTeam } from "../../types/TeamContextTypes";
+import { EditTeamStyled } from "./style";
+import { StyledFormInput } from "../../styles/Inputs/style";
+import { ButtonSend } from "../../styles/Buttons/style";
 import { editTeamFormSchema } from "./schema";
 
 export const EditTeam = () => {
@@ -18,18 +21,24 @@ export const EditTeam = () => {
   });
 
   return (
-    <>
-      <form onSubmit={handleSubmit(updateTeam)}>
-        <label htmlFor="name">Nome do time</label>
-        <input type="text" placeholder="Nome do time" {...register("name")} />
-        {errors.name?.message && <p>{errors.name.message}</p>}
-
-        <label htmlFor="logo">Logo do time</label>
-        <input type="text" placeholder="Url do logo" {...register("logo")} />
-        {errors.logo?.message && <p>{errors.logo.message}</p>}
-
-        <button type="submit">Salvar alterações</button>
+    <EditTeamStyled>
+      <form onSubmit={handleSubmit(updateTeam)} noValidate>
+        <div>
+          <label htmlFor="name">Nome do time</label>
+          <StyledFormInput {...register("name")} placeholder="Nome" id="name" />
+          {errors.name?.message && <span>{errors.name.message}</span>}
+        </div>
+        <div>
+          <label htmlFor="logo">Logo do time</label>
+          <StyledFormInput
+            {...register("logo")}
+            placeholder="URL da logo"
+            id="logo"
+          />
+          {errors.logo?.message && <span>{errors.logo.message}</span>}
+        </div>
+        <ButtonSend type="submit">Salvar alterações</ButtonSend>
       </form>
-    </>
+    </EditTeamStyled>
   );
 };

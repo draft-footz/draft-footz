@@ -4,6 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { createTeamFormSchema } from "./schema";
 import { iDataNewTeam } from "../../types/TeamContextTypes";
+import { CreateTeamStyled } from "./style";
+import { StyledFormInput } from "../../styles/Inputs/style";
+import { ButtonSend } from "../../styles/Buttons/style";
 
 export const CreateTeam = () => {
   const { createNewTeam } = useContext(TeamContext);
@@ -19,18 +22,24 @@ export const CreateTeam = () => {
   //logo é opcional, porém precisa definir um default value.
 
   return (
-    <>
-      <form onSubmit={handleSubmit(createNewTeam)}>
-        <label htmlFor="name">Nome do time</label>
-        <input type="text" placeholder="Nome do time" {...register("name")} />
-        {errors.name?.message && <p>{errors.name.message}</p>}
-
-        <label htmlFor="logo">Logo do time</label>
-        <input type="text" placeholder="Url do logo" {...register("logo")} />
-        {errors.logo?.message && <p>{errors.logo.message}</p>}
-
-        <button type="submit">Criar Time</button>
+    <CreateTeamStyled>
+      <form onSubmit={handleSubmit(createNewTeam)} noValidate>
+        <div>
+          <label htmlFor="name">Nome do time</label>
+          <StyledFormInput {...register("name")} placeholder="Nome" id="name" />
+          {errors.name?.message && <span>{errors.name.message}</span>}
+        </div>
+        <div>
+          <label htmlFor="logo">Logo do time</label>
+          <StyledFormInput
+            {...register("logo")}
+            placeholder="URL do logo"
+            id="logo"
+          />
+          {errors.logo?.message && <span>{errors.logo.message}</span>}
+        </div>
+        <ButtonSend type="submit">Criar time</ButtonSend>
       </form>
-    </>
+    </CreateTeamStyled>
   );
 };

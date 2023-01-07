@@ -8,7 +8,7 @@ export const TournamentContext = createContext({} as iTournamentContext);
 
 export const TournamentProvider = ({children}: iTournamentProvider) => {
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmFuQG1haWwuY29tIiwiaWF0IjoxNjczMDg4NjE0LCJleHAiOjE2NzMwOTIyMTQsInN1YiI6IjMifQ.RPwkNe87WaMCDc2VYwGccjVPv8SrxYoX048QypWUJoM";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmFuQG1haWwuY29tIiwiaWF0IjoxNjczMTAwODAxLCJleHAiOjE2NzMxMDQ0MDEsInN1YiI6IjMifQ.BD63WuJXO-E-Zg0TghOqNstWCLq8fPbh9eLXlb8LM5o";
     const user =  {
                     email: "renan@mail.com",
                     name: "Renan Dutra",
@@ -19,7 +19,10 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
     
     //const { user, token } = useContext(UserContext);
 
+    const [myTournaments, setMyTournaments ] = useState([] as iDataTournament[]);
     const [tournamentData, setTournamentData] = useState({} as iDataTournament);
+    const [disableButton, setDisableButton] = useState(false);
+    const [readingTournament, setReadingTournament] = useState(false);
 
     useEffect(() => {
         getMyTournaments();
@@ -35,21 +38,26 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
         api.defaults.headers.common.authorization = `Bearer ${token}`;
 
         (async () => {
+            setDisableButton(true);
             if(!tournamentData) {
                 try {
                     const requisition = await api.post<iDataTournament>("tournaments", data)
                     if(requisition.data.id){
                         setTournamentData(requisition.data);
+                        getMyTournaments()
                         toast.success("Torneio criado com sucesso!");
                         console.log("Torneio criado com sucesso!");
                     };
                 } catch (err){
                     toast.error("Falha na requisição");
                     console.log("Falha na requisição");
+                } finally {
+                    setDisableButton(false);
                 };
             } else {
                 toast.error("Você já possui um torneio em andamento");
                 console.log("Você já possui um torneio em andamento");
+                setDisableButton(false);
             }
         })()
        
@@ -72,8 +80,9 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
             if(requisition.data){
                 let findTournament = requisition.data.filter(tournament => !tournament.champion)
                 let tournament = findTournament && findTournament[0]
-                console.log(tournament)
+
                 setTournamentData(tournament);
+                setMyTournaments(requisition.data);
             }
         } catch (err){
             console.log(err);
@@ -112,7 +121,11 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
             getMyTournaments,
             getAllTournaments,
             setTournamentChampion,
-            tournamentData
+            tournamentData,
+            disableButton,
+            myTournaments,
+            readingTournament,
+            setReadingTournament
         }}>
             {children}
         </TournamentContext.Provider>

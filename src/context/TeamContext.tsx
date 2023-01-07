@@ -6,7 +6,6 @@ import {
   iTeamContext,
   iTeamProvider,
   iUpdatePlayer,
-  iUpdateTeam,
 } from "../types/TeamContextTypes";
 
 import { UserContext } from "./UsersContext";
@@ -22,22 +21,34 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   const [playerId, setPlayerId] = useState<number | null>(null);
 
   async function createNewTeam(data: iDataNewTeam) {
+    data.userId = userId;
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("teams", data);
+      if (requisition.status === 201) {
+        //toast de sucesso
+        //direcionar para a página do time - componente MyTeamDetails
+      }
       console.log(requisition);
     } catch (err) {
       console.log(err);
+      //toast de erro
     }
   }
 
-  async function updateTeam(data: iUpdateTeam) {
+  async function updateTeam(data: iDataNewTeam) {
+    data.userId = userId;
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.patch(`teams/${teamId}`, data);
+      if (requisition.status === 200) {
+        //toast de sucesso
+        //direcionar para a página do time - componente MyTeamDetails
+      }
       console.log(requisition);
     } catch (err) {
       console.log(err);
+      //toast de erro
     }
   }
 
@@ -76,12 +87,19 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   }
 
   async function createNewPlayer(data: iDataNewPlayer) {
+    data.userId = userId;
+    data.teamId = teamId;
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("players", data);
+      if (requisition.status === 201) {
+        //toast de sucesso
+        //direcionar para a página do time - componente MyTeamPlayers
+      }
       console.log(requisition);
     } catch (err) {
       console.log(err);
+      //toast de erro
     }
   }
 
@@ -105,9 +123,14 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.delete(`teams/${playerId}`, {
         data: data,
       });
+      if (requisition.status === 200) {
+        //toast de sucesso
+        //renderizar a lista de jogadores novamente
+      }
       console.log(requisition);
     } catch (err) {
       console.log(err);
+      //toast de erro
     }
   }
 
@@ -132,6 +155,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         updatePlayer,
         deletePlayer,
         getPlayersFromATeam,
+        setPlayerId,
       }}
     >
       {children}
