@@ -6,7 +6,7 @@ export interface iTeamProvider {
 
 export interface iTeamContext {
   createNewTeam: (data: iDataNewTeam) => Promise<void>;
-  updateTeam: (data: iUpdateTeam) => Promise<void>;
+  updateTeam: (data: iDataNewTeam) => Promise<void>;
   deleteTeam: () => Promise<void>;
   getAllTeams: () => Promise<void>;
   getMyTeam: () => Promise<void>;
@@ -14,6 +14,7 @@ export interface iTeamContext {
   updatePlayer: (data: iUpdatePlayer) => Promise<void>;
   deletePlayer: () => Promise<void>;
   getPlayersFromATeam: () => Promise<void>;
+  setPlayerId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 export interface iDataNewTeam {
@@ -22,17 +23,10 @@ export interface iDataNewTeam {
   logo: string;
 }
 
-export interface iUpdateTeam {
-  userId: number;
-  name: string;
-  logo: string;
-}
-
 export interface iDataNewPlayer {
   userId: number;
-  teamId: number;
+  teamId: number | null;
   name: string;
-  age: number;
   position: null | string;
   number: number;
 }

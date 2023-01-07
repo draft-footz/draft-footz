@@ -16,6 +16,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({} as iUserData);
   const [token, setToken] = useState("");
+
   async function createNewUser(data: iDataNewUser) {
     let newData = { ...data, myTeam: null };
     try {

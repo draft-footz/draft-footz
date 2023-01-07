@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { CreatePlayer } from "../../components/CreatePlayer";
+import { CreateTeam } from "../../components/CreateTeam";
+import { EditTeam } from "../../components/EditTeam";
 import { MyTeamBlank } from "../../components/MyTeamBlank";
 import { MyTeamDetails } from "../../components/MyTeamDetails";
+import { MyTeamPlayers } from "../../components/MyTeamPlayers";
 import { TournamentCreation } from "../../components/TournamentCreation";
 import { api } from "../../services/api";
 import { ButtonLogout, ButtonMenu } from "../../styles/Buttons/style";
@@ -11,8 +14,6 @@ import { TournamentsViewPage } from "./TournamentsViewPage";
 
 export const DashboardPage = () => {
   const [value, setValue] = useState(0);
-  
-  
 
   // APAGAR ASSIM QUE FINALIZAR
 
@@ -32,13 +33,11 @@ export const DashboardPage = () => {
       }
     }
 
-    autoLogin()
+    autoLogin();
   }, []);
 
   // APAGAR ASSIM QUE FINALIZAR
-  
-  
-  const [value, setValue] = useState(15);
+
   function handleClick(num: number) {
     setValue(num);
   }
@@ -82,10 +81,14 @@ export const DashboardPage = () => {
               </ButtonLogout>
             </div>
           </div>
-          {value === 0 && <TournamentCreation />}
-          {value === 1 && <div>Criar Torneio</div>}
-          {value === 2 && <div>Meu time</div>}
-          {value === 3 && <TournamentsViewPage />}
+          {value === 0 && <div />}
+          {value === 1 && <TournamentCreation />}
+          {value === 14 && <MyTeamBlank />}
+          {value === 15 && <MyTeamDetails />}
+          {value === 16 && <MyTeamPlayers />}
+          {value === 18 && <CreateTeam />}
+          {value === 19 && <EditTeam />}
+          {value === 20 && <CreatePlayer />}
         </section>
       </Main>
     </>
