@@ -11,6 +11,18 @@ import {
 } from "../types/UsersContextTypes";
 export const UserContext = createContext({} as iUsersContext);
 export const UsersProvider = ({ children }: iUsersProvider) => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({} as iUserData);
+  const [token, setToken] = useState("");
+
+  async function createNewUser(data: iDataNewUser) {
+    let newData = { ...data, myTeam: null };
+    try {
+      const requisition = await api.post("tournaments", newData);
+      console.log(requisition);
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
     const navigate = useNavigate();
     const [user, setUser] = useState({} as iUserData);
     const [token, setToken] = useState('');

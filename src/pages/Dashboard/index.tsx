@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { ToastContainer } from "react-toastify";
-// import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { CreatePlayer } from "../../components/CreatePlayer";
+import { CreateTeam } from "../../components/CreateTeam";
+import { EditTeam } from "../../components/EditTeam";
 import { MyTeamBlank } from "../../components/MyTeamBlank";
 import { MyTeamDetails } from "../../components/MyTeamDetails";
 import { MyTournaments } from "../../components/MyTournaments";
+import { MyTeamPlayers } from "../../components/MyTeamPlayers";
 import { TournamentCreation } from "../../components/TournamentCreation";
 import { Welcome } from "../../components/Welcome";
 import { TournamentProvider } from "../../context/TournamentContext";
@@ -22,7 +24,9 @@ import {
 import { TournamentsViewPage } from "./TournamentsViewPage";
 
 export const DashboardPage = () => {
-  // // APAGAR ASSIM QUE FINALIZAR
+  const [value, setValue] = useState(0);
+
+  // APAGAR ASSIM QUE FINALIZAR
 
   useEffect(() => {
     const loginData = {
@@ -46,7 +50,9 @@ export const DashboardPage = () => {
   // APAGAR ASSIM QUE FINALIZAR
 
   const [value, setValue] = useState(5);
-
+  function handleClick(num: number) {
+    setValue(num);
+  }
   return (
     <>
       <FigureBackgroundDashboard>
@@ -68,15 +74,17 @@ export const DashboardPage = () => {
                 <img src="/logout.png" alt="" />
                 <p>Fazer logout</p>
               </ButtonLogout>
-            </DivButtonLogout>
-          </DivMenu>
-          <TournamentProvider>
-            {value === 0 && <div />}
-            {value === 1 && <TournamentCreation />}
-            {value === 2 && <Welcome />}
-            {value === 5 && <MyTournaments />}
-          </TournamentProvider>
-        </SectionDashboard>
+            </div>
+          </div>
+          {value === 0 && <div />}
+          {value === 1 && <TournamentCreation />}
+          {value === 14 && <MyTeamBlank />}
+          {value === 15 && <MyTeamDetails />}
+          {value === 16 && <MyTeamPlayers />}
+          {value === 18 && <CreateTeam />}
+          {value === 19 && <EditTeam />}
+          {value === 20 && <CreatePlayer />}
+        </section>
       </Main>
     </>
   );
