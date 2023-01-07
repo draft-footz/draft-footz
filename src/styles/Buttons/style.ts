@@ -38,10 +38,6 @@ export const ButtonMenu = styled.button`
   background-color: transparent;
   font-size: 15px;
   font-weight: 600;
-
-  :hover {
-    background-color: var(--primary);
-  }
 `;
 
 // button verde de login e registro

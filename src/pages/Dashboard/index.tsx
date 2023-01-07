@@ -10,13 +10,13 @@ import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import {
   ButtonLogout,
   DivButtonLogout,
+  DivGlobalDashboard,
   DivLogoAndButtons,
   DivMenu,
   FigureLogo,
   Main,
   SectionDashboard,
 } from "./style";
-import { TournamentsViewPage } from "./TournamentsViewPage";
 
 export const DashboardPage = () => {
   // // APAGAR ASSIM QUE FINALIZAR
@@ -49,29 +49,46 @@ export const DashboardPage = () => {
       <FigureBackgroundDashboard>
         <img src="/bg-dashboard.png" alt="" />
       </FigureBackgroundDashboard>
-      <Main>
-        <SectionDashboard>
-          <DivMenu>
-            <DivLogoAndButtons>
-              <FigureLogo>
-                <img src="/logo.svg" alt="" />
-              </FigureLogo>
-              <ButtonMenu onClick={() => setValue(0)}>Criar torneio</ButtonMenu>
-              <ButtonMenu onClick={() => setValue(1)}>Meus torneios</ButtonMenu>
-              <ButtonMenu onClick={() => setValue(2)}>Meu time</ButtonMenu>
-            </DivLogoAndButtons>
-            <DivButtonLogout>
-              <ButtonLogout>
-                <img src="/logout.png" alt="" />
-                <p>Fazer logout</p>
-              </ButtonLogout>
-            </DivButtonLogout>
-          </DivMenu>
-          {value === 0 && <div />}
-          {value === 1 && <TournamentCreation />}
-          {value === 2 && <Welcome />}
-        </SectionDashboard>
-      </Main>
+      <DivGlobalDashboard>
+        <Main>
+          <SectionDashboard>
+            <DivMenu>
+              <DivLogoAndButtons>
+                <FigureLogo>
+                  <img src="/logo.svg" alt="" />
+                </FigureLogo>
+                <ButtonMenu
+                  className={value === 1 ? "green" : ""}
+                  onClick={() => setValue(1)}
+                >
+                  Criar torneio
+                </ButtonMenu>
+                <ButtonMenu
+                  className={value === 2 ? "green" : ""}
+                  onClick={() => setValue(2)}
+                >
+                  Meus torneios
+                </ButtonMenu>
+                <ButtonMenu
+                  className={value === 3 ? "green" : ""}
+                  onClick={() => setValue(3)}
+                >
+                  Meu time
+                </ButtonMenu>
+              </DivLogoAndButtons>
+              <DivButtonLogout>
+                <ButtonLogout>
+                  <img src="/logout.png" alt="" />
+                  <p>Fazer logout</p>
+                </ButtonLogout>
+              </DivButtonLogout>
+            </DivMenu>
+            {value === 0 && <div />}
+            {value === 1 && <TournamentCreation />}
+            {value === 2 && <Welcome />}
+          </SectionDashboard>
+        </Main>
+      </DivGlobalDashboard>
     </>
   );
 };

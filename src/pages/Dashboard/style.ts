@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const DivGlobalDashboard = styled.div`
+  background-color: red;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+`;
+
 export const Main = styled.main`
   position: absolute;
   z-index: 1;
@@ -8,6 +16,11 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 1200px;
+
+  .green {
+    background-color: var(--primary);
+  }
 `;
 
 export const SectionDashboard = styled.section`
