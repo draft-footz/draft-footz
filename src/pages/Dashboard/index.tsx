@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 // import React, { useState } from "react";
 import { MyTeamBlank } from "../../components/MyTeamBlank";
 import { MyTeamDetails } from "../../components/MyTeamDetails";
+import { MyTournaments } from "../../components/MyTournaments";
 import { TournamentCreation } from "../../components/TournamentCreation";
 import { Welcome } from "../../components/Welcome";
 import { TournamentProvider } from "../../context/TournamentContext";
@@ -44,7 +45,7 @@ export const DashboardPage = () => {
 
   // APAGAR ASSIM QUE FINALIZAR
 
-  const [value, setValue] = useState(15);
+  const [value, setValue] = useState(5);
 
   return (
     <>
@@ -73,8 +74,8 @@ export const DashboardPage = () => {
             {value === 0 && <div />}
             {value === 1 && <TournamentCreation />}
             {value === 2 && <Welcome />}
+            {value === 5 && <MyTournaments />}
           </TournamentProvider>
-          <ToastContainer />
         </SectionDashboard>
       </Main>
     </>

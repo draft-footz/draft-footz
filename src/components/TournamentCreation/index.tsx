@@ -19,7 +19,7 @@ import { iDataCreateTournament } from "../../types/TournamentContextTypes";
 
 export const TournamentCreation = () => {
 
-  const { createNewTournament } = useContext(TournamentContext);
+  const { createNewTournament, disableButton } = useContext(TournamentContext);
 
   const { register, 
     handleSubmit,
@@ -33,6 +33,7 @@ export const TournamentCreation = () => {
   function onSubmit (data: iDataCreateTournament) {
     createNewTournament(data);
   };
+
 
   return (
     <FormTournamentCreation onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -58,7 +59,7 @@ export const TournamentCreation = () => {
           </DivInputInfoTournament>
         </DivInputDisabled>
         <DivButtonCreateTournament>
-          <ButtonSend>Criar torneio</ButtonSend>
+          <ButtonSend disabled={disableButton}>Criar torneio</ButtonSend>
         </DivButtonCreateTournament>
       </DivGlobalTournament>
     </FormTournamentCreation>
