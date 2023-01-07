@@ -8,8 +8,16 @@ export const TournamentContext = createContext({} as iTournamentContext);
 
 export const TournamentProvider = ({children}: iTournamentProvider) => {
 
-    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdGVzdC5jb20iLCJpYXQiOjE2NzI5NTA0MTEsImV4cCI6MTY3Mjk1NDAxMSwic3ViIjoiMiJ9._7cTlq2gDBmrq0RIIdkbdTeunDJeD-lU21sVhbpR0_Q";
-    const { user, token } = useContext(UserContext);
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmFuQG1haWwuY29tIiwiaWF0IjoxNjczMDg4NjE0LCJleHAiOjE2NzMwOTIyMTQsInN1YiI6IjMifQ.RPwkNe87WaMCDc2VYwGccjVPv8SrxYoX048QypWUJoM";
+    const user =  {
+                    email: "renan@mail.com",
+                    name: "Renan Dutra",
+                    contact: "51984449218",
+                    myTeam: null,
+                    id: 3
+                  };   
+    
+    //const { user, token } = useContext(UserContext);
 
     const [tournamentData, setTournamentData] = useState({} as iDataTournament);
 
@@ -18,23 +26,35 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    async function createNewTournament(data: iDataCreateTournament) {
+    function createNewTournament(data: iDataCreateTournament) {
         data.champion = null;
         data.userId  = user.id;
+        data.type = "qualifiers";
+        data.numberOfTeams = 8;
+
         api.defaults.headers.common.authorization = `Bearer ${token}`;
-        if(!tournamentData) {
-            try {
-                const requisition = await api.post<iDataTournament>('tournaments', data)
-                if(requisition.data.id){
-                    setTournamentData(requisition.data);
+
+        (async () => {
+            if(!tournamentData) {
+                try {
+                    const requisition = await api.post<iDataTournament>("tournaments", data)
+                    if(requisition.data.id){
+                        setTournamentData(requisition.data);
+                        toast.success("Torneio criado com sucesso!");
+                        console.log("Torneio criado com sucesso!");
+                    };
+                } catch (err){
+                    toast.error("Falha na requisição");
+                    console.log("Falha na requisição");
                 };
-            } catch (err){
-                toast.error('Falha na requisição');
-            };
-        } else {
-            console.log("já possui um torneio em andamento")
-        }
+            } else {
+                toast.error("Você já possui um torneio em andamento");
+                console.log("Você já possui um torneio em andamento");
+            }
+        })()
+       
     };
+
 
     async function updateTournament(data: iDataUpdateTournament) {
         api.defaults.headers.common.authorization = `Bearer ${token}`;

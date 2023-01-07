@@ -1,45 +1,66 @@
 import { ButtonSend } from "../../styles/Buttons/style";
-import { StyledFormInput } from "../../styles/Inputs/style";
-import { FormTournamentCreation } from "./style";
+import {
+  DivButtonCreateTournament,
+  DivGlobalTournament,
+  DivInputDisabled,
+  DivInputInfoTournament,
+  DivInputTitle,
+  FormTournamentCreation,
+  InputTournamentCreation,
+  InputTournamentType,
+} from "./style";
+
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { tournamentSchema } from "./schema";
+import { useContext } from "react"
+import { TournamentContext } from "../../context/TournamentContext";
+import { iDataCreateTournament } from "../../types/TournamentContextTypes";
 
 export const TournamentCreation = () => {
+
+  const { createNewTournament } = useContext(TournamentContext);
+
+  const { register, 
+    handleSubmit,
+    formState: {
+      errors
+    }
+  } = useForm<iDataCreateTournament>({
+    resolver: yupResolver(tournamentSchema)
+  });
+
+  function onSubmit (data: iDataCreateTournament) {
+    createNewTournament(data);
+  };
+
   return (
-    <FormTournamentCreation>
-      <div className="div-global-tournament">
-        <div className="div-input-title">
-          <label htmlFor="name">Nome do torneio</label>
-          <StyledFormInput
-            className="input-tournament-creation"
-            type="text"
-            placeholder="Título"
-          />
-        </div>
-        <div className="div-input-disbled">
-          <div className="div-inputs-info-tournament">
+    <FormTournamentCreation onSubmit={handleSubmit(onSubmit)} noValidate>
+      <DivGlobalTournament>
+        <DivInputTitle>
+          <label htmlFor="name"> Nome do torneio </label>
+          <InputTournamentCreation type="text" placeholder="Título" {...register("name")} />
+          {errors.name && <span> errors.name.message </span>}
+        </DivInputTitle>
+        <DivInputDisabled>
+          <DivInputInfoTournament>
             <label htmlFor="step">Fases do campeonato</label>
-            <StyledFormInput
+            <InputTournamentType
               className="input-tournament-type"
               type="text"
               disabled
               placeholder="Eliminatórias"
             />
-          </div>
-          <div className="div-inputs-info-tournament">
+          </DivInputInfoTournament>
+          <DivInputInfoTournament>
             <label htmlFor="teams">Número de times</label>
-            <StyledFormInput
-              className="input-teams-number"
-              type="text"
-              disabled
-              placeholder="8"
-            />
-          </div>
-        </div>
-        <div className="div-button-create-tournament">
-          <ButtonSend className="button-create-tournament">
-            Criar torneio
-          </ButtonSend>
-        </div>
-      </div>
+            <InputTournamentType type="text" disabled placeholder="8" />
+          </DivInputInfoTournament>
+        </DivInputDisabled>
+        <DivButtonCreateTournament>
+          <ButtonSend>Criar torneio</ButtonSend>
+        </DivButtonCreateTournament>
+      </DivGlobalTournament>
     </FormTournamentCreation>
   );
 };

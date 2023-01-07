@@ -58,20 +58,3 @@ export const ButtonSend = styled.button`
 
   transition: 0.5s;
 `;
-
-// button logout da dashboard
-export const ButtonLogout = styled.button`
-  background-color: #2f2f2f;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  .text-button {
-    color: #a8a8a8;
-    font-weight: 600;
-  }
-  .icon-logout {
-    width: 20px;
-  }
-`;

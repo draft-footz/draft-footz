@@ -6,14 +6,14 @@ import { AppRoutes } from "./routes/routes";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <UsersProvider>
         <TeamProvider>
           <AppRoutes />
         </TeamProvider>
       </UsersProvider>
       <ToastContainer />
-    </div>
+    </>
   );
 }
 
