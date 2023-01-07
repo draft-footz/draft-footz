@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const HeaderNav = styled.header`
   height: 90px; 
-  background-color: rgba(6, 0, 0, 0.55);
+  background: rgba(6, 0, 0, 0.75);
   border: 0px solid #00b148;
   display: flex;
   align-items: center;
