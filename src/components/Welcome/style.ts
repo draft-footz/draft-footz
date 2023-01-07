@@ -7,7 +7,7 @@ export const SectionWelcome = styled.div`
   justify-content: center;
   align-items: center;
 
-  .text {
+  h2 {
     font-size: 18px;
     text-align: center;
     margin-top: 30px;
