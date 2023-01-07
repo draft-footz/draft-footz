@@ -19,11 +19,31 @@ export const CreatePlayer = () => {
 
   return (
     <>
-      <form>
-        <input />
-        <select />
-        <input />
-        <button>Cadastrar Jogador</button>
+      <form onSubmit={handleSubmit(createNewPlayer)}>
+        <label htmlFor="name">Nome</label>
+        <input
+          type="text"
+          placeholder="Nome do jogador"
+          {...register("name")}
+        />
+        {errors.name?.message && <p>{errors.name.message}</p>}
+
+        <label htmlFor="position">Posição</label>
+        <select {...register("position")}>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+        </select>
+
+        <label htmlFor="number">Número da camisa</label>
+        <input type="number" placeholder="0" {...register("number")} />
+        {errors.number?.message && <p>{errors.number.message}</p>}
+
+        <label htmlFor="number">Idade</label>
+        <input type="number" placeholder="0" {...register("age")} />
+        {errors.age?.message && <p>{errors.age.message}</p>}
+
+        <button type="submit">Cadastrar jogador</button>
       </form>
     </>
   );

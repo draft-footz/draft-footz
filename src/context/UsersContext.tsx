@@ -24,53 +24,55 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
             console.log(err);
         }
     }
-    const userLogin = async (data: iDataLogin) => {
-        try {
-            const requisition = await api.post("/login", data);
-            console.log(requisition.data);
-            localStorage.setItem("@AcessToken", requisition.data.accessToken);
-            localStorage.setItem("@user", JSON.stringify(requisition.data.user.id));
-            if(requisition.status === 200 ) {
-                setUser(requisition.data.user);
-                setToken(requisition.data.accessToken);
-            }
-            navigate("/dashboard");
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    async function updateUserTeam(teamId: number) {
-        try {
-            const requisition = await api.patch<iUserResponse>(
-                `users/${user.id}`,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    data: {
-                        myTeam: teamId,
-                    },
-                }
-            );
-            if(requisition.status === 200) {
-                setUser(requisition.data.user);
-            };
-        } catch (err) {
-            console.log(err);
-        };
+
+  const userLogin = async (data: iDataLogin) => {
+    try {
+      const requisition = await api.post("/login", data);
+      console.log(requisition.data);
+      localStorage.setItem("@AcessToken", requisition.data.accessToken);
+      localStorage.setItem("@user", JSON.stringify(requisition.data.user.id));
+
+      if (requisition.status === 200) {
+        setUser(requisition.data.user);
+        setToken(requisition.data.accessToken);
+      }
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
     }
-    return (
-        <UserContext.Provider
-            value={{
-                createNewUser,
-                userLogin,
-                updateUserTeam,
-                user,
-                token
-            }}
-        >
-            {children}
-        </UserContext.Provider>
-    );
+  };
+
+  async function updateUserTeam(teamId: number) {
+    try {
+      const requisition = await api.patch<iUserResponse>(`users/${user.id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          myTeam: teamId,
+        },
+      });
+      if (requisition.status === 200) {
+        setUser(requisition.data.user);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  return (
+    <UserContext.Provider
+      value={{
+        createNewUser,
+        userLogin,
+        updateUserTeam,
+        user,
+        token,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
+
 };

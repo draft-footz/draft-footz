@@ -33,9 +33,8 @@ export interface iDataNewPlayer {
   teamId: number;
   name: string;
   age: number;
-  avatar: string;
-  contact: string;
   position: null | string;
+  number: number;
 }
 
 export interface iUpdatePlayer {
