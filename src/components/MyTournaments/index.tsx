@@ -6,7 +6,7 @@ import { TournamentList } from "./TournamentList";
 
 export const MyTournaments = () => {
 
-    const { readingTournament, setReadingTournament } = useContext(TournamentContext)
+    const { readingTournament } = useContext(TournamentContext)
     return (
         <StyledMyTournaments>
             { !readingTournament ?

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CreatePlayer } from "../../components/CreatePlayer";
 import { CreateTeam } from "../../components/CreateTeam";
 import { EditTeam } from "../../components/EditTeam";
@@ -9,7 +9,6 @@ import { MyTeamPlayers } from "../../components/MyTeamPlayers";
 import { TournamentCreation } from "../../components/TournamentCreation";
 import { Welcome } from "../../components/Welcome";
 import { TournamentContext } from "../../context/TournamentContext";
-import { api } from "../../services/api";
 import { ButtonMenu } from "../../styles/Buttons/style";
 import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import {
