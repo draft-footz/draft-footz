@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
 import { iDataCreateTournament, iDataTournament, iDataUpdateTournament, iTournamentContext, iTournamentProvider, tReadingTournament } from "../types/TournamentContextTypes";
+import { MatchesContext } from "./MatchesContext";
 import { UserContext } from "./UsersContext";
 
 export const TournamentContext = createContext({} as iTournamentContext);
@@ -9,6 +10,7 @@ export const TournamentContext = createContext({} as iTournamentContext);
 export const TournamentProvider = ({children}: iTournamentProvider) => {
 
     const { user, token } = useContext(UserContext);
+    const { createMultipleTournamentMatches, createTournamentMatch, deleteAllMatchesFromTournament} = useContext(MatchesContext);
 
     // Tournaments data
     const [myTournaments, setMyTournaments ] = useState([] as iDataTournament[]);
@@ -30,6 +32,7 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
 
     // Functions 
     async function createNewTournament(data: iDataCreateTournament) {
+
         data.champion = null;
         data.userId  = user.id;
         data.userName = user.name;
@@ -49,9 +52,11 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
                     
                     getMyTournaments();
                     getAllTournaments();
+
+                    createMultipleTournamentMatches(response.data.id, 7);
                 });
-            } catch (err){
-                toast.error("Falha ao criar torneio");
+            } catch {
+                toast.error('Falha ao criar torneio...')
             } finally {
                 setDisableButton(false);
             };
@@ -99,6 +104,7 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
             .then(() => {
                 toast.success('Torneio deletado com sucesso!');
                 getMyTournaments();
+                deleteAllMatchesFromTournament(tournamentId);
             });
         } catch {
             toast.error('Falha ao deletar torneio.')

@@ -24,6 +24,7 @@ import { TournamentKeys } from "../../components/MyTournaments/TournamentKeys";
 import { SubscriptionsProvider } from "../../context/SubscriptionsContext";
 import { NoTournament } from "../../components/NoTournament";
 import { TeamsTournament } from "../../components/TeamTournament";
+import { MatchesContext, MatchesProvider } from "../../context/MatchesContext";
 
 export const DashboardPage = () => {
   const { setReadingTournament, dashboardPage ,setDashboardPage } = useContext(TournamentContext);
@@ -63,20 +64,19 @@ export const DashboardPage = () => {
                 </ButtonLogout>
               </DivButtonLogout>
             </DivMenu>     
-
             <SubscriptionsProvider>
-              {dashboardPage === 0  && <Welcome />}
-              {dashboardPage === 1  && <TournamentCreation />}
-              {dashboardPage === 2  && <MyTournaments />     }
-              {dashboardPage === 5  && <NoTournament />}
-              {dashboardPage === 6  && <TournamentKeys />}
-              {dashboardPage === 7 && <TeamsTournament />}
-              {dashboardPage === 14 && <MyTeamBlank />}
-              {dashboardPage === 15 && <MyTeamDetails />}
-              {dashboardPage === 16 && <MyTeamPlayers />}
-              {dashboardPage === 18 && <CreateTeam />}
-              {dashboardPage === 19 && <EditTeam />}
-              {dashboardPage === 20 && <CreatePlayer />}
+                {dashboardPage === 0  && <Welcome />}
+                {dashboardPage === 1  && <TournamentCreation />}
+                {dashboardPage === 2  && <MyTournaments />     }
+                {dashboardPage === 5  && <NoTournament />}
+                {dashboardPage === 6  && <TournamentKeys />}
+                {dashboardPage === 7 && <TeamsTournament />}
+                {dashboardPage === 14 && <MyTeamBlank />}
+                {dashboardPage === 15 && <MyTeamDetails />}
+                {dashboardPage === 16 && <MyTeamPlayers />}
+                {dashboardPage === 18 && <CreateTeam />}
+                {dashboardPage === 19 && <EditTeam />}
+                {dashboardPage === 20 && <CreatePlayer />}
             </SubscriptionsProvider>
         </SectionDashboard>
       </Main>

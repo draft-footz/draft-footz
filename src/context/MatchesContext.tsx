@@ -1,48 +1,68 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
-import { iMatchesContext, iMatchesProvider, iMatchScores, iMatchTeams } from "../types/MatchesContextTypes";
-import { TournamentContext } from "./TournamentContext";
+import { iMatchData, iMatchesContext, iMatchesProvider, iMatchScores, iMatchTeams } from "../types/MatchesContextTypes";
 import { UserContext } from "./UsersContext";
 
 export const MatchesContext = createContext({} as iMatchesContext);
 
 export const MatchesProvider = ({children}: iMatchesProvider) => {
 
-    const { readingTournament } = useContext(TournamentContext);
     const { user, token } = useContext(UserContext);
 
     // Matches Data
-    const [tournamentMatches, setTournamentMatches] = useState([]);
-
+    //const [tournamentMatches, setTournamentMatches] = useState([]);
     // Functions
+    async function createTournamentMatch(tournamentId: number, order: number) {
+        let data = {
+            userId: user.id,
+            tournamentId: tournamentId,
+            order: order,
+        };
 
-    function createTournamentMatch(order: number) {
-        if(readingTournament) {
-            let data = {
-                tournamentId: readingTournament.id,
-                order: order,
-                teamA: null,
-                teamB: null,
-                winner: null
-            }
-            try {
-                api.post('matches', data);
-            } catch {
-                toast.error('Falha ao criar partida.');
-            };
+
+        try {
+            console.log(`Criando partida ${order}`)
+            api.post<iMatchData>('matches', data, {
+                headers: { authorization: `Bearer ${token}`}
+            });
+
+        } catch {
+            toast.error('Falha ao criar partida.');
         };
     };
 
-    function createMultipleTournamentMatches(numberOfMatches: number) {
+    async function createMultipleTournamentMatches(tournamentId: number, numberOfMatches: number) {
         let created = 0;
         while ( numberOfMatches > created){
-            createTournamentMatch(created+1)
+            createTournamentMatch(tournamentId, created+1)
             created++
         };
     };
 
-    function updateMatchTeams(matchId: number, data: iMatchTeams) {
+    async function deleteTournamentMatch(matchId: number) {
+        try {
+            api.delete(`matches/${matchId}`, {
+                headers : { authorization: `Bearer ${token}`},
+                data: { userId: user.id }
+            })
+        } catch {
+            console.log('deu ruim');
+        };
+    }
+
+    async function deleteAllMatchesFromTournament(tournamentId: number) {
+        try {
+            await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
+            .then((response) => response.data.map(match => match.id))
+            .then((response) => response.forEach(id => {
+                deleteTournamentMatch(id);
+            }));
+        } catch {
+            console.log('Falha');
+        }
+    }
+    /* async function updateMatchTeams(matchId: number, data: iMatchTeams) {
         try {
             api.patch(`matches/${matchId}`, {
                 headers: { authorization : `Bearer ${token}`},
@@ -53,11 +73,10 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
             });
         } catch {
             toast.error('Falha ao definir times da partida.');
-        }
-       
-    };
+        };
+    }; */
 
-    function updateMatchScores(matchId: number,data: iMatchScores) {
+    /* async function updateMatchScores(matchId: number,data: iMatchScores) {
         try {
             api.patch(`matches/${matchId}`, {
                 headers: { authorization : `Bearer ${token}`},
@@ -69,13 +88,15 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
         } catch {
             toast.error('Falha ao definir placar da partida.')
         };
-    };
+    }; */
 
     return (
         <MatchesContext.Provider value={{
-            createMultipleTournamentMatches
+            createMultipleTournamentMatches,
+            deleteAllMatchesFromTournament,
+            createTournamentMatch
         }} >
             {children}
         </MatchesContext.Provider>
-    )
-} 
+    );
+} ;

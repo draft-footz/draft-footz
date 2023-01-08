@@ -1,34 +1,41 @@
 import { ReactNode } from "react";
+import { iDataTournament } from "./TournamentContextTypes";
 
 export interface iMatchesProvider {
     children: ReactNode;
 };
 
 export interface iMatchesContext {
-    createMultipleTournamentMatches: (numberOfMatches: number) => void;
-
-}
-
-export interface iCreateMatchData {
-    tournamentId: number,
-    order: number,
-    teamA: number | null,
-    teamB: number | null,
-    winner: number | null,
-    scores?: {
-        regular: {
-            teamA: number | null,
-            teamB: number | null
-        },
-        penalties?: {
-            teamA: number | null,
-            teamB: number | null
-        }
-    }
+    createMultipleTournamentMatches: (tournamentId: number, numberOfMatches: number) => void;
+    createTournamentMatch: (tournamentId: number, order: number) => void;
+    deleteAllMatchesFromTournament: (tournamentId: number) => void;
 };
 
-export interface iMatchData extends iCreateMatchData {
-    id: number
+export interface iMatchData {
+    id: number;
+    userId: number;
+    tournamentId: number;
+    order: number;
+    winner?: {
+        id: number;
+        name: string;
+    };
+    teamA?: {
+        id: number;
+        name: string;
+    };
+    teamB?: {
+        id: number;
+        name: string;
+    };
+    scores?: {
+        teamA: number;
+        teamB: number;
+        penalties?: {
+            teamA: number;
+            teamB: number;
+        };
+    };
 };
 
 export interface iMatchTeams {
@@ -48,14 +55,12 @@ export interface iMatchScores {
         name: string;
     };
     scores: {
-        regular: {
-            teamA: number | null,
-            teamB: number | null
-        },
+        teamA: number;
+        teamB: number;
         penalties?: {
-            teamA: number | null,
-            teamB: number | null
-        }
+            teamA: number;
+            teamB: number;
+        };
     };
 };
 
