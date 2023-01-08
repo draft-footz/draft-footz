@@ -3,6 +3,7 @@ import { DashboardPage } from "../pages/Dashboard";
 import { LoginPage } from "../pages/LoginPage";
 import Homepage from "../pages/Homepage";
 import { RegisterPage } from "../pages/Register";
+import { TournamentProvider } from "../context/TournamentContext";
 
 export const AppRoutes = () => {
   return (
@@ -10,7 +11,7 @@ export const AppRoutes = () => {
       <Route path="/" element={<Homepage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/dashboard" element={<TournamentProvider><DashboardPage /></TournamentProvider>} />
 
       <Route path="*" element={<Homepage /> } />
     </Routes>

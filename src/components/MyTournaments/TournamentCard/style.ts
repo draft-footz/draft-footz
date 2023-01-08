@@ -4,8 +4,11 @@ export const StyledTournamentCard = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+justify-content: center;
 gap: 2.25rem;
 margin: auto;
+height: 100%;
+
     >div {
         display: flex;
         align-items: center;
@@ -31,7 +34,9 @@ margin: auto;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.125rem;
-        width: 37.5rem;
+        width: 80%;
+        height: 45%;
+        position: relative;
 
         >div:nth-child(1) {
             box-sizing: border-box;
@@ -40,17 +45,23 @@ margin: auto;
 
             padding: 1.25rem 2.5rem;
             background-color: rgba(7,6,6, 37%);
+            height: 30%;
 
             border-top-left-radius: 1.25rem;
             border-top-right-radius: 1.25rem;
 
+            display: flex;
+            align-items: center;
+
             >span {
                 display: flex;
+                align-items: center;
                 gap: 2.875rem;
                 font-size: 1.25rem;
-                font-weight: 600;
+                font-weight: 500;
                 >h2 {
                     font-size: 1.25rem;
+                    font-weight: 400;
                     color: #B6B6B6;
                 }
             }
@@ -72,25 +83,28 @@ margin: auto;
         >div:nth-child(2) {
             box-sizing: border-box;
             width: 100%;
+            height: 70%;
 
             display: flex;
             flex-direction: column;
+            justify-content: center;
             gap: 1.125rem;
             padding: 1.875rem 2.5rem;
 
             background-color: rgba(7,6,6, 37%);
 
             border-bottom-left-radius: 1.25rem;
-            border-bottom-right-radius: 1.25rem;
+            border-bottom-right-radius: 1.25rem;  
+         
 
 
             >span {
                 display: flex;
                 gap: 2.875rem;
-                font-size: 1rem;
+                font-size: 1.25rem;
                 font-weight: 600;
                 >h2 {
-                    font-size: 1rem;
+                    font-size: 1.25rem;
                     color: #B6B6B6;
                     font-weight: 500;
                 }

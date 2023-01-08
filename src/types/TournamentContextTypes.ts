@@ -8,16 +8,27 @@ export interface iTournamentProvider {
 };
 
 export interface iTournamentContext {
+
     createNewTournament: (data: iDataCreateTournament) => void;
     updateTournament: (data: iDataUpdateTournament) => void;
+    setTournamentChampion: (teamId: number, tournamentId: number) => void;
+    deleteTournament: (teamId: number) => void;
     getMyTournaments: () => void;
     getAllTournaments: () => void;
-    setTournamentChampion: (teamId: number, tournamentId: number) => void;
-    tournamentData: iDataTournament | null;
-    disableButton: boolean;
+
+    setReadingTournament: React.Dispatch<React.SetStateAction<tReadingTournament>>;
+    setDashboardPage: React.Dispatch<React.SetStateAction<number>>;
+    setAllTournaments: React.Dispatch<React.SetStateAction<iDataTournament[]>>
+
     myTournaments: iDataTournament[];
-    readingTournament: boolean;
-    setReadingTournament: React.Dispatch<React.SetStateAction<boolean>>;
+    allTournaments: iDataTournament[];
+    tournamentData: iDataTournament | null;
+
+    disableButton: boolean;
+    readingTournament: tReadingTournament;
+    dashboardPage: number;
+
+
 };
 
 export interface iDataCreateTournament {
@@ -45,3 +56,5 @@ export interface iDataUpdateTournament {
     numberOfTeams?: tNumberOfTeams;
     champion?: number | null;
 };
+
+export type tReadingTournament = false | iDataTournament;
