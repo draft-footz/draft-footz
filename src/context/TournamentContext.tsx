@@ -8,28 +8,27 @@ export const TournamentContext = createContext({} as iTournamentContext);
 
 export const TournamentProvider = ({children}: iTournamentProvider) => {
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmFuQG1haWwuY29tIiwiaWF0IjoxNjczMTgxMzA5LCJleHAiOjE2NzMxODQ5MDksInN1YiI6IjMifQ.7SZ4YisRppfDs26OK1k6eH0p7UpI5hMsDD8uPNADY88";
-    const user =  {
-                    email: "renan@mail.com",
-                    name: "Renan Dutra",
-                    contact: "51984449218",
-                    myTeam: null,
-                    id: 3
-                  };   
-    
-    //const { user, token } = useContext(UserContext);
+    const { user, token } = useContext(UserContext);
 
+    // Tournaments data
     const [myTournaments, setMyTournaments ] = useState([] as iDataTournament[]);
+    const [allTournaments, setAllTournaments ] = useState([] as iDataTournament[]);
+
     const [tournamentData, setTournamentData] = useState({} as iDataTournament);
+
+    // Dashboard page conditional rendering
     const [disableButton, setDisableButton] = useState(false);
     const [readingTournament, setReadingTournament] = useState(false as tReadingTournament);
+    const [dashboardPage, setDashboardPage] = useState(0);
 
     useEffect(() => {
         getMyTournaments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    function createNewTournament(data: iDataCreateTournament) {
+
+    // Functions 
+    async function createNewTournament(data: iDataCreateTournament) {
         data.champion = null;
         data.userId  = user.id;
         data.type = "qualifiers";
@@ -37,82 +36,96 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
 
         api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-        (async () => {
-            setDisableButton(true);
-            if(!tournamentData) {
-                try {
-                    const requisition = await api.post<iDataTournament>("tournaments", data)
-                    if(requisition.data.id){
-                        setTournamentData(requisition.data);
-                        getMyTournaments()
-                        toast.success("Torneio criado com sucesso!");
-                        console.log("Torneio criado com sucesso!");
-                    };
-                } catch (err){
-                    toast.error("Falha na requisição");
-                    console.log("Falha na requisição");
-                } finally {
-                    setDisableButton(false);
-                };
-            } else {
-                toast.error("Você já possui um torneio em andamento");
-                console.log("Você já possui um torneio em andamento");
-                setDisableButton(false);
-            }
-        })()
-       
-    };
+        setDisableButton(true);
 
+        if(!tournamentData) {
+            try {
+                await api.post<iDataTournament>("tournaments", data)
+                .then((response) => {
+                    setTournamentData(response.data);
+                    toast.success("Torneio criado com sucesso!");
+                    
+                    getMyTournaments();
+                    getAllTournaments();
+                });
+            } catch (err){
+                toast.error("Falha ao criar torneio");
+            } finally {
+                setDisableButton(false);
+            };
+        } 
+        else {
+            toast.error("Você já possui um torneio em andamento");
+            setDisableButton(false);
+        };
+    };
 
     async function updateTournament(data: iDataUpdateTournament) {
         api.defaults.headers.common.authorization = `Bearer ${token}`;
         try {
-            const requisition = await api.patch<iDataTournament>(`tournaments/${tournamentData.id}`);
-            console.log(requisition);
+            await api.patch<iDataTournament>(`tournaments/${tournamentData.id}`, data)
+            .then(() => {
+                toast.success('Torneio atualizado com sucesso!');
+                getAllTournaments();
+                getMyTournaments();
+            })
         } catch (err){
-            console.log(err);
+            toast.error('Falha ao atualizar torneio.');
+        };
+    };
+    
+    async function setTournamentChampion(teamId: number, tournamentId: number) {
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
+        let data = { champion: teamId };
+
+        try {
+            await api.patch(`tournaments/${tournamentId}`, data)
+            .then(() => {
+                toast.success('Campeão do torneio foi definido com sucesso!');
+            });
+        } catch {
+            toast.error('Falha ao definir campeão do torneio.');
+        };
+    };
+
+    async function deleteTournament(tournamentId: number) {
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
+        let data = { userId: user.id };
+
+        try {
+            await api.delete(`tournaments/${tournamentId}`, { data: data})
+            .then(() => {
+                toast.success('Torneio deletado com sucesso!');
+                getMyTournaments();
+            });
+        } catch {
+            toast.error('Falha ao deletar torneio.')
         };
     };
 
     async function getMyTournaments() {
-        console.log('lul')
         try {
-            const requisition = await api.get<iDataTournament[]>(`tournaments?&userId=${user.id}`);
-            if(requisition.data){
-                let findTournament = requisition.data.filter(tournament => !tournament.champion)
+             await api.get<iDataTournament[]>(`tournaments?&userId=${user.id}`)
+            .then((response) => {
+                let findTournament = response.data.filter(tournament => !tournament.champion)
                 let tournament = findTournament && findTournament[0]
 
                 setTournamentData(tournament);
-                setMyTournaments(requisition.data);
-                console.log(requisition)
-            }
-        } catch (err){
-            console.log(err);
+                setMyTournaments(response.data);
+            });
+        } catch {
+            toast.error('Falha no servidor ao ler torneios.');
         };
     };
 
     async function getAllTournaments() {
         try {
-            const requisition = await api.get(`tournaments`);
-            console.log(requisition);
-        } catch (err){
-            console.log(err);
-        };
-    };
-
-    async function setTournamentChampion(teamId: number, tournamentId: number) {
-
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
-        
-        let data = {
-            champion: teamId
-        };
-
-        try {
-            const requisition = await api.patch(`tournaments/${tournamentId}`, data);
-            console.log(requisition);
-        } catch (err){
-            console.log(err);
+            await api.get<iDataTournament[]>(`tournaments`)
+            .then((response) => {
+                setAllTournaments(response.data);
+            });
+        } catch {
+            toast.error('Falha no servidor ao ler torneios.');
         };
     };
     
@@ -127,7 +140,12 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
             disableButton,
             myTournaments,
             readingTournament,
-            setReadingTournament
+            setReadingTournament,
+            deleteTournament,
+            dashboardPage,
+            setDashboardPage,
+            allTournaments,
+            setAllTournaments
         }}>
             {children}
         </TournamentContext.Provider>

@@ -10,17 +10,17 @@ interface iTournamentListCard {
 
 export const TournamentListCard = ({ tournament }: iTournamentListCard) => {
 
-    const { setReadingTournament } = useContext(TournamentContext);
+    const { setReadingTournament, deleteTournament } = useContext(TournamentContext);
 
     return (
-        <StyledTournamentListCard onClick={() => { setReadingTournament(tournament) }}>
-            <div>
+        <StyledTournamentListCard>
+            <div  onClick={() => { setReadingTournament(tournament) }}>
                 <img src="trofeu.svg" alt="troféu" />
                 <h2> {tournament.name} </h2>
             </div>
             <div>
                 <span> {tournament.champion ? "Concluído" : "Em andamento" } </span>
-                <FaTrash />
+                <FaTrash onClick={() => deleteTournament(tournament.id)}/>
             </div>
         </StyledTournamentListCard>
 

@@ -57,4 +57,8 @@ export const StyledTournamentList = styled.div`
             filter: brightness(1.1);
         }
     }
+
+    >button[disabled] {
+        display: none;
+    }
 `;

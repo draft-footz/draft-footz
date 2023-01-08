@@ -6,10 +6,11 @@ import { NoTournament } from "../../NoTournament";
 
 export const TournamentList = () => {
 
-    const { myTournaments } = useContext(TournamentContext);
+    const { myTournaments, setDashboardPage } = useContext(TournamentContext);
     
     const [sortedTournaments, setSortedTournaments] = useState(myTournaments);
     const tournamentsQuantity = myTournaments.some(obj => !obj.champion) ? 1 : 0;
+    const disabled = tournamentsQuantity > 0 ? true : false;
 
     useEffect(() => {
         let newArr = [...myTournaments];
@@ -35,7 +36,7 @@ export const TournamentList = () => {
                         <ul>
                             { sortedTournaments.map(tournament => <TournamentListCard tournament={tournament} />)}
                         </ul>
-                        <button onClick={() => console.log(myTournaments)}> + </button>
+                        <button disabled={disabled} onClick={() => setDashboardPage(1)}> + </button>
                     </StyledTournamentList> 
                 )
                 :
