@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { TournamentContext } from "../../context/TournamentContext";
+import { ButtonLeft } from "../../styles/Buttons/style";
 import {
   DivName,
   DivNumber,
