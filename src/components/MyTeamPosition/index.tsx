@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { TournamentContext } from "../../context/TournamentContext";
+import { ButtonLeft } from "../../styles/Buttons/style";
 import {
   DivPlayers,
   DivPosition,
@@ -11,12 +14,19 @@ import {
 } from "./style";
 
 export const MyTeamPosition = () => {
+  const { setDashboardPage } = useContext(TournamentContext);
   return (
     <>
       <MainTeamPosition>
         <DivPosition>
-          <ImgPosition src="/camp-team.png" alt="" />
+          <ButtonLeft
+            onClick={() => setDashboardPage(16)}
+            className="button-left"
+          >
+            {"<"}
+          </ButtonLeft>
           <DivPlayers>
+            <ImgPosition src="/camp-team.png" alt="" />
             <ul>
               <li>
                 <div>

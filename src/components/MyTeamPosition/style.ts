@@ -28,6 +28,7 @@ export const DivPosition = styled.div`
   border-bottom-left-radius: 6px;
   padding-left: 10px;
   padding-right: 10px;
+  position: relative;
 `;
 
 export const DivPlayers = styled.div`
@@ -37,6 +38,7 @@ export const DivPlayers = styled.div`
   min-width: 261px;
   max-width: 261px;
   position: relative;
+
   ul {
     display: flex;
     flex-direction: column;
