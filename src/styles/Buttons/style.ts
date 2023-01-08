@@ -58,3 +58,45 @@ export const ButtonSend = styled.button`
 
   transition: 0.5s;
 `;
+
+// button de navegar para ESQUERDA
+export const ButtonLeft = styled.button`
+  position: absolute;
+  top: calc(50% - 2rem);
+  left: -2rem;
+  width: 4rem;
+  height: 4rem;
+
+  border-radius: 50%;
+
+  background-color: rgba(217, 217, 217, 10%);
+  color: white;
+  
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+// button de navegar para DIREITA
+export const ButtonRight = styled.button`
+  position: absolute;
+  top: calc(50% - 2rem);
+  right: -2rem;
+  width: 4rem;
+  height: 4rem;
+
+  border-radius: 50%;
+
+  background-color: rgba(217, 217, 217, 10%);
+  color: white;
+  
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
