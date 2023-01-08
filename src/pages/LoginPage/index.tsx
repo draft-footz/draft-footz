@@ -25,10 +25,6 @@ export const LoginPage = () => {
 
     const { userLogin } = useContext(UserContext);
 
-    const loginRequest = (data: iForm) => {
-        console.log(data)
-    }
-
     return (
         <BackgroundDiv>
             <FormBox>

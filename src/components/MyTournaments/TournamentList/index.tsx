@@ -2,6 +2,7 @@ import { StyledTournamentList } from "./style";
 import { useContext, useState, useEffect} from "react";
 import { TournamentContext } from "../../../context/TournamentContext";
 import { TournamentListCard } from "./TournamentListCard";
+import { NoTournament } from "../../NoTournament";
 
 export const TournamentList = () => {
 
@@ -24,13 +25,25 @@ export const TournamentList = () => {
     }, [myTournaments])
 
     return (
-        <StyledTournamentList>
-            <h1> Meus torneios </h1>
-            <span> {tournamentsQuantity}/1 </span>
-            <ul>
-                { sortedTournaments.map(tournament => <TournamentListCard tournament={tournament} />)}
-            </ul>
-            <button onClick={() => console.log(myTournaments)}> + </button>
-        </StyledTournamentList>
+        <>
+            {
+                myTournaments.length > 0 ?
+                (
+                    <StyledTournamentList>
+                        <h1> Meus torneios </h1>
+                        <span> {tournamentsQuantity}/1 </span>
+                        <ul>
+                            { sortedTournaments.map(tournament => <TournamentListCard tournament={tournament} />)}
+                        </ul>
+                        <button onClick={() => console.log(myTournaments)}> + </button>
+                    </StyledTournamentList> 
+                )
+                :
+                (
+                    <NoTournament />
+                )
+            }
+
+        </>
     );
 };

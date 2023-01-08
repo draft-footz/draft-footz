@@ -24,7 +24,7 @@ import {
 } from "./style";
 
 export const DashboardPage = () => {
-  const [value, setValue] = useState(5);
+  const [value, setValue] = useState(0);
 
   // APAGAR ASSIM QUE FINALIZAR
 
@@ -62,9 +62,9 @@ export const DashboardPage = () => {
               <FigureLogo>
                 <img src="/logo.svg" alt="" />
               </FigureLogo>
-              <ButtonMenu onClick={() => setValue(0)}>Criar torneio</ButtonMenu>
-              <ButtonMenu onClick={() => setValue(1)}>Meus torneios</ButtonMenu>
-              <ButtonMenu onClick={() => setValue(2)}>Meu time</ButtonMenu>
+              <ButtonMenu onClick={() => setValue(1)}> Criar torneio </ButtonMenu>
+              <ButtonMenu onClick={() => setValue(2)}> Meus torneios </ButtonMenu>
+              <ButtonMenu onClick={() => setValue(3)}> Meu time      </ButtonMenu>
             </DivLogoAndButtons>
             <DivButtonLogout>
               <ButtonLogout>
@@ -75,9 +75,9 @@ export const DashboardPage = () => {
           </DivMenu>
 
           <TournamentProvider >
-            {value === 0 && <div />}
+            {value === 0 && <Welcome />}
             {value === 1 && <TournamentCreation />}
-            {value === 5 && <MyTournaments />}
+            {value === 2 && <MyTournaments />     }
             {value === 14 && <MyTeamBlank />}
             {value === 15 && <MyTeamDetails />}
             {value === 16 && <MyTeamPlayers />}
