@@ -18,8 +18,10 @@ export const CreateTeam = () => {
   } = useForm<iDataNewTeam>({
     mode: "onChange",
     resolver: yupResolver(createTeamFormSchema),
+    defaultValues: {
+      //logo: logo é opcional, porém precisa definir um default value.
+    },
   });
-  //logo é opcional, porém precisa definir um default value.
 
   return (
     <CreateTeamStyled>
