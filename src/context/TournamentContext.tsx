@@ -1,133 +1,147 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
-import { iDataCreateTournament, iDataTournament, iDataUpdateTournament, iTournamentContext, iTournamentProvider } from "../types/TournamentContextTypes";
+import {
+  iDataCreateTournament,
+  iDataTournament,
+  iDataUpdateTournament,
+  iTournamentContext,
+  iTournamentProvider,
+} from "../types/TournamentContextTypes";
 import { UserContext } from "./UsersContext";
 
 export const TournamentContext = createContext({} as iTournamentContext);
 
-export const TournamentProvider = ({children}: iTournamentProvider) => {
+export const TournamentProvider = ({ children }: iTournamentProvider) => {
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmFuQG1haWwuY29tIiwiaWF0IjoxNjczMTAwODAxLCJleHAiOjE2NzMxMDQ0MDEsInN1YiI6IjMifQ.BD63WuJXO-E-Zg0TghOqNstWCLq8fPbh9eLXlb8LM5o";
+  const user = {
+    email: "renan@mail.com",
+    name: "Renan Dutra",
+    contact: "51984449218",
+    myTeam: null,
+    id: 3,
+  };
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmFuQG1haWwuY29tIiwiaWF0IjoxNjczMTAwODAxLCJleHAiOjE2NzMxMDQ0MDEsInN1YiI6IjMifQ.BD63WuJXO-E-Zg0TghOqNstWCLq8fPbh9eLXlb8LM5o";
-    const user =  {
-                    email: "renan@mail.com",
-                    name: "Renan Dutra",
-                    contact: "51984449218",
-                    myTeam: null,
-                    id: 3
-                  };   
-    
-    //const { user, token } = useContext(UserContext);
+  //const { user, token } = useContext(UserContext);
 
-    const [myTournaments, setMyTournaments ] = useState([] as iDataTournament[]);
-    const [tournamentData, setTournamentData] = useState({} as iDataTournament);
-    const [disableButton, setDisableButton] = useState(false);
-    const [readingTournament, setReadingTournament] = useState(false);
+  const [myTournaments, setMyTournaments] = useState([] as iDataTournament[]);
+  const [tournamentData, setTournamentData] = useState({} as iDataTournament);
+  const [disableButton, setDisableButton] = useState(false);
+  const [readingTournament, setReadingTournament] = useState(false);
 
-    useEffect(() => {
-        getMyTournaments();
+  useEffect(() => {
+    getMyTournaments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  }, []);
 
-    function createNewTournament(data: iDataCreateTournament) {
-        data.champion = null;
-        data.userId  = user.id;
-        data.type = "qualifiers";
-        data.numberOfTeams = 8;
+  function createNewTournament(data: iDataCreateTournament) {
+    data.champion = null;
+    data.userId = user.id;
+    data.type = "qualifiers";
+    data.numberOfTeams = 8;
 
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-        (async () => {
-            setDisableButton(true);
-            if(!tournamentData) {
-                try {
-                    const requisition = await api.post<iDataTournament>("tournaments", data)
-                    if(requisition.data.id){
-                        setTournamentData(requisition.data);
-                        getMyTournaments()
-                        toast.success("Torneio criado com sucesso!");
-                        console.log("Torneio criado com sucesso!");
-                    };
-                } catch (err){
-                    toast.error("Falha na requisição");
-                    console.log("Falha na requisição");
-                } finally {
-                    setDisableButton(false);
-                };
-            } else {
-                toast.error("Você já possui um torneio em andamento");
-                console.log("Você já possui um torneio em andamento");
-                setDisableButton(false);
-            }
-        })()
-       
-    };
-
-
-    async function updateTournament(data: iDataUpdateTournament) {
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
+    (async () => {
+      setDisableButton(true);
+      if (!tournamentData) {
         try {
-            const requisition = await api.patch<iDataTournament>(`tournaments/${tournamentData.id}`);
-            console.log(requisition);
-        } catch (err){
-            console.log(err);
-        };
+          const requisition = await api.post<iDataTournament>(
+            "tournaments",
+            data
+          );
+          if (requisition.data.id) {
+            setTournamentData(requisition.data);
+            getMyTournaments();
+            toast.success("Torneio criado com sucesso!");
+            console.log("Torneio criado com sucesso!");
+          }
+        } catch (err) {
+          toast.error("Falha na requisição");
+          console.log("Falha na requisição");
+        } finally {
+          setDisableButton(false);
+        }
+      } else {
+        toast.error("Você já possui um torneio em andamento");
+        console.log("Você já possui um torneio em andamento");
+        setDisableButton(false);
+      }
+    })();
+  }
+
+  async function updateTournament(data: iDataUpdateTournament) {
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+    try {
+      const requisition = await api.patch<iDataTournament>(
+        `tournaments/${tournamentData.id}`
+      );
+      console.log(requisition);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function getMyTournaments() {
+    try {
+      const requisition = await api.get<iDataTournament[]>(
+        `tournaments?&userId=${user.id}`
+      );
+      if (requisition.data) {
+        let findTournament = requisition.data.filter(
+          (tournament) => !tournament.champion
+        );
+        let tournament = findTournament && findTournament[0];
+
+        setTournamentData(tournament);
+        setMyTournaments(requisition.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function getAllTournaments() {
+    try {
+      const requisition = await api.get(`tournaments`);
+      console.log(requisition);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function setTournamentChampion(teamId: number, tournamentId: number) {
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+    let data = {
+      champion: teamId,
     };
 
-    async function getMyTournaments() {
-        try {
-            const requisition = await api.get<iDataTournament[]>(`tournaments?&userId=${user.id}`);
-            if(requisition.data){
-                let findTournament = requisition.data.filter(tournament => !tournament.champion)
-                let tournament = findTournament && findTournament[0]
+    try {
+      const requisition = await api.patch(`tournaments/${tournamentId}`, data);
+      console.log(requisition);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-                setTournamentData(tournament);
-                setMyTournaments(requisition.data);
-            }
-        } catch (err){
-            console.log(err);
-        };
-    };
-
-    async function getAllTournaments() {
-        try {
-            const requisition = await api.get(`tournaments`);
-            console.log(requisition);
-        } catch (err){
-            console.log(err);
-        };
-    };
-
-    async function setTournamentChampion(teamId: number, tournamentId: number) {
-
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
-        
-        let data = {
-            champion: teamId
-        };
-
-        try {
-            const requisition = await api.patch(`tournaments/${tournamentId}`, data);
-            console.log(requisition);
-        } catch (err){
-            console.log(err);
-        };
-    };
-    
-    return (
-        <TournamentContext.Provider value={{
-            createNewTournament,
-            updateTournament,
-            getMyTournaments,
-            getAllTournaments,
-            setTournamentChampion,
-            tournamentData,
-            disableButton,
-            myTournaments,
-            readingTournament,
-            setReadingTournament
-        }}>
-            {children}
-        </TournamentContext.Provider>
-    );
+  return (
+    <TournamentContext.Provider
+      value={{
+        createNewTournament,
+        updateTournament,
+        getMyTournaments,
+        getAllTournaments,
+        setTournamentChampion,
+        tournamentData,
+        disableButton,
+        myTournaments,
+        readingTournament,
+        setReadingTournament,
+      }}
+    >
+      {children}
+    </TournamentContext.Provider>
+  );
 };
