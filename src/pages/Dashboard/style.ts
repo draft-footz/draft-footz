@@ -17,6 +17,7 @@ export const SectionDashboard = styled.section`
   border-radius: 20px;
   overflow: hidden;
   display: flex;
+  max-width: 75rem;
 `;
 
 export const DivMenu = styled.div`

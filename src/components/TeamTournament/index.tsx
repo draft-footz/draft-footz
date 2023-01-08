@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { TournamentContext } from "../../context/TournamentContext";
 import {
   DivName,
   DivNumber,
@@ -10,12 +12,16 @@ import {
   UlTeams,
 } from "./style";
 
-export const TeamsTournament = () => {
+export const TeamTournament = () => {
+  const { setDashboardPage } = useContext(TournamentContext);
   return (
     <>
       <MainTeamsTournament>
         <Title>Times do torneio</Title>
         <SectionTeams>
+          <button onClick={() => setDashboardPage(6)} className="button-left">
+            {"<"}
+          </button>
           <TeamsNumber>8/8 Times</TeamsNumber>
           <UlTeams>
             <li>
