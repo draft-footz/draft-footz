@@ -144,6 +144,8 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
+  function directToCreateTeamPage() {}
+
   return (
     <TeamContext.Provider
       value={{
@@ -157,6 +159,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         deletePlayer,
         getPlayersFromATeam,
         setPlayerId,
+        directToCreateTeamPage,
       }}
     >
       {children}
