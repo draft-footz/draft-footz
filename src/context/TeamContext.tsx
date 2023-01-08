@@ -8,6 +8,7 @@ import {
   iTeamProvider,
   iUpdatePlayer,
 } from "../types/TeamContextTypes";
+import { TournamentContext } from "./TournamentContext";
 
 import { UserContext } from "./UsersContext";
 
@@ -15,6 +16,7 @@ export const TeamContext = createContext({} as iTeamContext);
 
 export const TeamProvider = ({ children }: iTeamProvider) => {
   const { user, token } = useContext(UserContext);
+  const { setDashboardPage } = useContext(TournamentContext);
 
   const userId = user.id;
   const teamId = user.myTeam;
@@ -28,7 +30,9 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.post("teams", data);
       if (requisition.status === 201) {
         toast.success("Time criado com sucesso!");
-        //direcionar para a página do time - componente MyTeamDetails
+        setTimeout(() => {
+          setDashboardPage(15);
+        }, 5000);
       }
       console.log(requisition);
     } catch (err) {
@@ -44,7 +48,9 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.patch(`teams/${teamId}`, data);
       if (requisition.status === 200) {
         toast.success("Alterações no time feitas com sucesso!");
-        //direcionar para a página do time - componente MyTeamDetails
+        setTimeout(() => {
+          setDashboardPage(15);
+        }, 5000);
       }
       console.log(requisition);
     } catch (err) {
@@ -95,7 +101,9 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.post("players", data);
       if (requisition.status === 201) {
         toast.success("Jogador criado com sucesso!");
-        //direcionar para a página do time - componente MyTeamPlayers
+        setTimeout(() => {
+          setDashboardPage(16);
+        }, 5000);
       }
       console.log(requisition);
     } catch (err) {
