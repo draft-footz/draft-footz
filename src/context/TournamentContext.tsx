@@ -1,14 +1,14 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
-import { iDataCreateTournament, iDataTournament, iDataUpdateTournament, iTournamentContext, iTournamentProvider } from "../types/TournamentContextTypes";
+import { iDataCreateTournament, iDataTournament, iDataUpdateTournament, iTournamentContext, iTournamentProvider, tReadingTournament } from "../types/TournamentContextTypes";
 import { UserContext } from "./UsersContext";
 
 export const TournamentContext = createContext({} as iTournamentContext);
 
 export const TournamentProvider = ({children}: iTournamentProvider) => {
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmFuQG1haWwuY29tIiwiaWF0IjoxNjczMTAwODAxLCJleHAiOjE2NzMxMDQ0MDEsInN1YiI6IjMifQ.BD63WuJXO-E-Zg0TghOqNstWCLq8fPbh9eLXlb8LM5o";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmFuQG1haWwuY29tIiwiaWF0IjoxNjczMTgxMzA5LCJleHAiOjE2NzMxODQ5MDksInN1YiI6IjMifQ.7SZ4YisRppfDs26OK1k6eH0p7UpI5hMsDD8uPNADY88";
     const user =  {
                     email: "renan@mail.com",
                     name: "Renan Dutra",
@@ -22,7 +22,7 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
     const [myTournaments, setMyTournaments ] = useState([] as iDataTournament[]);
     const [tournamentData, setTournamentData] = useState({} as iDataTournament);
     const [disableButton, setDisableButton] = useState(false);
-    const [readingTournament, setReadingTournament] = useState(false);
+    const [readingTournament, setReadingTournament] = useState(false as tReadingTournament);
 
     useEffect(() => {
         getMyTournaments();
@@ -75,6 +75,7 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
     };
 
     async function getMyTournaments() {
+        console.log('lul')
         try {
             const requisition = await api.get<iDataTournament[]>(`tournaments?&userId=${user.id}`);
             if(requisition.data){
@@ -83,6 +84,7 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
 
                 setTournamentData(tournament);
                 setMyTournaments(requisition.data);
+                console.log(requisition)
             }
         } catch (err){
             console.log(err);

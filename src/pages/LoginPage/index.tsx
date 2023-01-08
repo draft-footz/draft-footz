@@ -8,6 +8,8 @@ import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { registerSchema } from "./registerSchema"
+import { useContext } from "react"
+import { UserContext } from "../../context/UsersContext"
 
 interface iForm {
     email: string;
@@ -21,6 +23,8 @@ export const LoginPage = () => {
         mode: "onBlur",
     })
 
+    const { userLogin } = useContext(UserContext);
+
     const loginRequest = (data: iForm) => {
         console.log(data)
     }
@@ -30,7 +34,7 @@ export const LoginPage = () => {
             <FormBox>
                 <Logo></Logo>
                 <form
-                onSubmit={handleSubmit(loginRequest)}
+                onSubmit={handleSubmit(userLogin)}
                 noValidate>
                     <h2>Login</h2>
                     <StyledFormInput 

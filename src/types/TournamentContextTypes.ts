@@ -16,8 +16,8 @@ export interface iTournamentContext {
     tournamentData: iDataTournament | null;
     disableButton: boolean;
     myTournaments: iDataTournament[];
-    readingTournament: boolean;
-    setReadingTournament: React.Dispatch<React.SetStateAction<boolean>>;
+    readingTournament: tReadingTournament;
+    setReadingTournament: React.Dispatch<React.SetStateAction<tReadingTournament>>;
 };
 
 export interface iDataCreateTournament {
@@ -45,3 +45,5 @@ export interface iDataUpdateTournament {
     numberOfTeams?: tNumberOfTeams;
     champion?: number | null;
 };
+
+export type tReadingTournament = false | iDataTournament;

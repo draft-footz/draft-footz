@@ -24,7 +24,7 @@ import {
 } from "./style";
 
 export const DashboardPage = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(5);
 
   // APAGAR ASSIM QUE FINALIZAR
 
@@ -73,14 +73,18 @@ export const DashboardPage = () => {
               </ButtonLogout>
             </DivButtonLogout>
           </DivMenu>
-          {value === 0 && <div />}
-          {value === 1 && <TournamentCreation />}
-          {value === 14 && <MyTeamBlank />}
-          {value === 15 && <MyTeamDetails />}
-          {value === 16 && <MyTeamPlayers />}
-          {value === 18 && <CreateTeam />}
-          {value === 19 && <EditTeam />}
-          {value === 20 && <CreatePlayer />}
+
+          <TournamentProvider >
+            {value === 0 && <div />}
+            {value === 1 && <TournamentCreation />}
+            {value === 5 && <MyTournaments />}
+            {value === 14 && <MyTeamBlank />}
+            {value === 15 && <MyTeamDetails />}
+            {value === 16 && <MyTeamPlayers />}
+            {value === 18 && <CreateTeam />}
+            {value === 19 && <EditTeam />}
+            {value === 20 && <CreatePlayer />}
+          </TournamentProvider>
         </SectionDashboard>
       </Main>
     </>
