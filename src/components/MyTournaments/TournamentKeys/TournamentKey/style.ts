@@ -23,7 +23,7 @@ const options = {
 
 export const StyledTournamentKey = styled.div<iMatchProps>`
     border: 2px solid #E5E5E5;
-    border-radius: 1.25rem;
+    border-radius: 1.75rem;
     background-color: #212121;
 
     width: 14rem;

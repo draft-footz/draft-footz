@@ -12,11 +12,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-      <BrowserRouter>
-        <UsersProvider>
-        < App />
-        </UsersProvider>
-      </BrowserRouter>
+          <BrowserRouter>
+            <UsersProvider>
+              <App />
+            </UsersProvider>
+          </BrowserRouter>
   </React.StrictMode>
 );
 reportWebVitals();

@@ -37,12 +37,14 @@ export interface iDataCreateTournament {
     numberOfTeams?: tNumberOfTeams;
     champion?: number | null;
     userId: number;
+    userName: string;
     id: number;
 };
 
 export interface iDataTournament {
     id: number;
     userId: number;
+    userName: string;
     name: string;
     type: tTournamentType;
     numberOfTeams: tNumberOfTeams;

@@ -20,9 +20,21 @@ import {
   Main,
   SectionDashboard,
 } from "./style";
+import { TournamentKeys } from "../../components/MyTournaments/TournamentKeys";
+import { SubscriptionsProvider } from "../../context/SubscriptionsContext";
+import { NoTournament } from "../../components/NoTournament";
+import { TeamsTournament } from "../../components/TeamTournament";
 
 export const DashboardPage = () => {
   const { setReadingTournament, dashboardPage ,setDashboardPage } = useContext(TournamentContext);
+
+  function isSelected (pages: number[] | number) {
+    if(typeof pages === 'number') {
+      return dashboardPage === pages ? 'selected' : ''
+    } else {
+      return pages.includes(dashboardPage) ? 'selected' : ''
+    };
+  };
 
   return (
     <>
@@ -34,15 +46,15 @@ export const DashboardPage = () => {
         <SectionDashboard>
             <DivMenu>
               <DivLogoAndButtons>
-                <FigureLogo>
+                <FigureLogo onClick={() => setDashboardPage(0)}>
                   <img src="/logo.svg" alt="" />
                 </FigureLogo>
-                <ButtonMenu onClick={() => {
+                <ButtonMenu className={isSelected([2, 5, 6])} onClick={() => {
                     setDashboardPage(2);
                     setReadingTournament(false);
                   }}> 
                   Meus torneios </ButtonMenu>
-                <ButtonMenu onClick={() => setDashboardPage(3)}> Meu time      </ButtonMenu>
+                <ButtonMenu className={dashboardPage === 3 ? 'selected' : ''} onClick={() => setDashboardPage(3)}> Meu time      </ButtonMenu>
               </DivLogoAndButtons>
               <DivButtonLogout>
                 <ButtonLogout>
@@ -51,15 +63,21 @@ export const DashboardPage = () => {
                 </ButtonLogout>
               </DivButtonLogout>
             </DivMenu>     
-            {dashboardPage === 0 && <Welcome />}
-            {dashboardPage === 1 && <TournamentCreation />}
-            {dashboardPage === 2 && <MyTournaments />     }
-            {dashboardPage === 14 && <MyTeamBlank />}
-            {dashboardPage === 15 && <MyTeamDetails />}
-            {dashboardPage === 16 && <MyTeamPlayers />}
-            {dashboardPage === 18 && <CreateTeam />}
-            {dashboardPage === 19 && <EditTeam />}
-            {dashboardPage === 20 && <CreatePlayer />}
+
+            <SubscriptionsProvider>
+              {dashboardPage === 0  && <Welcome />}
+              {dashboardPage === 1  && <TournamentCreation />}
+              {dashboardPage === 2  && <MyTournaments />     }
+              {dashboardPage === 5  && <NoTournament />}
+              {dashboardPage === 6  && <TournamentKeys />}
+              {dashboardPage === 7 && <TeamsTournament />}
+              {dashboardPage === 14 && <MyTeamBlank />}
+              {dashboardPage === 15 && <MyTeamDetails />}
+              {dashboardPage === 16 && <MyTeamPlayers />}
+              {dashboardPage === 18 && <CreateTeam />}
+              {dashboardPage === 19 && <EditTeam />}
+              {dashboardPage === 20 && <CreatePlayer />}
+            </SubscriptionsProvider>
         </SectionDashboard>
       </Main>
     </>

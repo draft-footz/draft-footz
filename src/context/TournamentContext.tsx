@@ -19,10 +19,11 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
     // Dashboard page conditional rendering
     const [disableButton, setDisableButton] = useState(false);
     const [readingTournament, setReadingTournament] = useState(false as tReadingTournament);
-    const [dashboardPage, setDashboardPage] = useState(0);
+    const [dashboardPage, setDashboardPage] = useState(7);
 
     useEffect(() => {
         getMyTournaments();
+        console.log(myTournaments)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -31,6 +32,7 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
     async function createNewTournament(data: iDataCreateTournament) {
         data.champion = null;
         data.userId  = user.id;
+        data.userName = user.name;
         data.type = "qualifiers";
         data.numberOfTeams = 8;
 
@@ -112,6 +114,7 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
 
                 setTournamentData(tournament);
                 setMyTournaments(response.data);
+                setDashboardPage(2);
             });
         } catch {
             toast.error('Falha no servidor ao ler torneios.');

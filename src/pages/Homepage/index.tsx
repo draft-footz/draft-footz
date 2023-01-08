@@ -3,9 +3,6 @@ import FooterHome from '../../components/FooterHome'
 import Header from '../../components/Header'
 import { DivHomeCenter, FigureBackground, LinkToRegister } from './style'
 
-
-
-
 const Homepage = () => {
   return (
     <>
