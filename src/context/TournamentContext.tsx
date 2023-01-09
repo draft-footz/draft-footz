@@ -25,9 +25,8 @@ export const TournamentProvider = ({children}: iTournamentProvider) => {
 
     useEffect(() => {
         getMyTournaments();
-        console.log(myTournaments)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [user, token]);
 
 
     // Functions 

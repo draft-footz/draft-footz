@@ -6,11 +6,15 @@ export interface iSubscriptionsProvider {
 
 export interface iSubscriptionsContext {
     subscriptions: iSubscriptionData[];
+    getTournamentSubscriptions: (tournamentId: number) => void;
 }
 
 export interface iSubscriptionData {
-    teamId: number,
-    tournamentId: number,
-    accepted: boolean,
-    id: number
+    team: {
+        id: number;
+        name: string;
+    };
+    tournamentId: number;
+    accepted: boolean;
+    id: number;
 };

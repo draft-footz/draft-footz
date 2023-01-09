@@ -37,7 +37,8 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
 
     return (
         <SubscriptionsContext.Provider value={{
-            subscriptions
+            subscriptions,
+            getTournamentSubscriptions
         }} >
             {children}
         </SubscriptionsContext.Provider>

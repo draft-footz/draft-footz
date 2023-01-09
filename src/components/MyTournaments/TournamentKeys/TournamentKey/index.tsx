@@ -1,31 +1,29 @@
+import { iMatchData } from "../../../../types/MatchesContextTypes";
 import { StyledTournamentKey } from "./style"
 
 interface iMatchProps {
-    winner: "teamA" | "teamB";
-    teamA: string;
-    teamB: string;
-    scoreA: number;
-    scoreB: number;
+    onClickFunc: (match: iMatchData) => void;
+    match: iMatchData;
 };
 
-export const TournamentKey = ({ teamA, teamB, scoreA, scoreB, winner}: iMatchProps) => {
+export const TournamentKey = ({ match, onClickFunc}: iMatchProps) => {
 
     return (
-        <StyledTournamentKey winner={winner}>
+        <StyledTournamentKey winner={match.winner? match.winner.team : null} onClick={() => onClickFunc(match)}>
             <div>
                 <div>
-                    {teamA}
+                    {match.teamA ? match.teamA.name : 'À definir'}
                 </div>
                 <div>
-                    {scoreA}
+                    {match.scores ? match.scores.teamA : 0}
                 </div>
             </div>
             <div>
                 <div>
-                    {teamB}
+                    {match.teamB ? match.teamB.name : 'À definir'}
                 </div>
                 <div>
-                    {scoreB}
+                    {match.scores ? match.scores.teamB : 0}
                 </div>
             </div>
         </StyledTournamentKey>

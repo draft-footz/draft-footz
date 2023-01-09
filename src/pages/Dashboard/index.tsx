@@ -73,18 +73,20 @@ export const DashboardPage = () => {
             </DivMenu>     
 
             <SubscriptionsProvider>
+              <MatchesProvider>
                 {dashboardPage === 0  && <Welcome />}
                 {dashboardPage === 1  && <TournamentCreation />}
                 {dashboardPage === 2  && <MyTournaments />     }
                 {dashboardPage === 5  && <NoTournament />}
                 {dashboardPage === 6  && <TournamentKeys />}
-                {dashboardPage === 7 && <TeamTournament />}
+                {dashboardPage === 7  && <TeamTournament />}
                 {dashboardPage === 14 && <MyTeamBlank />}
                 {dashboardPage === 15 && <MyTeamDetails />}
                 {dashboardPage === 16 && <MyTeamPlayers />}
                 {dashboardPage === 18 && <CreateTeam />}
                 {dashboardPage === 19 && <EditTeam />}
                 {dashboardPage === 20 && <CreatePlayer />}
+              </MatchesProvider>
             </SubscriptionsProvider>
 
         </SectionDashboard>

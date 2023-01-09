@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
 import { iMatchData, iMatchesContext, iMatchesProvider, iMatchScores, iMatchTeams } from "../types/MatchesContextTypes";
+import { TournamentContext } from "./TournamentContext";
 import { UserContext } from "./UsersContext";
 
 export const MatchesContext = createContext({} as iMatchesContext);
@@ -9,9 +10,18 @@ export const MatchesContext = createContext({} as iMatchesContext);
 export const MatchesProvider = ({children}: iMatchesProvider) => {
 
     const { user, token } = useContext(UserContext);
+    const { readingTournament } = useContext(TournamentContext)
 
     // Matches Data
-    //const [tournamentMatches, setTournamentMatches] = useState([]);
+    const [tournamentMatches, setTournamentMatches] = useState([] as iMatchData[]);
+
+    useEffect(() => {
+        if(readingTournament) {
+            readThisTournamentMatches(readingTournament.id);
+        };
+        console.log(tournamentMatches)
+    }, [readingTournament]);
+
     // Functions
     async function createTournamentMatch(tournamentId: number, order: number) {
         let data = {
@@ -49,7 +59,7 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
         } catch {
             console.log('deu ruim');
         };
-    }
+    };
 
     async function deleteAllMatchesFromTournament(tournamentId: number) {
         try {
@@ -59,9 +69,19 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
                 deleteTournamentMatch(id);
             }));
         } catch {
-            console.log('Falha');
-        }
-    }
+            console.log('Falha ao deletar partidas do torneio.');
+        };
+    };
+
+    async function readThisTournamentMatches(tournamentId: number) {
+        try {
+            await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
+            .then((response) => setTournamentMatches(response.data));
+        } catch {
+            console.log('Falha ao ler partidas do torenio.');
+        };
+    };
+
     /* async function updateMatchTeams(matchId: number, data: iMatchTeams) {
         try {
             api.patch(`matches/${matchId}`, {
@@ -94,7 +114,8 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
         <MatchesContext.Provider value={{
             createMultipleTournamentMatches,
             deleteAllMatchesFromTournament,
-            createTournamentMatch
+            createTournamentMatch,
+            tournamentMatches
         }} >
             {children}
         </MatchesContext.Provider>

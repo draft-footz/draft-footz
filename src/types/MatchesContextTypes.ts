@@ -9,6 +9,7 @@ export interface iMatchesContext {
     createMultipleTournamentMatches: (tournamentId: number, numberOfMatches: number) => void;
     createTournamentMatch: (tournamentId: number, order: number) => void;
     deleteAllMatchesFromTournament: (tournamentId: number) => void;
+    tournamentMatches: iMatchData[];
 };
 
 export interface iMatchData {
@@ -19,6 +20,7 @@ export interface iMatchData {
     winner?: {
         id: number;
         name: string;
+        team: "teamA" | "teamB";
     };
     teamA?: {
         id: number;
@@ -53,6 +55,7 @@ export interface iMatchScores {
     winner: {
         id: number;
         name: string;
+        team: "teamA" | "teamB";
     };
     scores: {
         teamA: number;
