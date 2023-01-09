@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
 import { api } from "../services/api";
 import {
   iDataNewPlayer,
@@ -26,13 +27,13 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("teams", data);
       if (requisition.status === 201) {
-        //toast de sucesso
+        toast.success("Time criado com sucesso!");
         //direcionar para a página do time - componente MyTeamDetails
       }
       console.log(requisition);
     } catch (err) {
       console.log(err);
-      //toast de erro
+      toast.error("Ops...algo deu errado!");
     }
   }
 
@@ -42,13 +43,13 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.patch(`teams/${teamId}`, data);
       if (requisition.status === 200) {
-        //toast de sucesso
+        toast.success("Alterações no time feitas com sucesso!");
         //direcionar para a página do time - componente MyTeamDetails
       }
       console.log(requisition);
     } catch (err) {
       console.log(err);
-      //toast de erro
+      toast.error("Ops...algo deu errado!");
     }
   }
 
@@ -93,13 +94,13 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("players", data);
       if (requisition.status === 201) {
-        //toast de sucesso
+        toast.success("Jogador criado com sucesso!");
         //direcionar para a página do time - componente MyTeamPlayers
       }
       console.log(requisition);
     } catch (err) {
       console.log(err);
-      //toast de erro
+      toast.error("Ops...algo deu errado!");
     }
   }
 
@@ -124,13 +125,13 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         data: data,
       });
       if (requisition.status === 200) {
-        //toast de sucesso
+        toast.success("Jogador excluído com sucesso!");
         //renderizar a lista de jogadores novamente
       }
       console.log(requisition);
     } catch (err) {
       console.log(err);
-      //toast de erro
+      toast.error("Ops...algo deu errado!");
     }
   }
 
@@ -142,6 +143,8 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       console.log(err);
     }
   }
+
+  function directToCreateTeamPage() {}
 
   return (
     <TeamContext.Provider
@@ -156,6 +159,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         deletePlayer,
         getPlayersFromATeam,
         setPlayerId,
+        directToCreateTeamPage,
       }}
     >
       {children}

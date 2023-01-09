@@ -27,16 +27,33 @@ export const MainTeamsTournament = styled.main`
   button {
     background-color: transparent;
   }
+  .button-left {
+    background-color: rgba(217, 217, 217, 10%);
+    color: white;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    position: relative;
+    right: 50%;
+    top: 38%;
+    font-weight: 600;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
+
+export const ButtonLeftTeam = styled.button``;
 
 export const Title = styled.h1`
   font-size: 26px;
+  transform: translateY(30px);
 `;
 
 export const SectionTeams = styled.section`
   width: 80%;
-  height: 60%;
-  background-color: red;
+  height: 71%;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
@@ -49,7 +66,7 @@ export const SectionTeams = styled.section`
 
 export const TeamsNumber = styled.h2`
   font-size: 22px;
-  margin-top: 20px;
+  transform: translateY(-30px);
 `;
 
 export const Number = styled.h3`
@@ -63,8 +80,8 @@ export const UlTeams = styled.ul`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  overflow-x: scroll;
-  overflow-y: scroll;
+  overflow-x: auto;
+  overflow-y: auto;
   scrollbar-color: green #0202023d;
   padding: 0 40px;
 `;

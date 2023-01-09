@@ -43,7 +43,6 @@ export const DashboardPage = () => {
         <img src="/bg-dashboard.png" alt="" />
       </FigureBackgroundDashboard>
       <Main>
-      
         <SectionDashboard>
             <DivMenu>
               <DivLogoAndButtons>
