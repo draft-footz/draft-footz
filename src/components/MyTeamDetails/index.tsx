@@ -1,8 +1,12 @@
 import { MainStyled, TeamDetails, TeamHeaderStyled } from "./style";
 import teamlogo from "../../img/teamlogoholder.svg";
 import editIcon from "../../img/edit_icon.svg";
+import { useContext } from "react";
+import { TeamContext } from "../../context/TeamContext";
 
 export const MyTeamDetails = () => {
+  const { directToEditTeamPage } = useContext(TeamContext);
+
   return (
     <MainStyled>
       <TeamHeaderStyled>
@@ -11,7 +15,11 @@ export const MyTeamDetails = () => {
         </figure>
         <h2>Team Name</h2>
         <button>
-          <img src={editIcon} alt="Editar" />
+          <img
+            src={editIcon}
+            alt="Editar"
+            onClick={() => directToEditTeamPage}
+          />
         </button>
       </TeamHeaderStyled>
       <TeamDetails>

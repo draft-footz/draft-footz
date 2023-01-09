@@ -159,7 +159,13 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  function directToCreateTeamPage() {}
+  function directToCreateTeamPage() {
+    setDashboardPage(18);
+  }
+
+  function directToEditTeamPage() {
+    setDashboardPage(19);
+  }
 
   return (
     <TeamContext.Provider
@@ -175,7 +181,9 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         getPlayersFromATeam,
         setPlayerId,
         directToCreateTeamPage,
+        directToEditTeamPage,
         disableButton,
+        teamId,
       }}
     >
       {children}
