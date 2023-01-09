@@ -48,5 +48,11 @@ export interface iUserResponse {
   };
 }
 
-
-
+export interface FormInputs {
+  name: string;
+  email: string;
+  emailConfirmation: string;
+  password: string;
+  passwordConfirmation: string;
+  contact: string;
+}
