@@ -23,7 +23,7 @@ import {
 import { TournamentKeys } from "../../components/MyTournaments/TournamentKeys";
 import { SubscriptionsProvider } from "../../context/SubscriptionsContext";
 import { NoTournament } from "../../components/NoTournament";
-import { TeamsTournament } from "../../components/TeamTournament";
+import { TeamTournament } from "../../components/TeamTournament";
 import { MatchesContext, MatchesProvider } from "../../context/MatchesContext";
 
 export const DashboardPage = () => {
@@ -49,13 +49,21 @@ export const DashboardPage = () => {
                 <FigureLogo onClick={() => setDashboardPage(0)}>
                   <img src="/logo.svg" alt="" />
                 </FigureLogo>
+
                 <ButtonMenu className={isSelected([2, 5, 6])} onClick={() => {
                     setDashboardPage(2);
                     setReadingTournament(false);
-                  }}> 
-                  Meus torneios </ButtonMenu>
-                <ButtonMenu className={dashboardPage === 3 ? 'selected' : ''} onClick={() => setDashboardPage(3)}> Meu time      </ButtonMenu>
+                }}> 
+                  Meus torneios 
+                </ButtonMenu>
+
+                <ButtonMenu 
+                  className={dashboardPage === 3 ? 'selected' : ''} 
+                  onClick={() => setDashboardPage(3)}>
+                     Meu time  
+                </ButtonMenu>
               </DivLogoAndButtons>
+
               <DivButtonLogout>
                 <ButtonLogout>
                   <img src="/logout.png" alt="" />
@@ -63,13 +71,14 @@ export const DashboardPage = () => {
                 </ButtonLogout>
               </DivButtonLogout>
             </DivMenu>     
+
             <SubscriptionsProvider>
                 {dashboardPage === 0  && <Welcome />}
                 {dashboardPage === 1  && <TournamentCreation />}
                 {dashboardPage === 2  && <MyTournaments />     }
                 {dashboardPage === 5  && <NoTournament />}
                 {dashboardPage === 6  && <TournamentKeys />}
-                {dashboardPage === 7 && <TeamsTournament />}
+                {dashboardPage === 7 && <TeamTournament />}
                 {dashboardPage === 14 && <MyTeamBlank />}
                 {dashboardPage === 15 && <MyTeamDetails />}
                 {dashboardPage === 16 && <MyTeamPlayers />}
@@ -77,6 +86,7 @@ export const DashboardPage = () => {
                 {dashboardPage === 19 && <EditTeam />}
                 {dashboardPage === 20 && <CreatePlayer />}
             </SubscriptionsProvider>
+
         </SectionDashboard>
       </Main>
     </>
