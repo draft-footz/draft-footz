@@ -16,6 +16,7 @@ export interface iTeamContext {
   getPlayersFromATeam: () => Promise<void>;
   setPlayerId: React.Dispatch<React.SetStateAction<number | null>>;
   directToCreateTeamPage: () => void;
+  disableButton: boolean;
 }
 
 export interface iDataNewTeam {

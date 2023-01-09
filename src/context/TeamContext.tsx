@@ -17,6 +17,7 @@ export const TeamContext = createContext({} as iTeamContext);
 export const TeamProvider = ({ children }: iTeamProvider) => {
   const { user, token } = useContext(UserContext);
   const { setDashboardPage } = useContext(TournamentContext);
+  const [disableButton, setDisableButton] = useState(false);
 
   const userId = user.id;
   const teamId = user.myTeam;
@@ -25,6 +26,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
 
   async function createNewTeam(data: iDataNewTeam) {
     data.userId = userId;
+    setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("teams", data);
@@ -38,6 +40,8 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     } catch (err) {
       console.log(err);
       toast.error("Ops...algo deu errado!");
+    } finally {
+      setDisableButton(true);
     }
   }
 
@@ -96,6 +100,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   async function createNewPlayer(data: iDataNewPlayer) {
     data.userId = userId;
     data.teamId = teamId;
+    setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("players", data);
@@ -109,6 +114,8 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     } catch (err) {
       console.log(err);
       toast.error("Ops...algo deu errado!");
+    } finally {
+      setDisableButton(true);
     }
   }
 
@@ -168,6 +175,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         getPlayersFromATeam,
         setPlayerId,
         directToCreateTeamPage,
+        disableButton,
       }}
     >
       {children}
