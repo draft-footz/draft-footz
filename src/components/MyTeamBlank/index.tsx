@@ -5,10 +5,9 @@ import { ButtonSend } from "../../styles/Buttons/style";
 import { NoTeamDiv } from "./style";
 
 export const MyTeamBlank = () => {
-  const { directToCreateTeamPage } = useContext(TeamContext);
-  const { user } = useContext(UserContext);
+  const { directToCreateTeamPage, teamId } = useContext(TeamContext);
 
-  //Fazer a lógica de renderização usando a chave "myTeam" que estará dentro do objeto user
+  //Fazer a lógica de renderização usando a chave "myTeam" que estará dentro do objeto user. Se não tiver time, renderizar o return abaixo. Se tiver time, renderizar o componente MyTeamDetails
 
   return (
     <NoTeamDiv>

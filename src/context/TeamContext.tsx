@@ -8,6 +8,7 @@ import {
   iTeamProvider,
   iUpdatePlayer,
 } from "../types/TeamContextTypes";
+import { TournamentContext } from "./TournamentContext";
 
 import { UserContext } from "./UsersContext";
 
@@ -15,6 +16,8 @@ export const TeamContext = createContext({} as iTeamContext);
 
 export const TeamProvider = ({ children }: iTeamProvider) => {
   const { user, token } = useContext(UserContext);
+  const { setDashboardPage } = useContext(TournamentContext);
+  const [disableButton, setDisableButton] = useState(false);
 
   const userId = user.id;
   const teamId = user.myTeam;
@@ -23,17 +26,22 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
 
   async function createNewTeam(data: iDataNewTeam) {
     data.userId = userId;
+    setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("teams", data);
       if (requisition.status === 201) {
         toast.success("Time criado com sucesso!");
-        //direcionar para a página do time - componente MyTeamDetails
+        setTimeout(() => {
+          setDashboardPage(15);
+        }, 5000);
       }
       console.log(requisition);
     } catch (err) {
       console.log(err);
       toast.error("Ops...algo deu errado!");
+    } finally {
+      setDisableButton(true);
     }
   }
 
@@ -44,7 +52,9 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.patch(`teams/${teamId}`, data);
       if (requisition.status === 200) {
         toast.success("Alterações no time feitas com sucesso!");
-        //direcionar para a página do time - componente MyTeamDetails
+        setTimeout(() => {
+          setDashboardPage(15);
+        }, 5000);
       }
       console.log(requisition);
     } catch (err) {
@@ -90,17 +100,22 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   async function createNewPlayer(data: iDataNewPlayer) {
     data.userId = userId;
     data.teamId = teamId;
+    setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("players", data);
       if (requisition.status === 201) {
         toast.success("Jogador criado com sucesso!");
-        //direcionar para a página do time - componente MyTeamPlayers
+        setTimeout(() => {
+          setDashboardPage(16);
+        }, 5000);
       }
       console.log(requisition);
     } catch (err) {
       console.log(err);
       toast.error("Ops...algo deu errado!");
+    } finally {
+      setDisableButton(true);
     }
   }
 
@@ -144,7 +159,13 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  function directToCreateTeamPage() {}
+  function directToCreateTeamPage() {
+    setDashboardPage(18);
+  }
+
+  function directToEditTeamPage() {
+    setDashboardPage(19);
+  }
 
   return (
     <TeamContext.Provider
@@ -160,6 +181,9 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         getPlayersFromATeam,
         setPlayerId,
         directToCreateTeamPage,
+        directToEditTeamPage,
+        disableButton,
+        teamId,
       }}
     >
       {children}
