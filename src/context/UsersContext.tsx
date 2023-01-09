@@ -17,8 +17,11 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   const [user, setUser] = useState({} as iUserData);
   const [token, setToken] = useState("");
 
+  console.log(user);
+
   async function createNewUser(data: iDataNewUser) {
-    let newData = { ...data, myTeam: null };
+    let newData = { ...data, teamId: null };
+    console.log(newData);
 
     try {
       await api.post("tournaments", newData);
