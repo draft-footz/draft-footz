@@ -21,6 +21,7 @@ import {
   SectionDashboard,
 } from "./style";
 import { TeamTournament } from "../../components/TeamTournament";
+import { MyTeamPosition } from "../../components/MyTeamPosition";
 
 export const DashboardPage = () => {
   const { setReadingTournament, dashboardPage, setDashboardPage } =
@@ -65,6 +66,7 @@ export const DashboardPage = () => {
           {dashboardPage === 14 && <MyTeamBlank />}
           {dashboardPage === 15 && <MyTeamDetails />}
           {dashboardPage === 16 && <MyTeamPlayers />}
+          {dashboardPage === 17 && <MyTeamPosition />}
           {dashboardPage === 18 && <CreateTeam />}
           {dashboardPage === 19 && <EditTeam />}
           {dashboardPage === 20 && <CreatePlayer />}
