@@ -5,6 +5,7 @@ import {
   iDataNewPlayer,
   iDataNewTeam,
   iTeamContext,
+  iTeamData,
   iTeamProvider,
   iUpdatePlayer,
 } from "../types/TeamContextTypes";
@@ -15,12 +16,13 @@ import { UserContext } from "./UsersContext";
 export const TeamContext = createContext({} as iTeamContext);
 
 export const TeamProvider = ({ children }: iTeamProvider) => {
-  const { user, token } = useContext(UserContext);
+  const { user, token, updateUserTeam } = useContext(UserContext);
   const { setDashboardPage } = useContext(TournamentContext);
   const [disableButton, setDisableButton] = useState(false);
+  const [teamData, setTeamData] = useState({} as iTeamData);
 
   const userId = user.id;
-  const teamId = user.myTeam;
+  const teamId = user.teamId;
 
   const [playerId, setPlayerId] = useState<number | null>(null);
 
@@ -32,11 +34,10 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.post("teams", data);
       if (requisition.status === 201) {
         toast.success("Time criado com sucesso!");
-        setTimeout(() => {
-          setDashboardPage(15);
-        }, 5000);
+        console.log(requisition);
+        updateUserTeam(requisition.data.id);
+        setDashboardPage(15);
       }
-      console.log(requisition);
     } catch (err) {
       console.log(err);
       toast.error("Ops...algo deu errado!");
@@ -46,15 +47,14 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   }
 
   async function updateTeam(data: iDataNewTeam) {
+    console.log(data);
     data.userId = userId;
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.patch(`teams/${teamId}`, data);
       if (requisition.status === 200) {
         toast.success("Alterações no time feitas com sucesso!");
-        setTimeout(() => {
-          setDashboardPage(15);
-        }, 5000);
+        setDashboardPage(15);
       }
       console.log(requisition);
     } catch (err) {
@@ -88,15 +88,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  async function getMyTeam() {
-    try {
-      const requisition = await api.get(`teams/${teamId}`);
-      console.log(requisition);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   async function createNewPlayer(data: iDataNewPlayer) {
     data.userId = userId;
     data.teamId = teamId;
@@ -106,9 +97,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.post("players", data);
       if (requisition.status === 201) {
         toast.success("Jogador criado com sucesso!");
-        setTimeout(() => {
-          setDashboardPage(16);
-        }, 5000);
+        setDashboardPage(16);
       }
       console.log(requisition);
     } catch (err) {
@@ -159,14 +148,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  function directToCreateTeamPage() {
-    setDashboardPage(18);
-  }
-
-  function directToEditTeamPage() {
-    setDashboardPage(19);
-  }
-
   return (
     <TeamContext.Provider
       value={{
@@ -174,16 +155,15 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         updateTeam,
         deleteTeam,
         getAllTeams,
-        getMyTeam,
         createNewPlayer,
         updatePlayer,
         deletePlayer,
         getPlayersFromATeam,
         setPlayerId,
-        directToCreateTeamPage,
-        directToEditTeamPage,
         disableButton,
         teamId,
+        teamData,
+        setTeamData,
       }}
     >
       {children}

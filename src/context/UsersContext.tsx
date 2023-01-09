@@ -4,8 +4,8 @@ import { api } from "../services/api";
 import {
   iDataLogin,
   iDataNewUser,
+  iUpdateUserResponse,
   iUserData,
-  iUserResponse,
   iUsersContext,
   iUsersProvider,
 } from "../types/UsersContextTypes";
@@ -21,8 +21,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     let newData = { ...data, myTeam: null };
 
     try {
-      const requisition = await api.post("tournaments", newData);
-      console.log(requisition);
+      await api.post("tournaments", newData);
       navigate("/login");
     } catch (err) {
       console.log(err);
@@ -32,7 +31,6 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   const userLogin = async (data: iDataLogin) => {
     try {
       const requisition = await api.post("/login", data);
-      console.log(requisition.data);
       localStorage.setItem("@AcessToken", requisition.data.accessToken);
       localStorage.setItem("@user", JSON.stringify(requisition.data.user.id));
 
@@ -47,19 +45,14 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   };
 
   async function updateUserTeam(teamId: number) {
+    let data = {
+      teamId: teamId,
+    };
     try {
-      const requisition = await api.patch<iUserResponse>(`users/${user.id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        data: {
-          myTeam: teamId,
-        },
-      });
-      if (requisition.status === 200) {
-        setUser(requisition.data.user);
-      }
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+      await api
+        .patch<iUpdateUserResponse>(`users/${user.id}`, data)
+        .then((response) => setUser(response.data));
     } catch (err) {
       console.log(err);
     }

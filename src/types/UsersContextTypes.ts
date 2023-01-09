@@ -32,7 +32,7 @@ export interface iUserData {
   email: string;
   name: string;
   contact?: string;
-  myTeam: number | null;
+  teamId: number | null;
   id: number;
 }
 
@@ -42,11 +42,15 @@ export interface iUserResponse {
     email: string;
     name: string;
     contact?: string;
-    myTeam: number | null;
+    teamId: number | null;
     id: number;
-
   };
 }
 
-
-
+export interface iUpdateUserResponse {
+  email: string;
+  name: string;
+  contact?: string;
+  teamId: number | null;
+  id: number;
+}
