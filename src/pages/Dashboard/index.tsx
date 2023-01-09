@@ -20,11 +20,22 @@ import {
   Main,
   SectionDashboard,
 } from "./style";
+import { TournamentKeys } from "../../components/MyTournaments/TournamentKeys";
+import { SubscriptionsProvider } from "../../context/SubscriptionsContext";
+import { NoTournament } from "../../components/NoTournament";
 import { TeamTournament } from "../../components/TeamTournament";
+import { MatchesContext, MatchesProvider } from "../../context/MatchesContext";
 
 export const DashboardPage = () => {
-  const { setReadingTournament, dashboardPage, setDashboardPage } =
-    useContext(TournamentContext);
+  const { setReadingTournament, dashboardPage ,setDashboardPage } = useContext(TournamentContext);
+
+  function isSelected (pages: number[] | number) {
+    if(typeof pages === 'number') {
+      return dashboardPage === pages ? 'selected' : ''
+    } else {
+      return pages.includes(dashboardPage) ? 'selected' : ''
+    };
+  };
 
   return (
     <>
@@ -33,41 +44,50 @@ export const DashboardPage = () => {
       </FigureBackgroundDashboard>
       <Main>
         <SectionDashboard>
-          <DivMenu>
-            <DivLogoAndButtons>
-              <FigureLogo>
-                <img src="/logo.svg" alt="" />
-              </FigureLogo>
-              <ButtonMenu
-                onClick={() => {
-                  setDashboardPage(2);
-                  setReadingTournament(false);
-                }}
-              >
-                Meus torneios{" "}
-              </ButtonMenu>
-              <ButtonMenu onClick={() => setDashboardPage(14)}>
-                {" "}
-                Meu time{" "}
-              </ButtonMenu>
-            </DivLogoAndButtons>
-            <DivButtonLogout>
-              <ButtonLogout>
-                <img src="/logout.png" alt="" />
-                <p>Fazer logout</p>
-              </ButtonLogout>
-            </DivButtonLogout>
-          </DivMenu>
-          {dashboardPage === 0 && <Welcome />}
-          {dashboardPage === 2 && <TournamentCreation />}
-          {dashboardPage === 3 && <MyTournaments />}
-          {dashboardPage === 7 && <TeamTournament />}
-          {dashboardPage === 14 && <MyTeamBlank />}
-          {dashboardPage === 15 && <MyTeamDetails />}
-          {dashboardPage === 16 && <MyTeamPlayers />}
-          {dashboardPage === 18 && <CreateTeam />}
-          {dashboardPage === 19 && <EditTeam />}
-          {dashboardPage === 20 && <CreatePlayer />}
+            <DivMenu>
+              <DivLogoAndButtons>
+                <FigureLogo onClick={() => setDashboardPage(0)}>
+                  <img src="/logo.svg" alt="" />
+                </FigureLogo>
+
+                <ButtonMenu className={isSelected([2, 5, 6])} onClick={() => {
+                    setDashboardPage(2);
+                    setReadingTournament(false);
+                }}> 
+                  Meus torneios 
+                </ButtonMenu>
+
+                <ButtonMenu 
+                  className={dashboardPage === 3 ? 'selected' : ''} 
+                  onClick={() => setDashboardPage(3)}>
+                     Meu time  
+                </ButtonMenu>
+              </DivLogoAndButtons>
+
+              <DivButtonLogout>
+                <ButtonLogout>
+                  <img src="/logout.png" alt="" />
+                  <p>Fazer logout</p>
+                </ButtonLogout>
+              </DivButtonLogout>
+            </DivMenu>     
+
+            <SubscriptionsProvider>
+              <MatchesProvider>
+                {dashboardPage === 0  && <Welcome />}
+                {dashboardPage === 1  && <TournamentCreation />}
+                {dashboardPage === 2  && <MyTournaments />     }
+                {dashboardPage === 5  && <NoTournament />}
+                {dashboardPage === 6  && <TournamentKeys />}
+                {dashboardPage === 7  && <TeamTournament />}
+                {dashboardPage === 14 && <MyTeamBlank />}
+                {dashboardPage === 15 && <MyTeamDetails />}
+                {dashboardPage === 16 && <MyTeamPlayers />}
+                {dashboardPage === 18 && <CreateTeam />}
+                {dashboardPage === 19 && <EditTeam />}
+                {dashboardPage === 20 && <CreatePlayer />}
+              </MatchesProvider>
+            </SubscriptionsProvider>
         </SectionDashboard>
       </Main>
     </>

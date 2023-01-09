@@ -5,6 +5,7 @@ import Homepage from "../pages/Homepage";
 import { RegisterPage } from "../pages/Register";
 import { TournamentProvider } from "../context/TournamentContext";
 import { TeamProvider } from "../context/TeamContext";
+import { MatchesProvider } from "../context/MatchesContext";
 
 export const AppRoutes = () => {
   return (
@@ -12,17 +13,16 @@ export const AppRoutes = () => {
       <Route path="/" element={<Homepage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route
-        path="/dashboard"
+      <Route path="/dashboard" 
         element={
-          <TournamentProvider>
-            <TeamProvider>
-              <DashboardPage />
-            </TeamProvider>
-          </TournamentProvider>
-        }
-      />
-
+          <MatchesProvider>
+            <TournamentProvider>
+              <TeamProvider>
+                <DashboardPage />
+              </TeamProvider>
+            </TournamentProvider>
+          </MatchesProvider>
+        } />
       <Route path="*" element={<Homepage />} />
     </Routes>
   );

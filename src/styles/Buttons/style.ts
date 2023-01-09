@@ -100,3 +100,22 @@ export const ButtonRight = styled.button`
   justify-content: center;
   align-items: center;
 `
+
+// Button close modal
+export const ButtonCloseModal = styled.button`
+  position: absolute;
+  right: 1.5rem;
+  top: -0.5rem;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  opacity: 0.5;
+
+  font-size: 1.5rem;
+  font-weight: 500;
+
+  :hover {
+    opacity: 1;
+    background-color: transparent;
+  }
+`;

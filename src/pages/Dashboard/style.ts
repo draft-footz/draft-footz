@@ -8,6 +8,10 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .selected {
+    background-color: var(--primary);
+  }
 `;
 
 export const SectionDashboard = styled.section`
