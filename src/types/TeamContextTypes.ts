@@ -9,16 +9,15 @@ export interface iTeamContext {
   updateTeam: (data: iDataNewTeam) => Promise<void>;
   deleteTeam: () => Promise<void>;
   getAllTeams: () => Promise<void>;
-  getMyTeam: () => Promise<void>;
   createNewPlayer: (data: iDataNewPlayer) => Promise<void>;
   updatePlayer: (data: iUpdatePlayer) => Promise<void>;
   deletePlayer: () => Promise<void>;
   getPlayersFromATeam: () => Promise<void>;
   setPlayerId: React.Dispatch<React.SetStateAction<number | null>>;
-  directToCreateTeamPage: () => void;
-  directToEditTeamPage: () => void;
   disableButton: boolean;
   teamId: number | null;
+  teamData: iTeamData;
+  setTeamData: React.Dispatch<React.SetStateAction<iTeamData>>;
 }
 
 export interface iDataNewTeam {
@@ -42,4 +41,11 @@ export interface iUpdatePlayer {
   avatar: string;
   contact: string;
   position: null | string;
+}
+
+export interface iTeamData {
+  userId: number;
+  name: string;
+  logo: string;
+  id: number;
 }

@@ -46,7 +46,7 @@ export const DashboardPage = () => {
               >
                 Meus torneios{" "}
               </ButtonMenu>
-              <ButtonMenu onClick={() => setDashboardPage(15)}>
+              <ButtonMenu onClick={() => setDashboardPage(14)}>
                 {" "}
                 Meu time{" "}
               </ButtonMenu>
