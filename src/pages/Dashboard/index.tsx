@@ -85,7 +85,6 @@ export const DashboardPage = () => {
               </ButtonLogout>
             </DivButtonLogout>
           </DivMenu>
-        </SectionDashboard>
           <SubscriptionsProvider>
             <MatchesProvider>
               {dashboardPage === 0 && <Welcome />}
