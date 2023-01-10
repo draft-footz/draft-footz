@@ -18,12 +18,13 @@ export interface iTeamContext {
   teamId: number | null;
   teamData: iTeamData;
   setTeamData: React.Dispatch<React.SetStateAction<iTeamData>>;
+  userId: number;
 }
 
 export interface iDataNewTeam {
-  userId: number;
-  name: string;
-  logo: string;
+  userId?: number;
+  name?: string;
+  logo?: string;
 }
 
 export interface iDataNewPlayer {

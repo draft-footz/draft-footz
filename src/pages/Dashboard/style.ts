@@ -8,6 +8,10 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .selected {
+    background-color: var(--primary);
+  }
 `;
 
 export const SectionDashboard = styled.section`
@@ -18,6 +22,10 @@ export const SectionDashboard = styled.section`
   overflow: hidden;
   display: flex;
   max-width: 75rem;
+
+  > main {
+    width: 70%;
+  }
 `;
 
 export const DivMenu = styled.div`

@@ -7,9 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <>
-      <UsersProvider>
-        <AppRoutes />
-      </UsersProvider>
+      <AppRoutes />
       <ToastContainer
         position="top-right"
         autoClose={3000}

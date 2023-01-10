@@ -34,14 +34,16 @@ export const TournamentList = () => {
                         <h1> Meus torneios </h1>
                         <span> {tournamentsQuantity}/1 </span>
                         <ul>
-                            { sortedTournaments.map(tournament => <TournamentListCard tournament={tournament} />)}
+                            { sortedTournaments.map(tournament => <TournamentListCard key={tournament.id} tournament={tournament} />)}
                         </ul>
                         <button disabled={disabled} onClick={() => setDashboardPage(1)}> + </button>
                     </StyledTournamentList> 
                 )
                 :
                 (
-                    <NoTournament />
+                    <> 
+                        {(() => {setDashboardPage(5)})()}
+                    </>
                 )
             }
 
