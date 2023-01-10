@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface iMatchProps {
-    winner: "teamA" | "teamB";
+    winner: "teamA" | "teamB" | null;
 }
 
 const options = {
@@ -23,7 +23,7 @@ const options = {
 
 export const StyledTournamentKey = styled.div<iMatchProps>`
     border: 2px solid #E5E5E5;
-    border-radius: 1.25rem;
+    border-radius: 1.75rem;
     background-color: #212121;
 
     width: 14rem;
@@ -32,7 +32,7 @@ export const StyledTournamentKey = styled.div<iMatchProps>`
     display: flex;
     flex-direction: column;
 
-    ${props => options[props.winner]};
+    ${props => props.winner && options[props.winner]};
 
     >div:nth-child(1) {
         border-bottom: 2px solid white;

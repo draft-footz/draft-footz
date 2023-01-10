@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FooterBackground = styled.div`
   width: 100vw;
   height: 46px;
-  background: rgba(6, 0, 0, 0.85);
+  background: rgba(6, 0, 0, 0.65);
   position: absolute;
   bottom: 0;
   display: flex;
