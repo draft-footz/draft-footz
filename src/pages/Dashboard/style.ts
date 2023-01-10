@@ -29,6 +29,7 @@ export const SectionDashboard = styled.section`
   @media (max-width: 800px) {
     justify-content: center;
     align-items: center;
+    width: 90%;
   }
 `;
 

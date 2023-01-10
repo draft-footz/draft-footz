@@ -1,78 +1,85 @@
 import styled from "styled-components";
 
 export const MainStyled = styled.main`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
-`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+`;
 
 export const TeamHeaderStyled = styled.div`
-    display: flex;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  figure {
     width: 100%;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    max-width: 50px;
+  }
 
-    figure {
-        width: 100%;
-        max-width: 50px;
-    }
+  img {
+    width: 100%;
+    border-radius: 100%;
+  }
 
-    img {
-        width: 100%;
-        border-radius: 100%;
+  h2 {
+    font-weight: 500;
+    font-size: 24px;
+    @media (max-width: 800px) {
+      font-size: 16px;
     }
+  }
 
-    h2 {
-        font-weight: 500;
-        font-size: 24px;
-    }
-
-    button {
-        background: none;
-    	color: inherit;
-    	border: none;
-    	padding: 0;
-    	outline: inherit;       
-    }
-    
-`
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    outline: inherit;
+  }
+`;
 
 export const TeamDetails = styled.section`
-    width: 100%;
-    max-width: 700px;
-    background: rgba(7, 6, 6, 0.37);
-    border-radius: 6px;
+  width: 100%;
+  max-width: 700px;
+  background: rgba(7, 6, 6, 0.37);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  h3,
+  div {
+    padding: 20px 41px;
+  }
+
+  h4,
+  h3 {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--gray0);
+    @media (max-width: 800px) {
+      font-size: 14px;
+    }
+  }
+
+  span {
+    font-weight: 700;
+    font-size: 15px;
+    color: #b6b6b6;
+  }
+
+  div {
+    border-top: 2px solid rgba(255, 255, 255, 0.06);
+  }
+
+  div:first-of-type {
     display: flex;
-    flex-direction: column;
-    position: relative;
-
-    h3, div {
-        padding: 20px 41px;
-    }
-
-    h4, h3 {
-        font-weight: 700;
-        font-size: 15px;
-        color: var(--gray0);
-    }
-
-    span {
-        font-weight: 700;
-        font-size: 15px;
-        color: #B6B6B6;
-    }
-
-    div {
-        border-top: 2px solid rgba(255, 255, 255, 0.06);;
-    }
-
-    div:first-of-type {
-        display: flex;
-        gap: 22px;
-        flex-wrap: wrap;
-    }
-`
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+`;
