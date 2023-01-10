@@ -17,9 +17,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchemaLogin } from "../../utils/schema";
 import { sucessLogin } from "../../utils/toast";
 import { api } from "../../services/api";
-import { Loading } from "../RegisterTest/style";
+import { Loading } from "../Register/style";
 
-const LoginTest = () => {
+const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<iLoginFormData>({ resolver: yupResolver(formSchemaLogin) });
     const { loading, setLoading } = useContext(UserContext)
@@ -96,4 +96,4 @@ const LoginTest = () => {
   );
 };
 
-export default LoginTest;
+export default Login;
