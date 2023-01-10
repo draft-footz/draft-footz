@@ -36,7 +36,8 @@ export const CreatePlayer = () => {
               <option value="Zagueiro">Zagueiro</option>
               <option value="Lateral Esquerdo">Lateral Esquerdo</option>
               <option value="Lateral Direito">Lateral Direito</option>
-              <option value="Meia">Meia</option>
+              <option value="Meia Esquerda">Meia Esquerda</option>
+              <option value="Meia Direita">Meia Direita</option>
               <option value="Atacante">Atacante</option>
             </select>
             {errors.position?.message && <span>{errors.position.message}</span>}

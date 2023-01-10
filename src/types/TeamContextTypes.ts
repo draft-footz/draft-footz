@@ -18,6 +18,7 @@ export interface iTeamContext {
   teamData: iTeamData;
   setTeamData: React.Dispatch<React.SetStateAction<iTeamData>>;
   userId: number;
+  playersData: iPlayerData[];
 }
 
 export interface iDataNewTeam {
@@ -47,5 +48,14 @@ export interface iTeamData {
   userId: number;
   name: string;
   logo: string;
+  id: number;
+}
+
+export interface iPlayerData {
+  userId: number;
+  teamId: number | null;
+  name: string;
+  number: string;
+  position: null | string;
   id: number;
 }
