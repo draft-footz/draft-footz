@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 import { CreatePlayer } from "../../components/CreatePlayer";
 import { CreateTeam } from "../../components/CreateTeam";
 import { EditTeam } from "../../components/EditTeam";
 import { MyTeamBlank } from "../../components/MyTeamBlank";
 import { MyTeamDetails } from "../../components/MyTeamDetails";
 import { MyTournaments } from "../../components/MyTournaments";
-import { TournamentsViewPage } from "./TournamentsViewPage";
 import { MyTeamPlayers } from "../../components/MyTeamPlayers";
 import { TournamentCreation } from "../../components/TournamentCreation";
 import { Welcome } from "../../components/Welcome";
-import { TournamentProvider } from "../../context/TournamentContext";
-import { api } from "../../services/api";
+import { TournamentContext } from "../../context/TournamentContext";
 import { ButtonMenu } from "../../styles/Buttons/style";
 import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import {
@@ -22,33 +20,24 @@ import {
   Main,
   SectionDashboard,
 } from "./style";
+import { TournamentKeys } from "../../components/MyTournaments/TournamentKeys";
+import { SubscriptionsProvider } from "../../context/SubscriptionsContext";
+import { NoTournament } from "../../components/NoTournament";
+import { TeamTournament } from "../../components/TeamTournament";
+import { MatchesContext, MatchesProvider } from "../../context/MatchesContext";
+import { TournamentsViewPage } from "./TournamentsViewPage";
 
 export const DashboardPage = () => {
-  const [value, setValue] = useState(0);
+  const { setReadingTournament, dashboardPage, setDashboardPage } =
+    useContext(TournamentContext);
 
-  // APAGAR ASSIM QUE FINALIZAR
-
-  useEffect(() => {
-    const loginData = {
-      email: "user@test.com",
-      password: "test123",
-    };
-
-    async function autoLogin() {
-      try {
-        const request = await api.post("/login", loginData);
-
-        localStorage.setItem("@AcessToken", request.data.accessToken);
-      } catch (error) {
-        console.error(error);
-      }
+  function isSelected(pages: number[] | number) {
+    if (typeof pages === "number") {
+      return dashboardPage === pages ? "selected" : "";
+    } else {
+      return pages.includes(dashboardPage) ? "selected" : "";
     }
-
-    autoLogin();
-  }, []);
-
-  // APAGAR ASSIM QUE FINALIZAR
-
+  }
 
   return (
     <>
@@ -59,13 +48,35 @@ export const DashboardPage = () => {
         <SectionDashboard>
           <DivMenu>
             <DivLogoAndButtons>
-              <FigureLogo>
+              <FigureLogo onClick={() => setDashboardPage(0)}>
                 <img src="/logo.svg" alt="" />
               </FigureLogo>
-              <ButtonMenu onClick={() => setValue(0)}>Criar torneio</ButtonMenu>
-              <ButtonMenu onClick={() => setValue(1)}>Meus torneios</ButtonMenu>
-              <ButtonMenu onClick={() => setValue(2)}>Meu time</ButtonMenu>
+
+              <ButtonMenu
+                className={isSelected([2, 5, 6])}
+                onClick={() => {
+                  setDashboardPage(2);
+                  setReadingTournament(false);
+                }}
+              >
+                Meus torneios
+              </ButtonMenu>
+
+              <ButtonMenu
+                className={dashboardPage === 14 ? "selected" : ""}
+                onClick={() => setDashboardPage(14)}
+              >
+                Meu time
+              </ButtonMenu>
+
+              <ButtonMenu
+                className={dashboardPage === 3 ? "selected" : ""}
+                onClick={() => setDashboardPage(3)}
+              >
+                Torneios
+              </ButtonMenu>
             </DivLogoAndButtons>
+
             <DivButtonLogout>
               <ButtonLogout>
                 <img src="/logout.png" alt="" />
@@ -73,14 +84,25 @@ export const DashboardPage = () => {
               </ButtonLogout>
             </DivButtonLogout>
           </DivMenu>
-          {value === 0 && <div />}
-          {value === 1 && <TournamentCreation />}
-          {value === 14 && <MyTeamBlank />}
-          {value === 15 && <MyTeamDetails />}
-          {value === 16 && <MyTeamPlayers />}
-          {value === 18 && <CreateTeam />}
-          {value === 19 && <EditTeam />}
-          {value === 20 && <CreatePlayer />}
+
+          <SubscriptionsProvider>
+            <MatchesProvider>
+              {dashboardPage === 0 && <Welcome />}
+              {dashboardPage === 1 && <TournamentCreation />}
+              {dashboardPage === 2 && <MyTournaments />}
+              {dashboardPage === 3 && <TournamentsViewPage />}
+              {dashboardPage === 5 && <NoTournament />}
+              {dashboardPage === 6 && <TournamentKeys />}
+              {dashboardPage === 7 && <TeamTournament />}
+              {dashboardPage === 14 && <MyTeamBlank />}
+              {dashboardPage === 15 && <MyTeamDetails />}
+              {dashboardPage === 16 && <MyTeamPlayers />}
+              {dashboardPage === 18 && <CreateTeam />}
+              {dashboardPage === 19 && <EditTeam />}
+              {dashboardPage === 20 && <CreatePlayer />}
+              {dashboardPage === 20 && <CreatePlayer />}
+            </MatchesProvider>
+          </SubscriptionsProvider>
         </SectionDashboard>
       </Main>
     </>

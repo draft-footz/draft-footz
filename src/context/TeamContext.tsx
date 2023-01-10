@@ -1,54 +1,65 @@
 import { createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
 import { api } from "../services/api";
 import {
   iDataNewPlayer,
   iDataNewTeam,
   iTeamContext,
+  iTeamData,
   iTeamProvider,
   iUpdatePlayer,
 } from "../types/TeamContextTypes";
+import { TournamentContext } from "./TournamentContext";
 
 import { UserContext } from "./UsersContext";
 
 export const TeamContext = createContext({} as iTeamContext);
 
 export const TeamProvider = ({ children }: iTeamProvider) => {
-  const { user, token } = useContext(UserContext);
+  const { user, token, updateUserTeam } = useContext(UserContext);
+  const { setDashboardPage } = useContext(TournamentContext);
+  const [disableButton, setDisableButton] = useState(false);
+  const [teamData, setTeamData] = useState({} as iTeamData);
 
   const userId = user.id;
-  const teamId = user.myTeam;
+  const teamId = user.teamId;
 
   const [playerId, setPlayerId] = useState<number | null>(null);
 
   async function createNewTeam(data: iDataNewTeam) {
     data.userId = userId;
+    setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("teams", data);
       if (requisition.status === 201) {
-        //toast de sucesso
-        //direcionar para a página do time - componente MyTeamDetails
+        toast.success("Time criado com sucesso!");
+        console.log(requisition);
+        updateUserTeam(requisition.data.id);
+        setDashboardPage(15);
       }
-      console.log(requisition);
     } catch (err) {
       console.log(err);
-      //toast de erro
+      toast.error("Ops...algo deu errado!");
+    } finally {
+      setDisableButton(true);
     }
   }
 
   async function updateTeam(data: iDataNewTeam) {
+    console.log(data);
     data.userId = userId;
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.patch(`teams/${teamId}`, data);
       if (requisition.status === 200) {
-        //toast de sucesso
-        //direcionar para a página do time - componente MyTeamDetails
+        toast.success("Alterações no time feitas com sucesso!");
+        setDashboardPage(15);
       }
       console.log(requisition);
     } catch (err) {
       console.log(err);
-      //toast de erro
+      toast.error("Ops...algo deu errado!");
     }
   }
 
@@ -77,29 +88,23 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  async function getMyTeam() {
-    try {
-      const requisition = await api.get(`teams/${teamId}`);
-      console.log(requisition);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   async function createNewPlayer(data: iDataNewPlayer) {
     data.userId = userId;
     data.teamId = teamId;
+    setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("players", data);
       if (requisition.status === 201) {
-        //toast de sucesso
-        //direcionar para a página do time - componente MyTeamPlayers
+        toast.success("Jogador criado com sucesso!");
+        setDashboardPage(16);
       }
       console.log(requisition);
     } catch (err) {
       console.log(err);
-      //toast de erro
+      toast.error("Ops...algo deu errado!");
+    } finally {
+      setDisableButton(true);
     }
   }
 
@@ -124,13 +129,13 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         data: data,
       });
       if (requisition.status === 200) {
-        //toast de sucesso
+        toast.success("Jogador excluído com sucesso!");
         //renderizar a lista de jogadores novamente
       }
       console.log(requisition);
     } catch (err) {
       console.log(err);
-      //toast de erro
+      toast.error("Ops...algo deu errado!");
     }
   }
 
@@ -150,12 +155,15 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         updateTeam,
         deleteTeam,
         getAllTeams,
-        getMyTeam,
         createNewPlayer,
         updatePlayer,
         deletePlayer,
         getPlayersFromATeam,
         setPlayerId,
+        disableButton,
+        teamId,
+        teamData,
+        setTeamData,
       }}
     >
       {children}
