@@ -1,20 +1,22 @@
 import styled from "styled-components";
 
 export const NoTeamDiv = styled.div`
-    display: flex;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+
+  h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  button {
     width: 50%;
-    margin: 0 auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-
-    h2 {
-        font-weight: 500;
-        font-size: 22px;
-    }
-
-    button {
-        max-width: 250px;
-    }
-`
+    max-width: 284px;
+    height: 44px;
+  }
+`;

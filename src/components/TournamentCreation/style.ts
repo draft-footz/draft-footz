@@ -13,6 +13,9 @@ export const FormTournamentCreation = styled.form`
   input {
     height: 46px;
   }
+  @media (max-width: 800px) {
+    width: 100%;
+  }
   @media (max-width: 1000px) {
     label {
       font-size: 16px;
@@ -60,6 +63,10 @@ export const DivInputDisabled = styled.div`
   max-width: 600px;
   width: 100%;
   align-items: center;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const DivInputInfoTournament = styled.div`

@@ -15,4 +15,15 @@ export const StyledTournamentsViewPage = styled.main`
     width: 80%;
     text-align: center;
   }
+  @media (max-width: 800px) {
+    > div {
+      width: 120%;
+    }
+    h3 {
+      font-size: 16px;
+    }
+    span {
+      font-size: 14px;
+    }
+  }
 `;
