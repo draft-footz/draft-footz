@@ -11,8 +11,6 @@ export const ParentRg = styled.div`
   @media (min-width: 900px) {
     height: 100vh;
   }
-
-
 `;
 
 export const StyledRegister = styled.div`
@@ -30,7 +28,7 @@ export const ContainerDivLogin = styled.div`
   margin-bottom: 20px;
   position: absolute;
   animation: translateShow 0.4s ease;
-  
+
   @keyframes translateShow {
     0% {
       opacity: 0;
@@ -60,8 +58,8 @@ export const ContainerDivLogin = styled.div`
     }
 
     @media (min-width: 900px) {
-     width: 430px;
-     height: 530px;
+      width: 430px;
+      height: 530px;
     }
   }
 
@@ -91,8 +89,8 @@ export const ContainerDivLogin = styled.div`
       }
 
       @media (min-width: 900px) {
-      margin-top: 30px;
-    }
+        margin-top: 30px;
+      }
     }
   }
 
@@ -101,9 +99,9 @@ export const ContainerDivLogin = styled.div`
     gap: 10px;
     margin: 0 auto;
     margin-top: 17px;
-    
+
     @media (min-width: 900px) {
-        margin-bottom: 5px;
+      margin-bottom: 5px;
     }
   }
 
@@ -172,8 +170,7 @@ export const ContainerDivLogin = styled.div`
       outline: none;
       border-radius: 6px;
       padding-left: 10px;
-      
-      
+
       margin-bottom: 10px;
 
       @media (min-width: 375px) {
@@ -284,4 +281,14 @@ export const BackToHome = styled(Link)`
     height: 34px;
     width: 100px;
   }
+`;
+
+export const MsgError = styled.span`
+  color: #ff577f;
+  font-size: 11px;
+  display: block;
+  margin: 0 auto;
+  margin-left: 0px;
+  margin-top: -6px;
+  margin-bottom: 10px;
 `;

@@ -29,3 +29,12 @@ export const formSchema = yup.object().shape({
     .required("Confirme sua senha")
     .oneOf([yup.ref("password"), null], "As senhas não coincidem")
 });
+
+export const formSchemaLogin = yup.object().shape({
+  email: yup
+    .string()
+    .required("Email obrigatório")
+    .email("É necessário fornecer um email válido."),
+
+  password: yup.string().required("Senha obrigatória"),
+});
