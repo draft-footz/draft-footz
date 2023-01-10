@@ -17,10 +17,9 @@ import {
 export const MyTeamPosition = () => {
   const { setDashboardPage } = useContext(TournamentContext);
   const { getPlayersFromATeam, playersData } = useContext(TeamContext);
-
   useEffect(() => {
     getPlayersFromATeam();
-  });
+  }, []);
 
   return (
     <>
@@ -83,17 +82,69 @@ export const MyTeamPosition = () => {
         <SectionPosition>
           <TitlePosition>{playersData.length}/7 Jogadores</TitlePosition>
           <UlPosition>
-            {playersData.map((player) => {
-              return (
-                <>
-                  <LiPosition>
-                    <h3>{player.number} - </h3>
-                    <h3>{player.name}</h3>
-                    <ImgPlayer src="/favicon.svg" alt="" />
-                  </LiPosition>
-                </>
-              );
-            })}
+            {playersData[0] ? (
+              <LiPosition>
+                <h3>{playersData[0].number} - </h3>
+                <h3>{playersData[0].name}</h3>
+                <ImgPlayer src="/favicon.svg" alt="" />
+              </LiPosition>
+            ) : (
+              <LiPosition></LiPosition>
+            )}
+            {playersData[1] ? (
+              <LiPosition>
+                <h3>{playersData[1].number} - </h3>
+                <h3>{playersData[1].name}</h3>
+                <ImgPlayer src="/favicon.svg" alt="" />
+              </LiPosition>
+            ) : (
+              <LiPosition></LiPosition>
+            )}
+            {playersData[2] ? (
+              <LiPosition>
+                <h3>{playersData[2].number} - </h3>
+                <h3>{playersData[2].name}</h3>
+                <ImgPlayer src="/favicon.svg" alt="" />
+              </LiPosition>
+            ) : (
+              <LiPosition></LiPosition>
+            )}
+            {playersData[3] ? (
+              <LiPosition>
+                <h3>{playersData[3].number} - </h3>
+                <h3>{playersData[3].name}</h3>
+                <ImgPlayer src="/favicon.svg" alt="" />
+              </LiPosition>
+            ) : (
+              <LiPosition></LiPosition>
+            )}
+            {playersData[4] ? (
+              <LiPosition>
+                <h3>{playersData[4].number} - </h3>
+                <h3>{playersData[4].name}</h3>
+                <ImgPlayer src="/favicon.svg" alt="" />
+              </LiPosition>
+            ) : (
+              <LiPosition></LiPosition>
+            )}
+            {playersData[5] ? (
+              <LiPosition>
+                <h3>{playersData[5].number} - </h3>
+                <h3>{playersData[5].name}</h3>
+                <ImgPlayer src="/favicon.svg" alt="" />
+              </LiPosition>
+            ) : (
+              <LiPosition></LiPosition>
+            )}
+            {playersData[6] ? (
+              <LiPosition>
+                <h3>{playersData[6].number} - </h3>
+                <h3>{playersData[6].name}</h3>
+                <ImgPlayer src="/favicon.svg" alt="" />
+              </LiPosition>
+            ) : (
+              <LiPosition></LiPosition>
+            )}
           </UlPosition>
         </SectionPosition>
       </MainTeamPosition>
