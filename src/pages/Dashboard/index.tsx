@@ -88,7 +88,6 @@ export const DashboardPage = () => {
                 {dashboardPage === 20 && <CreatePlayer />}
               </MatchesProvider>
             </SubscriptionsProvider>
-
         </SectionDashboard>
       </Main>
     </>

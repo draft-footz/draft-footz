@@ -23,8 +23,7 @@ export const AppRoutes = () => {
             </TournamentProvider>
           </MatchesProvider>
         } />
-
-      <Route path="*" element={<Homepage /> } />
+      <Route path="*" element={<Homepage />} />
     </Routes>
   );
 };
