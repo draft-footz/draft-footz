@@ -50,7 +50,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
       setLoading(true);
 
       const response = await api.post("login", data);
-
+      console.log(response)
         setLogin(true)
         sucessLogin()
         setToken(response.data.accessToken)
@@ -61,6 +61,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         navigate("/dashboard") 
 
     } catch (err) { 
+      console.log(err)
        setLogin(false)
     
   } finally {

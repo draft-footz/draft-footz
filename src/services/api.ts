@@ -14,6 +14,6 @@ const baseUrl = {
 const RenanPC = localStorage.getItem('@RenanPC');
 
 export const api = axios.create({
-    baseURL: RenanPC ? 'localhost:3001' : baseUrl.radmin.RenanPC,
+    baseURL: RenanPC ? 'http://127.0.0.1:3001' : baseUrl.radmin.RenanPC,
     timeout: 5000
 });

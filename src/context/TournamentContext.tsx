@@ -9,7 +9,7 @@ export const TournamentContext = createContext({} as iTournamentContext);
 
 export const TournamentProvider = ({ children }: iTournamentProvider) => {
   const { user, token } = useContext(UserContext);
-  const { createMultipleTournamentMatches, createTournamentMatch, deleteAllMatchesFromTournament} = useContext(MatchesContext);
+  const { createMultipleTournamentMatches, deleteAllMatchesFromTournament} = useContext(MatchesContext);
     
   const [myTournaments, setMyTournaments] = useState([] as iDataTournament[]);
   const [allTournaments, setAllTournaments] = useState([] as iDataTournament[]);
@@ -24,6 +24,10 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
       getMyTournaments();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, token]);
+
+  useEffect(() => {
+    console.log(readingTournament)
+  }, [readingTournament]);
 
 
   // Functions 
