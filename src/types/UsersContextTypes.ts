@@ -72,3 +72,8 @@ export interface iUpdateUserResponse {
   id: number;
 }
 
+export interface iLoginFormData {
+  email: string;
+  password: string;
+}
+

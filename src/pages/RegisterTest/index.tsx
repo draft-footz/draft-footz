@@ -5,7 +5,6 @@ import { AppleButton } from "../../components/SocialLogin/Apple";
 import { GoogleButton } from "../../components/SocialLogin/Google";
 import { formSchema } from "../../utils/schema";
 import {
-  BackToHome,
   ContainerDiv,
   InputMsk,
   LinkToLogin,
