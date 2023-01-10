@@ -30,6 +30,7 @@ export interface iDataNewPlayer {
   name: string;
   position: null | string;
   number: number;
+  avatar?: string;
 }
 
 export interface iUpdatePlayer {
