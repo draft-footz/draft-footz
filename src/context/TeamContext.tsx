@@ -36,6 +36,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         toast.success("Time criado com sucesso!");
         console.log(requisition);
         updateUserTeam(requisition.data.id);
+        setTeamData(requisition.data);
         setDashboardPage(15);
       }
     } catch (err) {
@@ -47,7 +48,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   }
 
   async function updateTeam(data: iDataNewTeam) {
-    console.log(data);
     data.userId = userId;
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -73,6 +73,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.delete(`teams/${teamId}`, {
         data: data,
       });
+      updateUserTeam(0);
       console.log(requisition);
     } catch (err) {
       console.log(err);
@@ -91,6 +92,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   async function createNewPlayer(data: iDataNewPlayer) {
     data.userId = userId;
     data.teamId = teamId;
+    console.log(data);
     setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -99,7 +101,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         toast.success("Jogador criado com sucesso!");
         setDashboardPage(16);
       }
-      console.log(requisition);
     } catch (err) {
       console.log(err);
       toast.error("Ops...algo deu errado!");
@@ -164,7 +165,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         teamId,
         teamData,
         setTeamData,
-        userId
+        userId,
       }}
     >
       {children}

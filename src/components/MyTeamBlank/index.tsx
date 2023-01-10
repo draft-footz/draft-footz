@@ -9,7 +9,7 @@ export const MyTeamBlank = () => {
   const { teamId } = useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
 
-  if (!teamId) {
+  if (!teamId || teamId === 0) {
     return (
       <NoTeamDiv>
         <h2>Você ainda não possui nenhum time! </h2>

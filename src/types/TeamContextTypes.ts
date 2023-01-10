@@ -32,7 +32,7 @@ export interface iDataNewPlayer {
   teamId: number | null;
   name: string;
   position: null | string;
-  number: number;
+  number: string;
 }
 
 export interface iUpdatePlayer {

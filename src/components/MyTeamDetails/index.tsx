@@ -8,7 +8,7 @@ import { api } from "../../services/api";
 import { UserContext } from "../../context/UsersContext";
 import { TeamContext } from "../../context/TeamContext";
 import { ButtonRight } from "../../styles/Buttons/style";
-import emblem from "../../img/standard_emblem.jpg"
+import emblem from "../../img/standard_emblem.jpg";
 
 export const MyTeamDetails = () => {
   const { setDashboardPage } = useContext(TournamentContext);
@@ -16,6 +16,7 @@ export const MyTeamDetails = () => {
   const { teamData, setTeamData } = useContext(TeamContext);
 
   const teamId = user.teamId;
+  console.log(teamData);
 
   useEffect(() => {
     async function getMyTeam() {
@@ -45,11 +46,7 @@ export const MyTeamDetails = () => {
         </button>
       </TeamHeaderStyled>
       <TeamDetails>
-        <ButtonRight
-        onClick={() => setDashboardPage(16)}
-        >
-        {">"}
-        </ButtonRight>
+        <ButtonRight onClick={() => setDashboardPage(16)}>{">"}</ButtonRight>
         <h3>
           Capitão do time: <span>{user.name}</span>
         </h3>
