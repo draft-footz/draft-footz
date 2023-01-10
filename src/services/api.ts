@@ -7,7 +7,13 @@ const baseUrl = {
     }
 };
 
+// Validando se está no PC do Renan
+// caso seja o PC do Renan a baseUrl deve ser localhost, 
+// caso contrário, IP do radmin
+
+const RenanPC = localStorage.getItem('@RenanPC');
+
 export const api = axios.create({
-    baseURL: baseUrl.radmin.RenanPC,
+    baseURL: RenanPC ? 'localhost:3001' : baseUrl.radmin.RenanPC,
     timeout: 5000
 });

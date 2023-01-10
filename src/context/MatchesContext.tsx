@@ -19,7 +19,6 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
         if(readingTournament) {
             readThisTournamentMatches(readingTournament.id);
         };
-        console.log(tournamentMatches)
     }, [readingTournament]);
 
     // Functions
