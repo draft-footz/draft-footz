@@ -9,5 +9,5 @@ const baseUrl = {
 
 export const api = axios.create({
   baseURL: baseUrl.render,
-  timeout: 15000,
+  timeout: 5000,
 });

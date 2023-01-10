@@ -71,7 +71,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.delete(`teams/${teamId}`, {
         data: data,
       });
-      updateUserTeam(0);
+      updateUserTeam(null);
       console.log(requisition);
     } catch (err) {
       console.log(err);
@@ -126,6 +126,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       await api.delete(`players/${playerId}`, {
         data: data,
       });
+      console.log("test");
       toast.success("Jogador excluído com sucesso!");
     } catch (err) {
       console.log(err);
