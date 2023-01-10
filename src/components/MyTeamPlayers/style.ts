@@ -34,11 +34,13 @@ export const PlayerListStyled = styled.section`
     border-radius: 6px;
     padding: 14px 34px;
     width: 100%;
-    max-width: 603px;
+    max-width: 710px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    position: relative;
+
     h2 {
         font-weight: 700;
         font-size: 16px;
@@ -66,7 +68,6 @@ export const PlayerListStyled = styled.section`
                 display: flex;
                 align-items: center;
                 gap: 21px;
-
             }
 
             div:nth-child(2){

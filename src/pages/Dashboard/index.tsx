@@ -24,6 +24,7 @@ import { TournamentKeys } from "../../components/MyTournaments/TournamentKeys";
 import { SubscriptionsProvider } from "../../context/SubscriptionsContext";
 import { NoTournament } from "../../components/NoTournament";
 import { TeamTournament } from "../../components/TeamTournament";
+import { MyTeamPosition } from "../../components/MyTeamPosition";
 import { MatchesContext, MatchesProvider } from "../../context/MatchesContext";
 import { TournamentsViewPage } from "./TournamentsViewPage";
 
@@ -84,7 +85,7 @@ export const DashboardPage = () => {
               </ButtonLogout>
             </DivButtonLogout>
           </DivMenu>
-
+        </SectionDashboard>
           <SubscriptionsProvider>
             <MatchesProvider>
               {dashboardPage === 0 && <Welcome />}
@@ -97,6 +98,7 @@ export const DashboardPage = () => {
               {dashboardPage === 14 && <MyTeamBlank />}
               {dashboardPage === 15 && <MyTeamDetails />}
               {dashboardPage === 16 && <MyTeamPlayers />}
+              {dashboardPage === 17 && <MyTeamPosition />}
               {dashboardPage === 18 && <CreateTeam />}
               {dashboardPage === 19 && <EditTeam />}
               {dashboardPage === 20 && <CreatePlayer />}

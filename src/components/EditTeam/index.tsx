@@ -20,9 +20,22 @@ export const EditTeam = () => {
     resolver: yupResolver(editTeamFormSchema),
   });
 
+  const handleUpdate = (data: iDataNewTeam) => {
+    if(data.logo === ""){
+      data = {
+        name: data.name,
+      }
+    } else if (data.name === ""){
+      data = {
+        logo: data.logo
+      }
+    }
+    updateTeam(data)
+  }
+
   return (
     <EditTeamStyled>
-      <form onSubmit={handleSubmit(updateTeam)} noValidate>
+      <form onSubmit={handleSubmit(handleUpdate)} noValidate>
         <div>
           <label htmlFor="name">Nome do time</label>
           <StyledFormInput {...register("name")} placeholder="Nome" id="name" />
