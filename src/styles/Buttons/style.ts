@@ -55,7 +55,7 @@ export const ButtonSend = styled.button`
   background-color: var(--primary);
   font-size: 15px;
   font-weight: 600;
-
+  min-width: 200px;
   transition: 0.5s;
 `;
 
@@ -71,14 +71,14 @@ export const ButtonLeft = styled.button`
 
   background-color: rgba(217, 217, 217, 10%);
   color: white;
-  
+
   font-size: 1.5rem;
   font-weight: 600;
 
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 // button de navegar para DIREITA
 export const ButtonRight = styled.button`
@@ -92,14 +92,14 @@ export const ButtonRight = styled.button`
 
   background-color: rgba(217, 217, 217, 10%);
   color: white;
-  
+
   font-size: 1.5rem;
   font-weight: 600;
 
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 // Button close modal
 export const ButtonCloseModal = styled.button`

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CreatePlayer } from "../../components/CreatePlayer";
 import { CreateTeam } from "../../components/CreateTeam";
 import { EditTeam } from "../../components/EditTeam";
@@ -14,9 +14,12 @@ import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import {
   ButtonLogout,
   DivButtonLogout,
+  DivHeaderDashboard,
+  DivLogo,
   DivLogoAndButtons,
   DivMenu,
   FigureLogo,
+  HeaderDashboard,
   Main,
   SectionDashboard,
 } from "./style";
@@ -39,9 +42,39 @@ export const DashboardPage = () => {
       return pages.includes(dashboardPage) ? "selected" : "";
     }
   }
-
+  const [open, setOpen] = useState(false);
   return (
     <>
+      <HeaderDashboard>
+        <DivHeaderDashboard>
+          <DivLogo>
+            <img src="/ball.png" alt="" />
+            <img src="/Draft Footz.png" alt="" />
+          </DivLogo>
+          <button
+            className={open === true ? "none" : ""}
+            onClick={() => setOpen(true)}
+          >
+            <img className="img-menu" src="/menu-line.png" alt="" />
+          </button>
+        </DivHeaderDashboard>
+        <div className={open === false ? "none" : "div-open"}>
+          <div className={open === false ? "none" : "div-x"}>
+            <button onClick={() => setOpen(false)}>X</button>
+          </div>
+          <button
+            onClick={() => {
+              setDashboardPage(2);
+              setReadingTournament(false);
+            }}
+          >
+            Meus torneios
+          </button>
+          <button onClick={() => setDashboardPage(14)}>Meu time</button>
+          <button onClick={() => setDashboardPage(3)}>Torneios</button>
+          <button>Logout</button>
+        </div>
+      </HeaderDashboard>
       <FigureBackgroundDashboard>
         <img src="/bg-dashboard.png" alt="" />
       </FigureBackgroundDashboard>
