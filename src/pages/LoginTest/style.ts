@@ -25,10 +25,22 @@ export const StyledRegister = styled.div`
   filter: brightness(0.3);
 `;
 
-export const ContainerDiv = styled.div`
+export const ContainerDivLogin = styled.div`
   display: flex;
   margin-bottom: 20px;
   position: absolute;
+  animation: translateShow 0.4s ease;
+  
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
 
   .container-div-rg {
     display: flex;

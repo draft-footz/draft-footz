@@ -65,6 +65,8 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     }
   }
 
+  const [loading, setLoading] = useState(false)
+
   return (
     <UserContext.Provider
       value={{
@@ -73,6 +75,8 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         updateUserTeam,
         user,
         token,
+        loading,
+        setLoading
       }}
     >
       {children}

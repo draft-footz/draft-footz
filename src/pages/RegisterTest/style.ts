@@ -1,18 +1,49 @@
+import ReactInputMask from "react-input-mask";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import InputMask from "react-input-mask";
 
 export const ParentRg = styled.div`
   display: flex;
   position: relative;
-  height: 940px;
+  height: 800px;
   justify-content: center;
-  align-items: center;
+  
 
   @media (min-width: 900px) {
     height: 100vh;
+    align-items: center;
+    
+  }
+`;
+
+export const InputMsk = styled(InputMask)`
+  width: 270px;
+  height: 48px;
+  background: rgba(21, 20, 20, 0.37);
+  outline: none;
+  border-radius: 6px;
+  padding-left: 10px;
+
+  margin-bottom: 10px;
+
+  @media (min-width: 375px) {
+    width: 300px;
   }
 
+  ::placeholder {
+    font-style: normal;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.06em;
+    color: #b5b5b5;
+  }
 
+  :focus {
+    border: 1px solid #ffffff;
+  }
 `;
 
 export const StyledRegister = styled.div`
@@ -26,6 +57,7 @@ export const StyledRegister = styled.div`
 `;
 
 export const ContainerDiv = styled.div`
+  animation: translateShow 0.4s ease;
   display: flex;
   margin-bottom: 20px;
   position: absolute;
@@ -35,13 +67,25 @@ export const ContainerDiv = styled.div`
     margin-top: 25px;
   }
 
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+
   .register-div {
     width: 300px;
     top: 60px;
-    height: 855px;
+    min-height: 745px;
     background: rgba(33, 33, 33, 0.68);
     border-radius: 10px;
     display: flex;
+    padding-bottom: 15px;
 
     @media (min-width: 375px) {
       width: 340px;
@@ -49,7 +93,7 @@ export const ContainerDiv = styled.div`
 
     @media (min-width: 900px) {
       width: 800px;
-      height: 623px;
+      min-height: 576px;
     }
   }
 
@@ -79,8 +123,8 @@ export const ContainerDiv = styled.div`
       }
 
       @media (min-width: 900px) {
-      margin-top: 30px;
-    }
+        margin-top: 30px;
+      }
     }
   }
 
@@ -156,8 +200,7 @@ export const ContainerDiv = styled.div`
       outline: none;
       border-radius: 6px;
       padding-left: 10px;
-      
-      
+
       margin-bottom: 10px;
 
       @media (min-width: 375px) {
@@ -204,7 +247,7 @@ export const ContainerDiv = styled.div`
     }
 
     img {
-      height: 26px;
+      height: 28px;
       width: 30px;
     }
 
@@ -263,5 +306,33 @@ export const BackToHome = styled(Link)`
   @media (min-width: 900px) {
     height: 34px;
     width: 100px;
+  }
+`;
+
+export const MessageError = styled.span`
+  color: #ff577f;
+  font-size: 11px;
+  display: block;
+  margin-top: -6px;
+  margin-bottom: 7px;
+
+  @media (min-width: 375px) {
+  }
+
+  @media (min-width: 1000px) {
+  }
+`;
+
+export const Loading = styled.img`
+  animation: loading 1.5s infinite;
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;

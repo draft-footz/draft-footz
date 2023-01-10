@@ -3,7 +3,7 @@ import { AppleButton } from "../../components/SocialLogin/Apple";
 import { GoogleButton } from "../../components/SocialLogin/Google";
 import {
   BackToHome,
-  ContainerDiv,
+  ContainerDivLogin,
   LinkToLog,
   ParentRg,
   StyledRegister,
@@ -16,7 +16,7 @@ const LoginTest = () => {
   return (
     <ParentRg>
       <StyledRegister />
-      <ContainerDiv>
+      <ContainerDivLogin>
         <div className="container-div-rg">
           <div className="register-div-rg">
             <div className="container-form-rg">
@@ -53,7 +53,7 @@ const LoginTest = () => {
             </div>
           </div>
         </div>
-      </ContainerDiv>
+      </ContainerDivLogin>
     </ParentRg>
   );
 };

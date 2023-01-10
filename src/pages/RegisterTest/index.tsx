@@ -1,17 +1,53 @@
-import React from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useContext } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { AppleButton } from "../../components/SocialLogin/Apple";
 import { GoogleButton } from "../../components/SocialLogin/Google";
+import { formSchema } from "../../utils/schema";
 import {
   BackToHome,
   ContainerDiv,
+  InputMsk,
   LinkToLogin,
+  Loading,
+  MessageError,
   ParentRg,
   StyledRegister,
 } from "./style";
+import { FormInputs } from "../../types/UsersContextTypes";
+import { UserContext } from "../../context/UsersContext";
+import { api } from "../../services/api";
+import { notify, verify } from "../../utils/toast";
+import { useNavigate } from "react-router-dom";
+
 
 const RegisterTest = () => {
 
-  
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormInputs>({ resolver: yupResolver(formSchema) });
+  const { loading, setLoading } = useContext(UserContext)
+  const navigate = useNavigate()
+
+   const onSubmitFunction: SubmitHandler<FormInputs> = async data => {
+    try {
+      
+      setLoading(true);
+      const response =
+      await api.post("register", data);
+      console.log(response)
+      verify();
+      navigate("/login");     
+    } 
+    
+    catch (err) {
+      notify();
+    } 
+    
+    finally {
+      reset({ email: "", password: "", passwordConfirmation: "" });
+      setLoading(false);
+    }
+  };
+
 
   return (
     <ParentRg>
@@ -29,25 +65,32 @@ const RegisterTest = () => {
         
               </div>
 
-              <form className="form-register">
+              <form onSubmit={handleSubmit(onSubmitFunction)} className="form-register">
                 <div className="rg-form">
                   <div className="one-rg">
-                    <input type="text" placeholder="Nome completo" />
-                    <input type="text" placeholder="Apelido" />
-                    <input type="password" placeholder="Senha" />
-                    <input type="password" placeholder="Confirme sua senha" />
+
+                    <input style={{border: `${errors.name ? '1px solid #ff577f' : '1px solid transparent'}`}} type="text" placeholder="Nome completo" {...register("name")} />
+                    {errors.name && <MessageError>{errors.name.message}</MessageError>}
+
+                    <input type="text" placeholder="Apelido" {...register("username")} />
+
+                    <input style={{border: `${errors.email ? '1px solid #ff577f' : '1px solid transparent'}`}}  type="text" placeholder="Endereço de e-mail" {...register("email")} />
+                    {errors.email && <MessageError>{errors.email.message}</MessageError>}
+                    
                   </div>
                   <div className="two-rg">
-                    <input type="text" placeholder="Endereço de e-mail" />
-                    <input type="text" placeholder="Confirme seu e-mail" />
-                    <input type="text" placeholder="Telefone para contato" />
-                    <input
-                      type="text"
-                      placeholder="Como nos encontrou? (Ex: Linkedin)"
-                    />
+
+                  <input style={{border: `${errors.password ? '1px solid #ff577f' : '1px solid transparent'}`}}  type="password" placeholder="Senha" {...register("password")} />
+                    {errors.password && <MessageError>{errors.password.message}</MessageError>}
+
+                    <input style={{border: `${errors.passwordConfirmation ? '1px solid #ff577f' : '1px solid transparent'}`}}  type="password" placeholder="Confirme sua senha" {...register("passwordConfirmation")} />
+                    {errors.passwordConfirmation && <MessageError>{errors.passwordConfirmation.message}</MessageError>}
+              
+                  <InputMsk type="text" mask="(99) 99999-9999" placeholder="Telefone para contato" {...register("contact")} />
+                    
                   </div>
                 </div>
-                <button className="btn-register">Cadastrar</button>
+                <button type='submit' className="btn-register">{loading ? <Loading src="/spinner.png" /> : "Cadastrar"}</button>
               </form>
               <div className="register-with">
                 <div className="bg-1"></div>
