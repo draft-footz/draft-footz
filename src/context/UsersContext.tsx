@@ -10,6 +10,8 @@ import {
   iUsersContext,
   iUsersProvider,
 } from "../types/UsersContextTypes";
+import { sucessLogin } from "../utils/toast";
+
 
 export const UserContext = createContext({} as iUsersContext);
 
@@ -17,6 +19,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({} as iUserData);
   const [token, setToken] = useState("");
+  const [ login, setLogin ] = useState<boolean>(true)
 
   useEffect(() => {
     let localToken = localStorage.getItem('@draft-footz/userToken');
@@ -43,19 +46,26 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   const userLogin = async (data: iDataLogin) => {
     console.log(data)
     try {
-      await api.post("/login", data)
-      .then((response) => {
-        localStorage.setItem("@draft-footz/userToken", response.data.accessToken);
-        localStorage.setItem("@draft-footz/user", JSON.stringify(response.data.user));
-        setUser(response.data.user);
-        setToken(response.data.accessToken);
-        toast.success('Usuário logado com sucesso!')
-        navigate("/dashboard");
-      });
+  
+      setLoading(true);
 
-    } catch (error) {
-      toast.error('Falha ao logar.')
-    }
+      const response = await api.post("login", data);
+
+        setLogin(true)
+        sucessLogin()
+        setToken(response.data.accessToken)
+        setUser(response.data.user)
+        window.localStorage.setItem("@draft-footz/userToken", JSON.stringify(response.data.accessToken));
+        window.localStorage.setItem("@draft-footz/user", JSON.stringify(response.data.user));
+        
+        navigate("/dashboard") 
+
+    } catch (err) { 
+       setLogin(false)
+    
+  } finally {
+    setLoading(false)
+  }
   };
 
   const getUser = async (token: string, user: iUserData) => {
@@ -102,7 +112,10 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         user,
         token,
         loading,
-        setLoading
+        setLoading,
+        login,
+        setLogin
+    
       }}
     >
       {children}

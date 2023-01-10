@@ -22,31 +22,32 @@ import { Loading } from "../Register/style";
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<iLoginFormData>({ resolver: yupResolver(formSchemaLogin) });
-    const { loading, setLoading } = useContext(UserContext)
-    const [ login, setLogin ] = useState<boolean>(true)
+
     const navigate = useNavigate();
+    
+    const { userLogin, login, loading, setLogin } = useContext(UserContext)
   
-    const onSubmitLogin: SubmitHandler<iLoginFormData> = async data => {
-      try {
+    // const onSubmitLogin: SubmitHandler<iLoginFormData> = async data => {
+    //   try {
   
-        setLoading(true);
+    //     setLoading(true);
   
-        const response = await api.post("login", data);
+    //     const response = await api.post("login", data);
   
-          setLogin(true)
-          sucessLogin()
-          window.localStorage.setItem("@draft-footz/userToken", JSON.stringify(response.data.accessToken));
-          window.localStorage.setItem("@draft-footz/user", JSON.stringify(response.data.user));
+    //       setLogin(true)
+    //       sucessLogin()
+    //       window.localStorage.setItem("@draft-footz/userToken", JSON.stringify(response.data.accessToken));
+    //       window.localStorage.setItem("@draft-footz/user", JSON.stringify(response.data.user));
           
-          navigate("/dashboard") 
+    //       navigate("/dashboard") 
   
-      } catch (err) { 
-         setLogin(false)
-         reset() 
-    } finally {
-      setLoading(false)
-    }
-    };
+    //   } catch (err) { 
+    //      setLogin(false)
+    //      reset() 
+    // } finally {
+    //   setLoading(false)
+    // }
+    // };
 
   return (
     <ParentRg>
@@ -63,7 +64,7 @@ const Login = () => {
                 <h2>Login</h2>
               </div>
 
-              <form onSubmit={handleSubmit(onSubmitLogin)} className="form-register-rg">
+              <form onSubmit={handleSubmit(userLogin)} className="form-register-rg">
                 <div className="rg-form-rg">
                   <div className="one-rg-rg">
                     <input type="text" placeholder="Endereço de e-mail" {...register("email")} onKeyUp={() => setLogin(true)} />
