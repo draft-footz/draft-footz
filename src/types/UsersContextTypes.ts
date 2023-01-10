@@ -8,6 +8,8 @@ export interface iUsersContext {
   updateUserTeam: (teamId: number) => void;
   user: iUserData;
   token: string;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
 }
 
 export interface iDataNewUser {
@@ -47,6 +49,21 @@ export interface iUserResponse {
   };
 }
 
+export interface FormInputs {
+  name: string;
+  email: string;
+  emailConfirmation: string;
+  password: string;
+  passwordConfirmation: string;
+  contact: string;
+  username: string;
+}
+
+export type GlobalContextType = {
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+};
+
 export interface iUpdateUserResponse {
   email: string;
   name: string;
@@ -54,3 +71,4 @@ export interface iUpdateUserResponse {
   teamId: number | null;
   id: number;
 }
+

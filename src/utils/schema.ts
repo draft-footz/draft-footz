@@ -1,34 +1,31 @@
 import * as yup from "yup";
 
-export const registerSchema = yup.object().shape({
+export const formSchema = yup.object().shape({
   name: yup
     .string()
-    .required("O nome é obrigatório")
-    .min(3, "Insira um nome válido"),
-  contact: yup
-    .string()
-    .required("Insira um número válido")
-    .min(11, "Insira um número válido"),
+    .required("Nome obrigatório")
+    .min(3, "O nome precisa ter pelo menos 3 caracteres.")
+    .max(200, "O nome pode ter no máximo 200 caracteres."),
+
   email: yup
     .string()
-    .required("O email é obrigatório")
-    .email("Insira um email válido"),
-  emailConfirmation: yup
-  .string()
-  .required("Esse campo é obrigatório")
-  .oneOf([yup.ref("email"), null], "Os emails deveme ser iguais."),
+    .required("Email obrigatório")
+    .email("É necessário fornecer um email válido."),
+
   password: yup
     .string()
-    .min(8, "A senha deve ter no mínimo 8 caracteres")
-    .matches(/(?=.*[A-Z])/, "A senha deve ter uma letra maiúscula")
-    .matches(/(?=.*[a-z])/, "A senha deve ter uma letra minúscula")
-    .matches(/(?=.*[0-9])/, "A senha deve ter pelo menos um número")
+    .required("Senha obrigatória")
+    .matches(/(?=.*?[A-Z])/, "É necessário pelo menos uma letra maiúscula.")
+    .matches(/(?=.*?[a-z])/, "É necessário pelo menos uma letra minúscula.")
+    .matches(/(?=.*?[0-9])/, "É necessário pelo menos um número.")
     .matches(
-      /([^A-Za-z0-9])/,
-      "A senha deve ter pelo menos um caractere especial"
-    ),
-  passwordConfirmation: yup
+      /(?=.*?[#?!@$%^&*-])/,
+      "É necessário pelo menos um caractere especial."
+    )
+    .min(8, "É necessário uma senha de pelo menos 8 caracteres."),
+
+    passwordConfirmation: yup
     .string()
-    .required("Esse campo é obrigatório")
-    .oneOf([yup.ref("password"), null], "As senhas devem ser iguais"),
+    .required("Confirme sua senha")
+    .oneOf([yup.ref("password"), null], "As senhas não coincidem")
 });
