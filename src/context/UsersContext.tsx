@@ -12,28 +12,27 @@ import {
 } from "../types/UsersContextTypes";
 import { sucessLogin } from "../utils/toast";
 
-
 export const UserContext = createContext({} as iUsersContext);
 
 export const UsersProvider = ({ children }: iUsersProvider) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({} as iUserData);
   const [token, setToken] = useState("");
-  const [ login, setLogin ] = useState<boolean>(true)
+  const [login, setLogin] = useState<boolean>(true);
 
   useEffect(() => {
-    let localToken = localStorage.getItem('@draft-footz/userToken');
-    let localUser = localStorage.getItem('@draft-footz/user');
+    let localToken = localStorage.getItem("@draft-footz/userToken");
+    let localUser = localStorage.getItem("@draft-footz/user");
 
-    if(localToken && localUser) {
+    if (localToken && localUser) {
       let newUser = JSON.parse(localUser);
       getUser(localToken, newUser);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function createNewUser(data: iDataNewUser) {
-    let newData = { ...data, myTeam: null };
+    let newData = { ...data, teamId: null };
 
     try {
       await api.post("tournaments", newData);
@@ -44,50 +43,53 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   }
 
   const userLogin = async (data: iDataLogin) => {
-    console.log(data)
     try {
-  
       setLoading(true);
 
       const response = await api.post("login", data);
 
-        setLogin(true)
-        sucessLogin()
-        setToken(response.data.accessToken)
-        setUser(response.data.user)
-        window.localStorage.setItem("@draft-footz/userToken", JSON.stringify(response.data.accessToken));
-        window.localStorage.setItem("@draft-footz/user", JSON.stringify(response.data.user));
-        
-        navigate("/dashboard") 
+      setLogin(true);
+      sucessLogin();
+      setToken(response.data.accessToken);
+      setUser(response.data.user);
+      window.localStorage.setItem(
+        "@draft-footz/userToken",
+        JSON.stringify(response.data.accessToken)
+      );
+      window.localStorage.setItem(
+        "@draft-footz/user",
+        JSON.stringify(response.data.user)
+      );
 
-    } catch (err) { 
-       setLogin(false)
-    
-  } finally {
-    setLoading(false)
-  }
+      navigate("/dashboard");
+    } catch (err) {
+      setLogin(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getUser = async (token: string, user: iUserData) => {
     try {
-      await api.get(`users/${user.id}`, {
-        headers: { authorization: `Bearer ${token}`},
-        data: {
-          userId: user.id
-        }
-      })
-      .then((response) => {
-        setUser(response.data);
-        setToken(token);
-        navigate("/dashboard");
-      })
+      await api
+        .get(`users/${user.id}`, {
+          headers: { authorization: `Bearer ${token}` },
+          data: {
+            userId: user.id,
+          },
+        })
+        .then((response) => {
+          setUser(response.data);
+          setToken(token);
+          navigate("/dashboard");
+        });
     } catch {
-      setToken('');
-      localStorage.removeItem('@draft-footz/userToken');
+      setToken("");
+      localStorage.removeItem("@draft-footz/userToken");
     }
-  }
+  };
 
-  async function updateUserTeam(teamId: number) {
+  async function updateUserTeam(teamId: number | null) {
     let data = {
       teamId: teamId,
     };
@@ -101,7 +103,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     }
   }
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   return (
     <UserContext.Provider
@@ -114,8 +116,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         loading,
         setLoading,
         login,
-        setLogin
-    
+        setLogin,
       }}
     >
       {children}

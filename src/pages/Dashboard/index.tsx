@@ -101,7 +101,6 @@ export const DashboardPage = () => {
               {dashboardPage === 18 && <CreateTeam />}
               {dashboardPage === 19 && <EditTeam />}
               {dashboardPage === 20 && <CreatePlayer />}
-              {dashboardPage === 20 && <CreatePlayer />}
             </MatchesProvider>
           </SubscriptionsProvider>
         </SectionDashboard>

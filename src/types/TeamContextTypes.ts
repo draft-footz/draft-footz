@@ -11,9 +11,8 @@ export interface iTeamContext {
   getAllTeams: () => Promise<void>;
   createNewPlayer: (data: iDataNewPlayer) => Promise<void>;
   updatePlayer: (data: iUpdatePlayer) => Promise<void>;
-  deletePlayer: () => Promise<void>;
+  deletePlayer: (playerId: number) => Promise<void>;
   getPlayersFromATeam: () => Promise<void>;
-  setPlayerId: React.Dispatch<React.SetStateAction<number | null>>;
   disableButton: boolean;
   teamId: number | null;
   teamData: iTeamData;
@@ -32,7 +31,7 @@ export interface iDataNewPlayer {
   teamId: number | null;
   name: string;
   position: null | string;
-  number: number;
+  number: string;
 }
 
 export interface iUpdatePlayer {
