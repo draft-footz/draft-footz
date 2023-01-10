@@ -10,6 +10,8 @@ export interface iUsersContext {
   token: string;
   loading: boolean;
   setLoading: (loading: boolean) => void;
+  login: boolean;
+  setLogin: (login: boolean) => void;
 }
 
 export interface iDataNewUser {
