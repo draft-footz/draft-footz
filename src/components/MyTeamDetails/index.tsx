@@ -27,10 +27,7 @@ export const MyTeamDetails = () => {
       }
     }
     getMyTeam();
-  }, [teamData]);
-
-  console.log(teamData);
-  
+  }, []);
 
   return (
     <MainStyled>

@@ -4,6 +4,7 @@ import { api } from "../services/api";
 import {
   iDataNewPlayer,
   iDataNewTeam,
+  iPlayerData,
   iTeamContext,
   iTeamData,
   iTeamProvider,
@@ -20,6 +21,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   const { setDashboardPage } = useContext(TournamentContext);
   const [disableButton, setDisableButton] = useState(false);
   const [teamData, setTeamData] = useState({} as iTeamData);
+  const [playersData, setPlayersData] = useState<iPlayerData[]>([]);
 
   const userId = user.id;
   const teamId = user.teamId;
@@ -136,8 +138,8 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
 
   async function getPlayersFromATeam() {
     try {
-      const requisition = await api.get(`players?&teamId=${playerId}`);
-      console.log(requisition);
+      const requisition = await api.get(`players?&teamId=${teamId}`);
+      setPlayersData(requisition.data);
     } catch (err) {
       console.log(err);
     }
@@ -159,6 +161,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         teamData,
         setTeamData,
         userId,
+        playersData,
       }}
     >
       {children}
