@@ -18,7 +18,12 @@ export const TeamHeaderStyled = styled.div`
 
     figure {
         width: 100%;
-        max-width: 32px;
+        max-width: 50px;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 100%;
     }
 
     h2 {
@@ -43,6 +48,7 @@ export const TeamDetails = styled.section`
     border-radius: 6px;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     h3, div {
         padding: 20px 41px;

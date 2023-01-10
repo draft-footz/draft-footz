@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { api } from "../../services/api";
 import { UserContext } from "../../context/UsersContext";
 import { TeamContext } from "../../context/TeamContext";
+import { ButtonRight } from "../../styles/Buttons/style";
+import emblem from "../../img/standard_emblem.jpg"
 
 export const MyTeamDetails = () => {
   const { setDashboardPage } = useContext(TournamentContext);
@@ -31,7 +33,7 @@ export const MyTeamDetails = () => {
     <MainStyled>
       <TeamHeaderStyled>
         <figure>
-          <img src={teamlogo} alt="Team name" />
+          <img src={emblem} alt="Team name" />
         </figure>
         <h2>{teamData.name}</h2>
         <button>
@@ -43,26 +45,31 @@ export const MyTeamDetails = () => {
         </button>
       </TeamHeaderStyled>
       <TeamDetails>
+        <ButtonRight
+        onClick={() => setDashboardPage(16)}
+        >
+        {">"}
+        </ButtonRight>
         <h3>
-          Capitão do time: <span>Name</span>
+          Capitão do time: <span>{user.name}</span>
         </h3>
         <div>
           <h4>
             Gols em campeonatos: <span>-</span>
           </h4>
           <h4>
-            Torneios em andamento: <span>X</span>
+            Torneios em andamento: <span>-</span>
           </h4>
           <h4>
             Quantidade de jogadores: <span>array.length</span>
           </h4>
           <h4>
-            Torneios finalizados: <span>X</span>
+            Torneios finalizados: <span>-</span>
           </h4>
         </div>
         <div>
           <h4>Títulos:</h4>
-          <span>Copa Brahma, Liga Hillston, Los Grandes, La Liga</span>
+          <span>-</span>
         </div>
       </TeamDetails>
     </MainStyled>

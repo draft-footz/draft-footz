@@ -41,6 +41,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   }
 
   const userLogin = async (data: iDataLogin) => {
+    console.log(data)
     try {
       await api.post("/login", data)
       .then((response) => {
