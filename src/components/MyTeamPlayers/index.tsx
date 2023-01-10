@@ -30,7 +30,7 @@ interface iPlayer {
 }
 
 export const MyTeamPlayers = () => {
-  const { deletePlayer, teamId } = useContext(TeamContext);
+  const { deletePlayer, teamId, getPlayersFromATeam } = useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
   const [players, setPlayers] = useState<iPlayer[]>([]);
 
@@ -46,8 +46,9 @@ export const MyTeamPlayers = () => {
     getPlayers();
   }, [players]);
 
-  const handleClick = (playerId: number) => {
-    deletePlayer(playerId);
+  const handleClick = async (playerId: number) => {
+    await deletePlayer(playerId);
+    getPlayersFromATeam();
   };
 
   return (
@@ -77,7 +78,10 @@ export const MyTeamPlayers = () => {
                   {player.position === "Lateral Esquerdo" && (
                     <img src={lat} alt={player.position} />
                   )}
-                  {player.position === "Meia" && (
+                  {player.position === "Meia Esquerda" && (
+                    <img src={meia} alt={player.position} />
+                  )}
+                  {player.position === "Meia Direita" && (
                     <img src={meia} alt={player.position} />
                   )}
                   {player.position === "Atacante" && (

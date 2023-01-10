@@ -33,7 +33,7 @@ export const MyTeamDetails = () => {
     <MainStyled>
       <TeamHeaderStyled>
         <figure>
-          <img src={emblem} alt="Team name" />
+          <img src={teamData.logo} alt="Team name" />
         </figure>
         <h2>{teamData.name}</h2>
         <button>

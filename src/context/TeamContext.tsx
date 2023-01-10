@@ -92,6 +92,16 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   async function createNewPlayer(data: iDataNewPlayer) {
     data.userId = userId;
     data.teamId = teamId;
+
+    await getPlayersFromATeam();
+    let checkPosition = playersData.filter((e) => {
+      return e.position === data.position;
+    });
+
+    if (checkPosition.length > 0) {
+      toast.error("Já existe um jogador nessa posição!");
+      return;
+    }
     setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -128,7 +138,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       await api.delete(`players/${playerId}`, {
         data: data,
       });
-      console.log("test");
       toast.success("Jogador excluído com sucesso!");
     } catch (err) {
       console.log(err);
