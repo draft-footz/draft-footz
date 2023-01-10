@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const baseUrl = {
-  //render: "https://draft-footz.onrender.com/",
-  render: "http://localhost:3001/",
+  render: "https://draft-footz.onrender.com/",
   radmin: {
     RenanPC: "http://26.38.126.227:3001",
   },

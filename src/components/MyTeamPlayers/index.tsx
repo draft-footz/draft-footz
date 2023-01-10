@@ -30,8 +30,7 @@ interface iPlayer {
 }
 
 export const MyTeamPlayers = () => {
-  const { setPlayerId, deletePlayer, getPlayersFromATeam, teamId } =
-    useContext(TeamContext);
+  const { deletePlayer, getPlayersFromATeam, teamId } = useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
   const [players, setPlayers] = useState<iPlayer[]>([]);
 
@@ -45,11 +44,10 @@ export const MyTeamPlayers = () => {
       }
     }
     getPlayers();
-  });
+  }, [players]);
 
   const handleClick = (playerId: number) => {
-    setPlayerId(playerId);
-    deletePlayer();
+    deletePlayer(playerId);
   };
 
   return (

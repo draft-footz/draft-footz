@@ -31,11 +31,8 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(user);
-
   async function createNewUser(data: iDataNewUser) {
     let newData = { ...data, teamId: null };
-    console.log(newData);
 
     try {
       await api.post("tournaments", newData);
@@ -46,7 +43,6 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   }
 
   const userLogin = async (data: iDataLogin) => {
-    console.log(data);
     try {
       setLoading(true);
 

@@ -16,7 +16,6 @@ export const MyTeamDetails = () => {
   const { teamData, setTeamData } = useContext(TeamContext);
 
   const teamId = user.teamId;
-  console.log(teamData);
 
   useEffect(() => {
     async function getMyTeam() {
@@ -28,7 +27,7 @@ export const MyTeamDetails = () => {
       }
     }
     getMyTeam();
-  }, []);
+  }, [teamData]);
 
   return (
     <MainStyled>

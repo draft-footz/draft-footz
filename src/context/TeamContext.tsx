@@ -34,7 +34,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       const requisition = await api.post("teams", data);
       if (requisition.status === 201) {
         toast.success("Time criado com sucesso!");
-        console.log(requisition);
         updateUserTeam(requisition.data.id);
         setTeamData(requisition.data);
         setDashboardPage(15);
@@ -56,7 +55,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         toast.success("Alterações no time feitas com sucesso!");
         setDashboardPage(15);
       }
-      console.log(requisition);
     } catch (err) {
       console.log(err);
       toast.error("Ops...algo deu errado!");
@@ -92,7 +90,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   async function createNewPlayer(data: iDataNewPlayer) {
     data.userId = userId;
     data.teamId = teamId;
-    console.log(data);
     setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -119,21 +116,17 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  async function deletePlayer() {
+  async function deletePlayer(playerId: number) {
     let data = {
       userId: userId,
     };
 
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      const requisition = await api.delete(`players/${playerId}`, {
+      await api.delete(`players/${playerId}`, {
         data: data,
       });
-      if (requisition.status === 200) {
-        toast.success("Jogador excluído com sucesso!");
-        //renderizar a lista de jogadores novamente
-      }
-      console.log(requisition);
+      toast.success("Jogador excluído com sucesso!");
     } catch (err) {
       console.log(err);
       toast.error("Ops...algo deu errado!");
@@ -160,7 +153,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         updatePlayer,
         deletePlayer,
         getPlayersFromATeam,
-        setPlayerId,
         disableButton,
         teamId,
         teamData,
