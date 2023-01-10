@@ -164,7 +164,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         teamId,
         teamData,
         setTeamData,
-        userId
+        userId,
       }}
     >
       {children}

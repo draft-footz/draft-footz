@@ -29,11 +29,14 @@ export const MyTeamDetails = () => {
     getMyTeam();
   }, []);
 
+  console.log(teamData);
+  
+
   return (
     <MainStyled>
       <TeamHeaderStyled>
         <figure>
-          <img src={emblem} alt="Team name" />
+          <img src={teamData.logo} alt="Team name" />
         </figure>
         <h2>{teamData.name}</h2>
         <button>
@@ -51,7 +54,7 @@ export const MyTeamDetails = () => {
         {">"}
         </ButtonRight>
         <h3>
-          Capitão do time: <span>{user.name}</span>
+          Dono do time: <span>{user.name}</span>
         </h3>
         <div>
           <h4>

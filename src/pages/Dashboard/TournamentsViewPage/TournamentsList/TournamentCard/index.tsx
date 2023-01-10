@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { api } from "../../../../../services/api";
 import { StyledTournamentCard } from "./style";
 
 interface iTournament {
@@ -18,31 +17,29 @@ interface iSubscription {
   accepted: boolean;
 }
 
+interface iTeam {
+  userId: number;
+  name: string;
+  logo: string;
+  id: number;
+}
+
 interface iProps {
   tournament: iTournament;
   subscriptions: iSubscription[];
+  team: iTeam;
 }
 
-export const TournamentCard = ({ tournament, subscriptions }: iProps) => {
+export const TournamentCard = ({ tournament, subscriptions, team }: iProps) => {
   const [isSubscribed, setSubscribed] = useState(false);
-
   const [countSubscriptions, setCountSubscriptions] = useState(0);
-
-  const myTeam = {
-    userId: 1,
-    name: "Kenzie FC",
-    logo: "https://imgs.search.brave.com/B9RMHDqmhcs6PqdPKbzkPdzqdx1eZzjjBwq4cuX01SU/rs:fit:474:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5O/QnNGVk1pdzR6Nk9x/Y3VJQm14UWJRSGFI/YSZwaWQ9QXBp",
-    id: 4,
-  };
 
   function filterData() {
     const subscriptionsToThisTournament = subscriptions.filter(
       (e: iSubscription) => e.tournamentId === tournament.id
     );
 
-    if (
-      subscriptionsToThisTournament.find((e: any) => e.teamId === myTeam.id)
-    ) {
+    if (subscriptionsToThisTournament.find((e: any) => e.teamId === team.id)) {
       setSubscribed(true);
     }
 
@@ -56,9 +53,14 @@ export const TournamentCard = ({ tournament, subscriptions }: iProps) => {
     setCountSubscriptions(teamsAccepted);
   }
 
-  useEffect(() => {
-    filterData();
-  });
+  useEffect(()=>{
+    if(team){
+      filterData()
+    }
+  }, [])
+
+  console.log(team);
+  
 
   return (
     <StyledTournamentCard>
@@ -70,9 +72,11 @@ export const TournamentCard = ({ tournament, subscriptions }: iProps) => {
         <span>
           {countSubscriptions}/{tournament.numberOfTeams} times
         </span>
-        <button type="button" disabled={isSubscribed}>
-          {isSubscribed ? "Cadastrado" : "Entrar"}
-        </button>
+        {team.id &&
+          <button type="button" disabled={isSubscribed}>
+            {isSubscribed ? "Cadastrado" : "Entrar"}
+          </button>
+        }
       </div>
     </StyledTournamentCard>
   );
