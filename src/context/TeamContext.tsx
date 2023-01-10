@@ -98,10 +98,20 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       return e.position === data.position;
     });
 
+    let checkNumber = playersData.filter((e) => {
+      return e.number === data.number;
+    });
+
     if (checkPosition.length > 0) {
       toast.error("Já existe um jogador nessa posição!");
       return;
     }
+
+    if (checkNumber.length > 0) {
+      toast.error("Já existe um jogador com esse número!");
+      return;
+    }
+
     setDisableButton(true);
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -149,6 +159,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     try {
       const requisition = await api.get(`players?&teamId=${teamId}`);
       setPlayersData(requisition.data);
+      console.log(playersData)
     } catch (err) {
       console.log(err);
     }
