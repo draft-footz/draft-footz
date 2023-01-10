@@ -1,48 +1,15 @@
-import ReactInputMask from "react-input-mask";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import InputMask from "react-input-mask";
 
 export const ParentRg = styled.div`
   display: flex;
   position: relative;
-  height: 800px;
+  height: 100vh;
   justify-content: center;
-  
+  align-items: center;
 
   @media (min-width: 900px) {
     height: 100vh;
-    align-items: center;
-    
-  }
-`;
-
-export const InputMsk = styled(InputMask)`
-  width: 270px;
-  height: 48px;
-  background: rgba(21, 20, 20, 0.37);
-  outline: none;
-  border-radius: 6px;
-  padding-left: 10px;
-
-  margin-bottom: 10px;
-
-  @media (min-width: 375px) {
-    width: 300px;
-  }
-
-  ::placeholder {
-    font-style: normal;
-    font-weight: 500;
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    line-height: 15px;
-    letter-spacing: 0.06em;
-    color: #b5b5b5;
-  }
-
-  :focus {
-    border: 1px solid #ffffff;
   }
 `;
 
@@ -56,16 +23,11 @@ export const StyledRegister = styled.div`
   filter: brightness(0.3);
 `;
 
-export const ContainerDiv = styled.div`
-  animation: translateShow 0.4s ease;
+export const ContainerDivLogin = styled.div`
   display: flex;
   margin-bottom: 20px;
   position: absolute;
-
-  .container-div {
-    display: flex;
-    margin-top: 25px;
-  }
+  animation: translateShow 0.4s ease;
 
   @keyframes translateShow {
     0% {
@@ -78,33 +40,37 @@ export const ContainerDiv = styled.div`
     }
   }
 
-  .register-div {
+  .container-div-rg {
+    display: flex;
+    margin-top: 25px;
+  }
+
+  .register-div-rg {
     width: 300px;
     top: 60px;
-    min-height: 745px;
+    height: 505px;
     background: rgba(33, 33, 33, 0.68);
     border-radius: 10px;
     display: flex;
-    padding-bottom: 15px;
 
     @media (min-width: 375px) {
       width: 340px;
     }
 
     @media (min-width: 900px) {
-      width: 800px;
-      min-height: 576px;
+      width: 430px;
+      height: 530px;
     }
   }
 
-  .container-form {
+  .container-form-rg {
     display: flex;
 
     flex-direction: column;
 
     margin: 0 auto;
 
-    .btn-register {
+    .btn-register-rg {
       width: 270px;
       margin: 0 auto;
       height: 45px;
@@ -128,21 +94,25 @@ export const ContainerDiv = styled.div`
     }
   }
 
-  .social {
+  .social-rg {
     display: flex;
     gap: 10px;
     margin: 0 auto;
     margin-top: 17px;
+
+    @media (min-width: 900px) {
+      margin-bottom: 5px;
+    }
   }
 
-  .register-with {
+  .register-with-rg {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
   }
 
-  .span-rg {
+  .span-rg-rg {
     font-size: 11px;
     display: block;
 
@@ -153,7 +123,7 @@ export const ContainerDiv = styled.div`
     }
   }
 
-  .bg-1 {
+  .bg-1-rg {
     background: radial-gradient(
       50% 50% at 50% 50%,
       #ffffff 0%,
@@ -167,23 +137,23 @@ export const ContainerDiv = styled.div`
     }
   }
 
-  .form-register {
+  .form-register-rg {
     display: flex;
     flex-direction: column;
 
-    .one-rg {
+    .one-rg-rg {
       display: flex;
       flex-direction: column;
       margin: 0 auto;
     }
 
-    .two-rg {
+    .two-rg-rg {
       display: flex;
       flex-direction: column;
       margin: 0 auto;
     }
 
-    .rg-form {
+    .rg-form-rg {
       display: flex;
       flex-direction: column;
 
@@ -207,6 +177,10 @@ export const ContainerDiv = styled.div`
         width: 300px;
       }
 
+      @media (min-width: 900px) {
+        width: 350px;
+      }
+
       ::placeholder {
         font-style: normal;
         font-weight: 500;
@@ -223,7 +197,7 @@ export const ContainerDiv = styled.div`
     }
   }
 
-  .account {
+  .account-rg {
     font-family: "Poppins";
     font-style: normal;
     font-weight: 500;
@@ -234,7 +208,7 @@ export const ContainerDiv = styled.div`
     display: block;
   }
 
-  .logo-div {
+  .logo-div-rg {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -247,7 +221,7 @@ export const ContainerDiv = styled.div`
     }
 
     img {
-      height: 28px;
+      height: 26px;
       width: 30px;
     }
 
@@ -256,18 +230,18 @@ export const ContainerDiv = styled.div`
     }
   }
 
-  .footer-rg {
+  .footer-rg-rg {
     margin-top: 20px;
     display: flex;
     gap: 10px;
     justify-content: center;
   }
 
-  .top-rg {
+  .top-rg-rg {
     display: flex;
     justify-content: space-between;
     margin-top: 18px;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     width: 100%;
 
     h2 {
@@ -281,7 +255,7 @@ export const ContainerDiv = styled.div`
   }
 `;
 
-export const LinkToLogin = styled(Link)`
+export const LinkToLog = styled(Link)`
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
@@ -309,30 +283,12 @@ export const BackToHome = styled(Link)`
   }
 `;
 
-export const MessageError = styled.span`
+export const MsgError = styled.span`
   color: #ff577f;
   font-size: 11px;
   display: block;
+  margin: 0 auto;
+  margin-left: 0px;
   margin-top: -6px;
-  margin-bottom: 7px;
-
-  @media (min-width: 375px) {
-  }
-
-  @media (min-width: 1000px) {
-  }
-`;
-
-export const Loading = styled.img`
-  animation: loading 1.5s infinite;
-
-  @keyframes loading {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+  margin-bottom: 10px;
 `;

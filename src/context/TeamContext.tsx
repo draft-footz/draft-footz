@@ -125,7 +125,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
 
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      const requisition = await api.delete(`teams/${playerId}`, {
+      const requisition = await api.delete(`players/${playerId}`, {
         data: data,
       });
       if (requisition.status === 200) {
@@ -164,6 +164,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         teamId,
         teamData,
         setTeamData,
+        userId
       }}
     >
       {children}
