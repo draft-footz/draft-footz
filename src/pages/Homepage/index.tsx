@@ -12,16 +12,14 @@ import {
 
 const Homepage = () => {
   return (
-    
-      <FigureBackground>
-        <Header />
-        <DivHomeCenter>
-          <h2>Crie seu campeonato agora</h2>
-          <LinkToRegister to="/register">Novo campeonato</LinkToRegister>
-        </DivHomeCenter>
-        <FooterHome />
-      </FigureBackground>
-    
+    <FigureBackground>
+      <Header />
+      <DivHomeCenter>
+        <h2>Crie seu campeonato agora</h2>
+        <LinkToRegister to="/register">Novo campeonato</LinkToRegister>
+      </DivHomeCenter>
+      <FooterHome />
+    </FigureBackground>
   );
 };
 
