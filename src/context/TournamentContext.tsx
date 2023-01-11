@@ -131,7 +131,6 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
 
           setTournamentData(tournament);
           setMyTournaments(response.data);
-          setDashboardPage(2);
         });
     } catch {
       toast.error("Falha no servidor ao ler torneios.");
