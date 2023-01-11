@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
 import {
+  iChampion,
   iDataCreateTournament,
   iDataTournament,
   iDataUpdateTournament,
@@ -19,7 +20,6 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
   const { user, token } = useContext(UserContext);
   const {
     createMultipleTournamentMatches,
-    createTournamentMatch,
     deleteAllMatchesFromTournament,
   } = useContext(MatchesContext);
   const { deleteAllTournamentSubscriptions } = useContext(SubscriptionsContext);
@@ -42,7 +42,6 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
 
   // Functions
   async function createNewTournament(data: iDataCreateTournament) {
-    data.champion = null;
     data.userId = user.id;
     data.userName = user.name;
     data.type = "qualifiers";
@@ -91,9 +90,9 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
     }
   }
 
-  async function setTournamentChampion(teamId: number, tournamentId: number) {
+  async function setTournamentChampion(champion: iChampion, tournamentId: number) {
     api.defaults.headers.common.authorization = `Bearer ${token}`;
-    let data = { champion: teamId };
+    let data = { champion: champion };
 
     try {
       await api.patch(`tournaments/${tournamentId}`, data).then(() => {

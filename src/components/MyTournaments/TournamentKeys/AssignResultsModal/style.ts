@@ -55,7 +55,11 @@ export const StyledAssignTeamsModal = styled.div`
 
    >div {
         >div {
+            display: flex;
+            width: 100%;
+            align-items: center;
             position: relative;
+            justify-content: space-between;
             >select {
                 appearance: none;
 
@@ -78,13 +82,12 @@ export const StyledAssignTeamsModal = styled.div`
                 }
             }           
             >svg {
-                position: absolute;
-                color: white;
-                width: 1.5rem;
-                height: 1.5rem;
-                top: calc(50% - 0.75rem);
-                right: 1.2rem;
-                pointer-events: none;
+                    position: absolute;
+                    color: white;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    top: calc(50% - 0.75rem);
+                    right: 5.25rem;
             }
 
             >input {
@@ -102,11 +105,12 @@ export const StyledAssignTeamsModal = styled.div`
 
     >div:nth-child(5) {
         display: flex;
+        flex-direction: column;
         align-items: center;
         gap: 0.5rem;
         >div{
             >select {
-                width: 13.25rem;
+                width: 13.75rem;
             }
             >svg {
                 right: 0.25rem;
@@ -114,6 +118,7 @@ export const StyledAssignTeamsModal = styled.div`
         }
             
     }
+
     >button {
         border-radius: 1rem;
         display: flex;

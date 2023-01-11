@@ -14,7 +14,7 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
 
     const { user, token } = useContext(UserContext);
     const { readingTournament } = useContext(TournamentContext);
-    const { updateSubscription } = useContext(SubscriptionsContext);
+    const { updateSubscription, getTournamentSubscriptions } = useContext(SubscriptionsContext);
     const [ updater, setUpdater ] = useState(true);
     
 
@@ -28,6 +28,7 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
     useEffect(() => {
         if(readingTournament) {
             readThisTournamentMatches(readingTournament.id);
+            getTournamentSubscriptions(readingTournament.id);
         };
     }, [readingTournament, updater]);
 
@@ -46,7 +47,6 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
 
 
         try {
-            console.log(`Criando partida ${order}`)
             api.post<iMatchData>('matches', data, {
                 headers: { authorization: `Bearer ${token}`}
             });
@@ -65,50 +65,32 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
     };
 
     async function deleteTournamentMatch(matchId: number) {
-        try {
-            api.delete(`matches/${matchId}`, {
-                headers : { authorization: `Bearer ${token}`},
-                data: { userId: user.id }
-            })
-        } catch {
-            console.log('deu ruim');
-        };
+        api.delete(`matches/${matchId}`, {
+            headers : { authorization: `Bearer ${token}`},
+            data: { userId: user.id }
+        })
     };
 
     async function deleteAllMatchesFromTournament(tournamentId: number) {
-        try {
-            await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
-            .then((response) => response.data.map(match => match.id))
-            .then((response) => response.forEach(id => {
-                deleteTournamentMatch(id);
-            }));
-        } catch {
-            console.log('Falha ao deletar partidas do torneio.');
-        };
+        await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
+        .then((response) => response.data.map(match => match.id))
+        .then((response) => response.forEach(id => deleteTournamentMatch(id)));
     };
 
     async function readThisTournamentMatches(tournamentId: number) {
-        try {
-            await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
-            .then((response) => setTournamentMatches(response.data));
-        } catch {
-            console.log('Falha ao ler partidas do torenio.');
-        };
+        await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
+        .then((response) => setTournamentMatches(response.data));
     };
 
     async function updateMatchTeams(matchId: number, data: iMatchTeams, subscriptions?: number[]) {
-        try {
-            api.patch(`matches/${matchId}`, data)
-            .then(() => {
-                toast.success('Você definiu os times da partida com sucesso!');
-                setUpdater(!updater);
-                if(subscriptions){
-                    subscriptions.forEach(sub => updateSubscription(sub, true))
-                };
-            });
-        } catch {
-            toast.error('Falha ao definir times da partida.');
-        };
+        await api.patch(`matches/${matchId}`, data)
+        .then(() => {
+            toast.success('Você definiu os times da partida com sucesso!');
+            setUpdater(!updater);
+            if(subscriptions){
+                subscriptions.forEach(sub => updateSubscription(sub, true))
+            };
+        });
     };
 
     async function updateMatchScores(matchId: number,data: iMatchScores, order: number) {

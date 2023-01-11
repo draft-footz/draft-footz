@@ -26,20 +26,23 @@ export const StyledTournamentKey = styled.div<iMatchProps>`
     border-radius: 1.75rem;
     background-color: #212121;
 
-    width: 14rem;
-    height: 5rem;
+    // Tamanho das chaves
+    width: 15rem;
+    height: 5.25rem;
 
     display: flex;
     flex-direction: column;
 
     ${props => props.winner && options[props.winner]};
 
+    // Time A 
     >div:nth-child(1) {
         border-bottom: 2px solid white;
         width: 100%;
         height: 50%;
         display: flex;
 
+        // Time A - NOME
         >div:nth-child(1) {
             height: 100%;
             width: 79%;
@@ -48,6 +51,8 @@ export const StyledTournamentKey = styled.div<iMatchProps>`
             align-items: center;
             justify-content: center;
         }
+
+        // Time A - GOLS
         >div:nth-child(2) {
             height: 100%;
             width: 21%;
@@ -57,12 +62,13 @@ export const StyledTournamentKey = styled.div<iMatchProps>`
         }
     }
 
+    // Time B
     >div:nth-child(2) {
         width: 100%;
         height: 50%;
         display: flex;
 
-
+        // Time B - NOME
         >div:nth-child(1) {
             height: 100%;
             width: 79%;
@@ -72,6 +78,8 @@ export const StyledTournamentKey = styled.div<iMatchProps>`
             justify-content: center;
 
         }
+        
+        // Time B - GOLS
         >div:nth-child(2) {
             height: 100%;
             width: 21%;

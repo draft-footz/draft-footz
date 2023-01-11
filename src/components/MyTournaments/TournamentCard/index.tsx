@@ -1,5 +1,4 @@
 import { StyledTournamentCard } from "./style"
-import { IoMdSettings } from "react-icons/io"
 import { iDataTournament } from "../../../types/TournamentContextTypes";
 import { ButtonRight } from "../../../styles/Buttons/style";
 import { useContext } from "react";
@@ -27,7 +26,6 @@ export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
             <div>
                 <div>
                     <span> Administrador do torneio: <h2> {tournament.userName} </h2></span>
-                    <IoMdSettings />
                 </div>
 
                 <div>
@@ -38,7 +36,6 @@ export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
                     setDashboardPage(6);
                 }}> {'>'} </ButtonRight>
             </div>
-
         </StyledTournamentCard>
     );
 };

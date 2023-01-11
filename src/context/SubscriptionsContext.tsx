@@ -59,25 +59,19 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
     };
 
     async function deleteSubscription(subscriptionId: number) {
-        try {
-            api.delete(`subscriptions/${subscriptionId}`, {
-                headers: { authorization:  `Bearer ${token}`},
-                data: { userId: user.id }
-            })
-        }  catch {
-            console.log("falha ao deletar subscription")
-        }
-    }
+        await api.delete(`subscriptions/${subscriptionId}`, {
+            headers: { authorization:  `Bearer ${token}`}
+        });
+    };
 
     async function deleteAllTournamentSubscriptions(tournamentId: number) {
         let tournamentSubscriptions = [] as iSubscriptionData[];
         try {   
-            api.get<iSubscriptionData[]>('subscriptions', {
-                params: { tournamentId: tournamentId }
-            })
+            api.get<iSubscriptionData[]>(`subscriptions?&tournamentId=${tournamentId}`)
             .then((response) => {
                 tournamentSubscriptions = response.data;
-            });
+                console.log(tournamentSubscriptions);
+            })
         } finally {
             if(tournamentSubscriptions) {
                 tournamentSubscriptions.forEach(subscription => deleteSubscription(subscription.id))

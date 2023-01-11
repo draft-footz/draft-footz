@@ -2,6 +2,7 @@ import { ReactNode, useContext, useEffect, useState } from "react";
 import { MatchesContext } from "../../../context/MatchesContext";
 import { iMatchData } from "../../../types/MatchesContextTypes";
 import { ModalWrapper } from "../../ModalWrapper";
+import { AssignResultsModal } from "./AssignResultsModal";
 import { AssignTeamsModal } from "./AssignTeamsModal";
 import { StyledTournamentKeys } from "./style";
 import { TournamentKey } from "./TournamentKey";
@@ -17,20 +18,26 @@ export const TournamentKeys = () => {
     });
 
     const semiFinals = tournamentMatches.filter(match => match.order>4 && match.order<7);
-    const grandFinal = tournamentMatches.find(match => match.order === 7);
+    const grandFinal = tournamentMatches.find(match => match.order === 7 );
 
     const [isModalOpen, changeModalState] = useState(false);
     const [currentModal, setCurrentModal] = useState(null as ReactNode);
 
     function handleClick (match: iMatchData) {
-        setCurrentModal(<AssignTeamsModal match={match}changeModalState={changeModalState}/>);
-        changeModalState(true);
+        if(match.order <= 4 && (!match.teamA || !match.teamB)) {
+            setCurrentModal(<AssignTeamsModal match={match} changeModalState={changeModalState} />);
+            changeModalState(true);
+        };
+        if(match.teamA && match.teamB && !match.scores) {
+            setCurrentModal(<AssignResultsModal match={match} changeModalState={changeModalState} />);
+            changeModalState(true);
+        };
     };
 
     return (
         <StyledTournamentKeys>
+            <h1> Chaves do Torneio </h1>
             <div>
-                
                 <div>
                     {
                         quarterFinals.map(match => <TournamentKey key={match.id} match={match}  onClickFunc={handleClick}/>)
@@ -46,6 +53,16 @@ export const TournamentKeys = () => {
                         grandFinal && <TournamentKey key={grandFinal.id} match={grandFinal} onClickFunc={handleClick}/>
                     }
                 </div>
+                    {
+                        grandFinal?.winner &&
+                        <div>
+                            <h2> Vencedor: </h2>
+                            <span> 
+                                <img src="./trofeu.svg" alt="troféu"/> 
+                                <h2> {grandFinal.winner.name} </h2>
+                            </span>
+                        </div>
+                    }
             </div>
             {
                 isModalOpen &&

@@ -1,5 +1,6 @@
 import { useState, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { api } from "../services/api";
 import {
   iDataLogin,
@@ -25,9 +26,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
 
     if (localToken && localUser) {
       let newUser = JSON.parse(localUser);
-      console.log(localToken, localUser)
       getUser(localToken, newUser);
-    
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -49,25 +48,21 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
 
       const response = await api.post("login", data);
 
-      setLogin(true);
-      sucessLogin();
-      setToken(response.data.accessToken);
-      setUser(response.data.user);
-      window.localStorage.setItem(
-        "@draft-footz/userToken",
-        response.data.accessToken
-      );
-      window.localStorage.setItem(
-        "@draft-footz/user",
-        JSON.stringify(response.data.user)
-      );
+        setLogin(true)
+        sucessLogin()
+        setToken(response.data.accessToken)
+        setUser(response.data.user)
+        window.localStorage.setItem("@draft-footz/userToken", JSON.stringify(response.data.accessToken));
+        window.localStorage.setItem("@draft-footz/user", JSON.stringify(response.data.user));
+        
+        navigate("/dashboard") 
 
-      navigate("/dashboard");
-    } catch (err) {
-      setLogin(false);
-    } finally {
-      setLoading(false);
-    }
+    } catch (err) { 
+       setLogin(false)
+    
+  } finally {
+    setLoading(false)
+  }
   };
 
   const getUser = async (token: string, user: iUserData) => {
