@@ -22,27 +22,26 @@ export const MyTeamPosition = () => {
     getPlayersFromATeam();
   }, []);
 
-  function sortPlayers(){
-    let data = [...playersData]
+  function sortPlayers() {
+    let data = [...playersData];
   }
 
   const sort = playersData.sort((a, b) => {
-    if(+a.number < +b.number){
+    if (+a.number < +b.number) {
       return -1;
-    } 
-    if(+a.number > +b.number){
-      return 1
+    }
+    if (+a.number > +b.number) {
+      return 1;
     }
 
-    return 0
-
-  })
+    return 0;
+  });
 
   // const sort = playersData.sort((e) => {
   //   return +e.number
   // })
 
-  console.log(sort)
+  console.log(sort);
 
   return (
     <>

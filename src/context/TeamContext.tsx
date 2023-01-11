@@ -132,7 +132,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.patch(`players/${playerId}`, data);
-      console.log(requisition);
     } catch (err) {
       console.log(err);
     }
@@ -159,7 +158,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     try {
       const requisition = await api.get(`players?&teamId=${teamId}`);
       setPlayersData(requisition.data);
-      console.log(playersData)
     } catch (err) {
       console.log(err);
     }
