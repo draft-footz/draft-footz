@@ -45,7 +45,10 @@ export const PlayerListStyled = styled.section`
   background: rgba(7, 6, 6, 0.37);
   border-radius: 6px;
   padding: 14px 34px;
-  width: 100%;
+  width: 80%;
+  @media (max-width: 800px) {
+    width: 110%;
+  }
   max-width: 710px;
   display: flex;
   flex-direction: column;
@@ -61,7 +64,7 @@ export const PlayerListStyled = styled.section`
 
   ul {
     height: 100%;
-    max-height: 300px;
+    max-height: 210px;
     overflow-y: auto;
     width: 100%;
     display: flex;
