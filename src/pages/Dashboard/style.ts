@@ -69,6 +69,7 @@ export const DivLogoAndButtons = styled.div`
 export const FigureLogo = styled.figure`
   margin-top: 80px;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 export const DivButtonLogout = styled.div`
