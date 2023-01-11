@@ -5,6 +5,9 @@ export const FigureBackgroundDashboard = styled.figure`
   height: 100vh;
   position: fixed;
   z-index: 0;
+  background-repeat: no-repeat;
+  background-image: url("bg-dashboard.png");
+  background-size: cover;
 
   img {
     width: 100%;

@@ -1,6 +1,5 @@
 import { useState, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { api } from "../services/api";
 import {
   iDataLogin,
@@ -26,7 +25,9 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
 
     if (localToken && localUser) {
       let newUser = JSON.parse(localUser);
+      console.log(localToken, localUser)
       getUser(localToken, newUser);
+    
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -38,7 +39,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
       await api.post("tournaments", newData);
       navigate("/login");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 
@@ -54,7 +55,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
       setUser(response.data.user);
       window.localStorage.setItem(
         "@draft-footz/userToken",
-        JSON.stringify(response.data.accessToken)
+        response.data.accessToken
       );
       window.localStorage.setItem(
         "@draft-footz/user",
@@ -99,8 +100,13 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         .patch<iUpdateUserResponse>(`users/${user.id}`, data)
         .then((response) => setUser(response.data));
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
+  }
+
+  const logoutDashboard: () => void = () => {
+    localStorage.clear()
+    navigate("/");
   }
 
   const [loading, setLoading] = useState(false);
@@ -117,6 +123,8 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         setLoading,
         login,
         setLogin,
+        logoutDashboard
+
       }}
     >
       {children}

@@ -7,6 +7,18 @@ export const MainStyled = styled.main`
   align-items: center;
   justify-content: center;
   gap: 60px;
+  animation: translateShow 0.4s ease;
+
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
 `;
 
 export const TeamHeaderStyled = styled.div`
@@ -23,7 +35,6 @@ export const TeamHeaderStyled = styled.div`
 
   img {
     width: 100%;
-    border-radius: 100%;
   }
 
   h2 {
@@ -44,8 +55,11 @@ export const TeamHeaderStyled = styled.div`
 `;
 
 export const TeamDetails = styled.section`
-  width: 100%;
+  width: 80%;
   max-width: 700px;
+  @media (max-width: 800px) {
+    width: 110%;
+  }
   background: rgba(7, 6, 6, 0.37);
   border-radius: 6px;
   display: flex;

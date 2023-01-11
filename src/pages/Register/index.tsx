@@ -32,7 +32,6 @@ const Register = () => {
       setLoading(true);
       const response =
       await api.post("register", data);
-      console.log(response)
       verify();
       navigate("/login");     
     } 

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { api } from "../../../../../services/api";
 import { StyledTournamentCard } from "./style";
 
 interface iTournament {
@@ -12,7 +14,7 @@ interface iTournament {
 
 interface iSubscription {
   id: number;
-  tournamentId: number;
+  tournament: number;
   teamId: number;
   accepted: boolean;
 }
@@ -28,18 +30,28 @@ interface iProps {
   tournament: iTournament;
   subscriptions: iSubscription[];
   team: iTeam;
+  updateAll: () => void;
 }
 
-export const TournamentCard = ({ tournament, subscriptions, team }: iProps) => {
+export const TournamentCard = ({
+  tournament,
+  subscriptions,
+  team,
+  updateAll,
+}: iProps) => {
+  let token = localStorage.getItem("@draft-footz/userToken");
+
+  api.defaults.headers.common.authorization = `Bearer ${token}`;
+
   const [isSubscribed, setSubscribed] = useState(false);
   const [countSubscriptions, setCountSubscriptions] = useState(0);
 
   function filterData() {
     const subscriptionsToThisTournament = subscriptions.filter(
-      (e: iSubscription) => e.tournamentId === tournament.id
+      (e: iSubscription) => e.tournament === tournament.id
     );
 
-    if (subscriptionsToThisTournament.find((e: any) => e.teamId === team.id)) {
+    if (subscriptionsToThisTournament.find((e: any) => e.team.id === team.id)) {
       setSubscribed(true);
     }
 
@@ -53,14 +65,39 @@ export const TournamentCard = ({ tournament, subscriptions, team }: iProps) => {
     setCountSubscriptions(teamsAccepted);
   }
 
-  useEffect(()=>{
-    if(team){
-      filterData()
-    }
-  }, [])
+  async function sendInscription() {
+    const data = {
+      tournament: tournament.id,
+      team: {
+        id: team.id,
+        name: team.name
+      },
+      accepted: false,
+    };
 
-  console.log(team);
-  
+    const subscriptionsToThisTournament = subscriptions.filter(
+      (e: iSubscription) => e.tournament === tournament.id
+    );
+
+    if (subscriptionsToThisTournament.find((e: any) => e.team.id === team.id)) {
+      setSubscribed(true);
+      toast.error("Você já está inscrito");
+      return;
+    }
+
+    try {
+      await api.post("/subscriptions", data);
+      toast.success("Pedido de inscrição enviado");
+    } catch (error) {
+      toast.error("Não foi possível fazer a inscrição");
+    } finally {
+      updateAll();
+    }
+  }
+
+  useEffect(() => {
+    filterData();
+  });
 
   return (
     <StyledTournamentCard>
@@ -72,11 +109,15 @@ export const TournamentCard = ({ tournament, subscriptions, team }: iProps) => {
         <span>
           {countSubscriptions}/{tournament.numberOfTeams} times
         </span>
-        {team.id &&
-          <button type="button" disabled={isSubscribed}>
+        {team.id && (
+          <button
+            type="button"
+            disabled={isSubscribed}
+            onClick={() => sendInscription()}
+          >
             {isSubscribed ? "Cadastrado" : "Entrar"}
           </button>
-        }
+        )}
       </div>
     </StyledTournamentCard>
   );

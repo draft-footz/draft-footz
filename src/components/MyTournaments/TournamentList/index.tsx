@@ -42,7 +42,7 @@ export const TournamentList = () => {
                 :
                 (
                     <> 
-                        {(() => {setDashboardPage(5)})()}
+                        <NoTournament  />
                     </>
                 )
             }

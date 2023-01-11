@@ -22,18 +22,24 @@ import {
     HeaderDashboard,
     Main,
     SectionDashboard,
+
 } from "./style";
 import { TournamentKeys } from "../../components/MyTournaments/TournamentKeys";
 import { SubscriptionsProvider } from "../../context/SubscriptionsContext";
 import { NoTournament } from "../../components/NoTournament";
 import { TeamTournament } from "../../components/TeamTournament";
 import { MyTeamPosition } from "../../components/MyTeamPosition";
-import { MatchesContext, MatchesProvider } from "../../context/MatchesContext";
+import { MatchesProvider } from "../../context/MatchesContext";
 import { TournamentsViewPage } from "./TournamentsViewPage";
+import { UserContext } from "../../context/UsersContext";
 
 export const DashboardPage = () => {
+
     const { setReadingTournament, dashboardPage, setDashboardPage } =
         useContext(TournamentContext);
+
+
+  const { logoutDashboard } = useContext(UserContext);
 
     function isSelected(pages: number[] | number) {
         if (typeof pages === "number") {
@@ -42,6 +48,7 @@ export const DashboardPage = () => {
             return pages.includes(dashboardPage) ? "selected" : "";
         }
     }
+    
     const [open, setOpen] = useState(false);
     return (
         <>

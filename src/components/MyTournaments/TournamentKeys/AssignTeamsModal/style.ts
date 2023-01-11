@@ -10,15 +10,30 @@ export const StyledAssignTeamsModal = styled.div`
     position: relative;
 
     // Aviso de nenhum time inscrito
-    >span:nth-child(1) {
+    >span:nth-child(2) {
         box-sizing: border-box;
-        width: 80%;
-        text-align: center;
+        width: 100%;
         align-self: center;
         padding: 1rem;
 
         border-radius: 1.25rem;
+
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        >svg {
+            width: 2rem;
+            height: 2rem;
+            color: white;
+            transition: 500ms ease-in-out;
+            opacity: 0.5;
+            :hover {
+                transform: rotate(360deg);
+                opacity: 1;
+            }
     }
+}
 
     >h3 {
         display: flex;

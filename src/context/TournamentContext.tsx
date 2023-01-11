@@ -10,6 +10,7 @@ import {
   tReadingTournament,
 } from "../types/TournamentContextTypes";
 import { MatchesContext } from "./MatchesContext";
+import { SubscriptionsContext } from "./SubscriptionsContext";
 import { UserContext } from "./UsersContext";
 
 export const TournamentContext = createContext({} as iTournamentContext);
@@ -21,6 +22,7 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
     createTournamentMatch,
     deleteAllMatchesFromTournament,
   } = useContext(MatchesContext);
+  const { deleteAllTournamentSubscriptions } = useContext(SubscriptionsContext);
 
   const [myTournaments, setMyTournaments] = useState([] as iDataTournament[]);
   const [allTournaments, setAllTournaments] = useState([] as iDataTournament[]);
@@ -113,6 +115,7 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
           toast.success("Torneio deletado com sucesso!");
           getMyTournaments();
           deleteAllMatchesFromTournament(tournamentId);
+          deleteAllTournamentSubscriptions(tournamentId);
         });
     } catch {
       toast.error("Falha ao deletar torneio.");
@@ -131,7 +134,6 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
 
           setTournamentData(tournament);
           setMyTournaments(response.data);
-          setDashboardPage(2);
         });
     } catch {
       toast.error("Falha no servidor ao ler torneios.");

@@ -3,14 +3,9 @@ import {
   ButtonRight,
   ButtonSend,
 } from "../../styles/Buttons/style";
-import { StyledFormInput } from "../../styles/Inputs/style";
-import {
-  MyTeamPlayersStyled,
-  PlayerListStyled,
-  SearchPlayerStyled,
-} from "./style";
+import { MyTeamPlayersStyled, PlayerListStyled } from "./style";
 import trashIcon from "../../img/trash.svg";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { TeamContext } from "../../context/TeamContext";
 import { TournamentContext } from "../../context/TournamentContext";
 import gk from "../../img/team_positions/goleiro.svg";
@@ -20,27 +15,21 @@ import meia from "../../img/team_positions/meia.svg";
 import ata from "../../img/team_positions/atacante.svg";
 
 export const MyTeamPlayers = () => {
-  const { deletePlayer, teamId, getPlayersFromATeam, playersData } = useContext(TeamContext);
+  const { deletePlayer, getPlayersFromATeam, playersData } =
+    useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
 
   useEffect(() => {
-
-    getPlayersFromATeam()
-
-  },[])
-
+    getPlayersFromATeam();
+  }, []);
 
   const handleClick = async (playerId: number) => {
     await deletePlayer(playerId);
-    getPlayersFromATeam();
+    await getPlayersFromATeam();
   };
 
   return (
     <MyTeamPlayersStyled>
-      <SearchPlayerStyled>
-        <StyledFormInput placeholder="Nome do jogador"></StyledFormInput>
-        <ButtonSend>Buscar jogador</ButtonSend>
-      </SearchPlayerStyled>
       <PlayerListStyled>
         <ButtonLeft onClick={() => setDashboardPage(15)}>{"<"}</ButtonLeft>
         <ButtonRight onClick={() => setDashboardPage(17)}>{">"}</ButtonRight>

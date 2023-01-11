@@ -5,7 +5,6 @@ import { ButtonLeft } from "../../styles/Buttons/style";
 import {
   DivPlayers,
   DivPosition,
-  ImgPlayer,
   ImgPosition,
   LiPosition,
   MainTeamPosition,
@@ -22,27 +21,16 @@ export const MyTeamPosition = () => {
     getPlayersFromATeam();
   }, []);
 
-  function sortPlayers(){
-    let data = [...playersData]
-  }
-
   const sort = playersData.sort((a, b) => {
-    if(+a.number < +b.number){
+    if (+a.number < +b.number) {
       return -1;
-    } 
-    if(+a.number > +b.number){
-      return 1
+    }
+    if (+a.number > +b.number) {
+      return 1;
     }
 
-    return 0
-
-  })
-
-  // const sort = playersData.sort((e) => {
-  //   return +e.number
-  // })
-
-  console.log(sort)
+    return 0;
+  });
 
   return (
     <>
@@ -58,46 +46,102 @@ export const MyTeamPosition = () => {
             <ImgPosition src="/camp-team.png" alt="" />
             <ul>
               <li>
-                <div>
-                  <p>9</p>
-                </div>
-                <span>Player 1</span>
+                {playersData.map((e) => {
+                  if (e.position === "Atacante") {
+                    return (
+                      <>
+                        <div>
+                          <p>{e.number}</p>
+                        </div>
+                        <span>{e.name}</span>
+                      </>
+                    );
+                  }
+                })}
               </li>
               <li>
-                <div>
-                  <p>1</p>
-                </div>
-                <span>Player 2</span>
+                {playersData.map((e) => {
+                  if (e.position === "Goleiro") {
+                    return (
+                      <>
+                        <div>
+                          <p>{e.number}</p>
+                        </div>
+                        <span>{e.name}</span>
+                      </>
+                    );
+                  }
+                })}
               </li>
               <li>
-                <div>
-                  <p>7</p>
-                </div>
-                <span>Player 3</span>
+                {playersData.map((e) => {
+                  if (e.position === "Meia Direita") {
+                    return (
+                      <>
+                        <div>
+                          <p>{e.number}</p>
+                        </div>
+                        <span>{e.name}</span>
+                      </>
+                    );
+                  }
+                })}
               </li>
               <li>
-                <div>
-                  <p>8</p>
-                </div>
-                <span>Player 4</span>
+                {playersData.map((e) => {
+                  if (e.position === "Lateral Direito") {
+                    return (
+                      <>
+                        <div>
+                          <p>{e.number}</p>
+                        </div>
+                        <span>{e.name}</span>
+                      </>
+                    );
+                  }
+                })}
               </li>
               <li>
-                <div>
-                  <p>2</p>
-                </div>
-                <span>Player 5</span>
+                {playersData.map((e) => {
+                  if (e.position === "Zagueiro") {
+                    return (
+                      <>
+                        <div>
+                          <p>{e.number}</p>
+                        </div>
+                        <span>{e.name}</span>
+                      </>
+                    );
+                  }
+                })}
               </li>
               <li>
-                <div>
-                  <p>4</p>
-                </div>
-                <span>Player 6</span>
+                {playersData.map((e) => {
+                  if (e.position === "Lateral Esquerdo") {
+                    return (
+                      <>
+                        <div>
+                          <p>{e.number}</p>
+                        </div>
+                        <span>{e.name}</span>
+                      </>
+                    );
+                  }
+                })}
               </li>
               <li>
-                <div>
-                  <p>10</p>
-                </div>
-                <span>Player 7</span>
+                {playersData.map((e) => {
+                  if (e.position === "Meia Esquerda") {
+                    return (
+                      <>
+                        <div>
+                          <p>{e.number}</p>
+                        </div>
+                        <span>{e.name}</span>
+                      </>
+                    );
+                  }
+                })}
               </li>
             </ul>
           </DivPlayers>
@@ -107,63 +151,56 @@ export const MyTeamPosition = () => {
           <UlPosition>
             {playersData[0] ? (
               <LiPosition>
-                <h3>{playersData[0].number} - </h3>
+                <h3>{playersData[0].number}</h3>
                 <h3>{playersData[0].name}</h3>
-                <ImgPlayer src="/favicon.svg" alt="" />
               </LiPosition>
             ) : (
               <LiPosition></LiPosition>
             )}
             {playersData[1] ? (
               <LiPosition>
-                <h3>{playersData[1].number} - </h3>
+                <h3>{playersData[1].number}</h3>
                 <h3>{playersData[1].name}</h3>
-                <ImgPlayer src="/favicon.svg" alt="" />
               </LiPosition>
             ) : (
               <LiPosition></LiPosition>
             )}
             {playersData[2] ? (
               <LiPosition>
-                <h3>{playersData[2].number} - </h3>
+                <h3>{playersData[2].number}</h3>
                 <h3>{playersData[2].name}</h3>
-                <ImgPlayer src="/favicon.svg" alt="" />
               </LiPosition>
             ) : (
               <LiPosition></LiPosition>
             )}
             {playersData[3] ? (
               <LiPosition>
-                <h3>{playersData[3].number} - </h3>
+                <h3>{playersData[3].number}</h3>
                 <h3>{playersData[3].name}</h3>
-                <ImgPlayer src="/favicon.svg" alt="" />
               </LiPosition>
             ) : (
               <LiPosition></LiPosition>
             )}
             {playersData[4] ? (
               <LiPosition>
-                <h3>{playersData[4].number} - </h3>
+                <h3>{playersData[4].number}</h3>
                 <h3>{playersData[4].name}</h3>
-                <ImgPlayer src="/favicon.svg" alt="" />
               </LiPosition>
             ) : (
               <LiPosition></LiPosition>
             )}
             {playersData[5] ? (
               <LiPosition>
-                <h3>{playersData[5].number} - </h3>
+                <h3>{playersData[5].number}</h3>
                 <h3>{playersData[5].name}</h3>
-                <ImgPlayer src="/favicon.svg" alt="" />
               </LiPosition>
             ) : (
               <LiPosition></LiPosition>
             )}
             {playersData[6] ? (
               <LiPosition>
-                <h3>{playersData[6].number} - </h3>
+                <h3>{playersData[6].number}</h3>
                 <h3>{playersData[6].name}</h3>
-                <ImgPlayer src="/favicon.svg" alt="" />
               </LiPosition>
             ) : (
               <LiPosition></LiPosition>

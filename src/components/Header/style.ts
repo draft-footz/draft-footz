@@ -2,12 +2,39 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const HeaderNav = styled.header`
-  height: 90px; 
+  height: 90px;
   background: rgba(6, 0, 0, 0.55);
   border: 0px solid #00b148;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .none {
+    display: none;
+  }
+
+  .div-menu {
+    background: rgba(6, 0, 0, 0.55);
+    position: fixed;
+    top: 90px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    button {
+      margin-top: 10px;
+      font-size: 20px;
+    }
+    > div {
+      display: flex;
+      justify-content: end;
+      padding-right: 10px;
+      button {
+        margin-top: 0;
+        font-size: 24px;
+      }
+    }
+  }
 
   .div-header {
     display: flex;
@@ -56,7 +83,7 @@ export const HeaderNav = styled.header`
     color: #ffffff;
     background-color: transparent;
   }
- 
+
   button:hover {
     text-decoration: underline;
     transition: 0.8s ease;
@@ -70,36 +97,36 @@ export const HeaderNav = styled.header`
   }
 
   @media (min-width: 600px) {
-      .div-header {
-        margin-left: 10px;
-      }
-
-      .div-dropdown {
-        display: none;
-      }
-
-      .buttons-header {
-        display: flex;
-      }
+    .div-header {
+      margin-left: 10px;
     }
 
-    @media (min-width: 900px) {
-      .div-header {
-        margin-left: 30px;
-      }
-
-      .title {
-        font-size: 22px;
-      }
-
-      .logo {
-        margin-left: 8px;
-      }
-
-      .buttons-header {
-        margin-right: 50px;
-      }
+    .div-dropdown {
+      display: none;
     }
+
+    .buttons-header {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .div-header {
+      margin-left: 30px;
+    }
+
+    .title {
+      font-size: 22px;
+    }
+
+    .logo {
+      margin-left: 8px;
+    }
+
+    .buttons-header {
+      margin-right: 50px;
+    }
+  }
 `;
 
 export const LoginNavigate = styled(Link)`
