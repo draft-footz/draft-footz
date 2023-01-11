@@ -12,7 +12,8 @@ export interface iUsersContext {
   setLoading: (loading: boolean) => void;
   login: boolean;
   setLogin: (login: boolean) => void;
-  logout: () => void;
+  logoutDashboard: () => void;
+
 }
 
 export interface iDataNewUser {
