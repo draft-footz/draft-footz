@@ -7,6 +7,18 @@ export const MainTeamsTournament = styled.main`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+   animation: translateShow 0.4s ease;
+
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
 
   p {
     font-size: 14px;

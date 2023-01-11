@@ -7,6 +7,18 @@ export const MyTeamPlayersStyled = styled.main`
     justify-content: center;
     align-items: center;
     gap: 28px;
+     animation: translateShow 0.4s ease;
+
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
 
     button:last-child{
         max-width: 190px;

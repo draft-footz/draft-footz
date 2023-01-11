@@ -6,6 +6,18 @@ export const StyledTournamentKeys = styled.div`
     justify-content: center;
     width: 100%;
     height: 100%;
+    animation: translateShow 0.4s ease;
+
+@keyframes translateShow {
+  0% {
+    opacity: 0;
+    transform: translateX(-70%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
     
     >div {
         width: 40rem;

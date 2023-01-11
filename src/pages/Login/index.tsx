@@ -26,28 +26,6 @@ const Login = () => {
     const navigate = useNavigate();
     
     const { userLogin, login, loading, setLogin } = useContext(UserContext)
-  
-    // const onSubmitLogin: SubmitHandler<iLoginFormData> = async data => {
-    //   try {
-  
-    //     setLoading(true);
-  
-    //     const response = await api.post("login", data);
-  
-    //       setLogin(true)
-    //       sucessLogin()
-    //       window.localStorage.setItem("@draft-footz/userToken", JSON.stringify(response.data.accessToken));
-    //       window.localStorage.setItem("@draft-footz/user", JSON.stringify(response.data.user));
-          
-    //       navigate("/dashboard") 
-  
-    //   } catch (err) { 
-    //      setLogin(false)
-    //      reset() 
-    // } finally {
-    //   setLoading(false)
-    // }
-    // };
 
   return (
     <ParentRg>
