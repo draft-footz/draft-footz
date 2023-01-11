@@ -30,7 +30,7 @@ import { SubscriptionsProvider } from "../../context/SubscriptionsContext";
 import { NoTournament } from "../../components/NoTournament";
 import { TeamTournament } from "../../components/TeamTournament";
 import { MyTeamPosition } from "../../components/MyTeamPosition";
-import { MatchesContext, MatchesProvider } from "../../context/MatchesContext";
+import { MatchesProvider } from "../../context/MatchesContext";
 import { TournamentsViewPage } from "./TournamentsViewPage";
 import { UserContext } from "../../context/UsersContext";
 
@@ -66,7 +66,7 @@ export const DashboardPage = () => {
         </DivHeaderDashboard>
         <div className={open === false ? "none" : "div-open"}>
           <div className={open === false ? "none" : "div-x"}>
-            <button onClick={() => setOpen(false)}>X</button>
+            <button onClick={() => setOpen(false)}> X </button>
           </div>
           <button
             onClick={() => {

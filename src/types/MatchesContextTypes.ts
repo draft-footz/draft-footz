@@ -9,8 +9,8 @@ export interface iMatchesContext {
     createTournamentMatch: (tournamentId: number, order: number) => void;
     deleteAllMatchesFromTournament: (tournamentId: number) => void;
     tournamentMatches: iMatchData[];
-    updateMatchTeams: (matchId: number, data: iMatchTeams) => void;
-    updateMatchScores: (matchId: number, data: iMatchScores) => void;
+    updateMatchTeams: (matchId: number, data: iMatchTeams, subscriptions?: number[]) => void;
+    updateMatchScores: (matchId: number, data: iMatchScores, order: number) => void;
 };
 
 export interface iMatchData {
@@ -38,11 +38,11 @@ export interface iMatchData {
 };
 
 export interface iMatchTeams {
-    teamA: {
+    teamA?: {
         id: number;
         name: string;
     }
-    teamB: {
+    teamB?: {
         id: number;
         name: string;
     }

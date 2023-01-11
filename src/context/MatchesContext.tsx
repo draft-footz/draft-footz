@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { api } from "../services/api";
 import { iMatchData, iMatchesContext, iMatchesProvider, iMatchScores, iMatchTeams } from "../types/MatchesContextTypes";
 import { failMatch } from "../utils/toast";
+import { SubscriptionsContext } from "./SubscriptionsContext";
 import { TournamentContext } from "./TournamentContext";
 import { UserContext } from "./UsersContext";
 
@@ -13,7 +14,9 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
 
     const { user, token } = useContext(UserContext);
     const { readingTournament } = useContext(TournamentContext);
+    const { updateSubscription } = useContext(SubscriptionsContext);
     const [ updater, setUpdater ] = useState(true);
+    
 
     useEffect(() => {
         api.defaults.headers.common.authorization = `Bearer ${token}`
@@ -27,6 +30,11 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
             readThisTournamentMatches(readingTournament.id);
         };
     }, [readingTournament, updater]);
+
+        
+    const semiFinalsI  = tournamentMatches.find(match => match.order === 5);
+    const semiFinalsII = tournamentMatches.find(match => match.order === 6);
+    const grandFinal   = tournamentMatches.find(match => match.order === 7);
 
     // Functions
     async function createTournamentMatch(tournamentId: number, order: number) {
@@ -88,24 +96,81 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
         };
     };
 
-    async function updateMatchTeams(matchId: number, data: iMatchTeams) {
+    async function updateMatchTeams(matchId: number, data: iMatchTeams, subscriptions?: number[]) {
         try {
             api.patch(`matches/${matchId}`, data)
             .then(() => {
                 toast.success('Você definiu os times da partida com sucesso!');
                 setUpdater(!updater);
+                if(subscriptions){
+                    subscriptions.forEach(sub => updateSubscription(sub, true))
+                };
             });
         } catch {
             toast.error('Falha ao definir times da partida.');
         };
     };
 
-    async function updateMatchScores(matchId: number,data: iMatchScores) {
+    async function updateMatchScores(matchId: number,data: iMatchScores, order: number) {
         try {
             api.patch(`matches/${matchId}`, data)
             .then(() => {
                 toast.success('Você definiu o palcar da partida com sucesso!');
                 setUpdater(!updater);
+
+                if ( order === 1) { 
+                    if(semiFinalsI) { updateMatchTeams(semiFinalsI.id, {
+                        teamA: {
+                            id: data.winner.id,
+                            name: data.winner.name
+                        }
+                    })};
+                 };
+
+                 if ( order === 2) { 
+                    if(semiFinalsI) { updateMatchTeams(semiFinalsI.id, {
+                        teamB: {
+                            id: data.winner.id,
+                            name: data.winner.name
+                        }
+                    })};
+                 };
+
+                 if ( order === 3) { 
+                    if(semiFinalsII) { updateMatchTeams(semiFinalsII.id, {
+                        teamA: {
+                            id: data.winner.id,
+                            name: data.winner.name
+                        }
+                    })};
+                 };
+
+                 if ( order === 4) { 
+                    if(semiFinalsII) { updateMatchTeams(semiFinalsII.id, {
+                        teamB: {
+                            id: data.winner.id,
+                            name: data.winner.name
+                        }
+                    })};
+                 };
+
+                 if ( order === 5) { 
+                    if(grandFinal) { updateMatchTeams(grandFinal.id, {
+                        teamA: {
+                            id: data.winner.id,
+                            name: data.winner.name
+                        }
+                    })};
+                 };
+
+                 if ( order === 6) { 
+                    if(grandFinal) { updateMatchTeams(grandFinal.id, {
+                        teamB: {
+                            id: data.winner.id,
+                            name: data.winner.name
+                        }
+                    })};
+                 };
             });
         } catch {
             toast.error('Falha ao definir placar da partida.');

@@ -40,9 +40,7 @@ export const TournamentCard = ({
   updateAll,
 }: iProps) => {
   let token = localStorage.getItem("@draft-footz/userToken");
-  if (token) {
-    token = JSON.parse(token);
-  }
+
   api.defaults.headers.common.authorization = `Bearer ${token}`;
 
   const [isSubscribed, setSubscribed] = useState(false);
@@ -70,7 +68,10 @@ export const TournamentCard = ({
   async function sendInscription() {
     const data = {
       tournament: tournament.id,
-      teamId: team.id,
+      team: {
+        id: team.id,
+        name: team.name
+      },
       accepted: false,
     };
 
@@ -78,7 +79,7 @@ export const TournamentCard = ({
       (e: iSubscription) => e.tournament === tournament.id
     );
 
-    if (subscriptionsToThisTournament.find((e: any) => e.teamId === team.id)) {
+    if (subscriptionsToThisTournament.find((e: any) => e.team.id === team.id)) {
       setSubscribed(true);
       toast.error("Você já está inscrito");
       return;

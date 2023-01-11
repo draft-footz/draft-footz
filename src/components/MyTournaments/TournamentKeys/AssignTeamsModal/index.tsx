@@ -73,41 +73,44 @@ export const AssignTeamsModal = ({ match, changeModalState }: iAssignTeamsModalP
 
     // Função do botão de salvar 
     function handleUpdateMatch () {
-        let findNameA = subscriptions.find(sub => sub.team.id === selectedTeamA);
-        let findNameB = subscriptions.find(sub => sub.team.id === selectedTeamB);
+        let findSubA = subscriptions.find(sub => sub.team.id === selectedTeamA);
+        let findSubB = subscriptions.find(sub => sub.team.id === selectedTeamB);
 
-        if(subscriptions.length > 0 && selectedTeamA && selectedTeamB && (!scoreTeamA || !scoreTeamB) && findNameA && findNameB) {
+        if(subscriptions.length > 0 && selectedTeamA && selectedTeamB && (!scoreTeamA || !scoreTeamB) && findSubA && findSubB) {
             let data = {
                 teamA: {
                     id: selectedTeamA,
-                    name: findNameA.team.name
+                    name: findSubA.team.name
                 },
                 teamB: {
                     id: selectedTeamB,
-                    name: findNameB.team.name
+                    name: findSubB.team.name
                 }
             };
+            if(match.order <=4) { 
+                updateMatchTeams(match.id, data, [findSubA.id, findSubB.id]);
+            }
             updateMatchTeams(match.id, data);
             changeModalState(false);
         };
 
-        if(subscriptions.length > 0 && selectedTeamA && selectedTeamB && scoreTeamA && scoreTeamB && findNameA && findNameB && winnerData) {
+        if(subscriptions.length > 0 && selectedTeamA && selectedTeamB && scoreTeamA && scoreTeamB && findSubA && findSubB && winnerData) {
             let data = {
                 winner: winnerData,
                 teamA: {
                     id: selectedTeamA,
-                    name: findNameA.team.name
+                    name: findSubA.team.name
                 },
                 teamB: {
                     id: selectedTeamB,
-                    name: findNameB.team.name
+                    name: findSubB.team.name
                 },
                 scores: {
                     teamA: scoreTeamA,
                     teamB: scoreTeamB
                 }
             };
-            updateMatchScores(match.id, data);
+            updateMatchScores(match.id, data, match.order);
             changeModalState(false);
         };
     };
