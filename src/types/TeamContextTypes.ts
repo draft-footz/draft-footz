@@ -11,14 +11,14 @@ export interface iTeamContext {
   getAllTeams: () => Promise<void>;
   createNewPlayer: (data: iDataNewPlayer) => Promise<void>;
   updatePlayer: (data: iUpdatePlayer) => Promise<void>;
-  deletePlayer: () => Promise<void>;
+  deletePlayer: (playerId: number) => Promise<void>;
   getPlayersFromATeam: () => Promise<void>;
-  setPlayerId: React.Dispatch<React.SetStateAction<number | null>>;
   disableButton: boolean;
   teamId: number | null;
   teamData: iTeamData;
   setTeamData: React.Dispatch<React.SetStateAction<iTeamData>>;
   userId: number;
+  playersData: iPlayerData[];
 }
 
 export interface iDataNewTeam {
@@ -32,8 +32,7 @@ export interface iDataNewPlayer {
   teamId: number | null;
   name: string;
   position: null | string;
-  number: number;
-  avatar?: string;
+  number: string;
 }
 
 export interface iUpdatePlayer {
@@ -49,5 +48,23 @@ export interface iTeamData {
   userId: number;
   name: string;
   logo: string;
+  id: number;
+}
+
+export interface iPlayerData {
+  userId: number;
+  teamId: number | null;
+  name: string;
+  number: string;
+  position: null | string;
+  id: number;
+}
+
+export interface iPlayer {
+  name: string;
+  position: string;
+  number: string;
+  userId: number;
+  teamId: number;
   id: number;
 }

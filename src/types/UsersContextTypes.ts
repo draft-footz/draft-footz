@@ -5,13 +5,15 @@ export interface iUsersProvider {
 export interface iUsersContext {
   createNewUser: (data: iDataNewUser) => void;
   userLogin: (data: iDataLogin) => void;
-  updateUserTeam: (teamId: number) => void;
+  updateUserTeam: (teamId: number | null) => void;
   user: iUserData;
   token: string;
   loading: boolean;
   setLoading: (loading: boolean) => void;
   login: boolean;
   setLogin: (login: boolean) => void;
+  logoutDashboard: () => void;
+
 }
 
 export interface iDataNewUser {
@@ -78,4 +80,3 @@ export interface iLoginFormData {
   email: string;
   password: string;
 }
-

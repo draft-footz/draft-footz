@@ -14,6 +14,20 @@ export const Main = styled.main`
   }
 `;
 
+export const DivBg = styled.div`
+  position: relative;
+`;
+
+export const FigureBg = styled.div`
+  background-image: url("./gramado.png");
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  filter: brightness(0.3);
+`;
+
 export const SectionDashboard = styled.section`
   background-color: #21212191;
   width: 80%;
@@ -26,6 +40,11 @@ export const SectionDashboard = styled.section`
   > main {
     width: 70%;
   }
+  @media (max-width: 800px) {
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+  }
 `;
 
 export const DivMenu = styled.div`
@@ -35,6 +54,9 @@ export const DivMenu = styled.div`
   width: 30%;
   height: 100%;
   align-items: center;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const DivLogoAndButtons = styled.div`
@@ -46,7 +68,7 @@ export const DivLogoAndButtons = styled.div`
 
 export const FigureLogo = styled.figure`
   margin-top: 80px;
-  margin-bottom: 80px;
+  margin-bottom: 10px;
 `;
 
 export const DivButtonLogout = styled.div`
@@ -75,3 +97,69 @@ export const ButtonLogout = styled.button`
     font-weight: 600;
   }
 `;
+
+export const HeaderDashboard = styled.header`
+  button {
+    background-color: transparent;
+  }
+  .none {
+    display: none;
+  }
+  .img-menu {
+    width: 25px;
+  }
+
+  animation: translateShow 0.4s ease;
+
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+
+  position: fixed;
+  @media (max-width: 800px) {
+    background-color: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    width: 100vw;
+    padding: 20px;
+  }
+
+  .div-open {
+    display: flex;
+    flex-direction: column;
+    button {
+      margin-top: 10px;
+      font-size: 20px;
+    }
+  }
+  .div-x {
+    display: flex;
+    justify-content: end;
+    button {
+      font-size: 24px;
+    }
+  }
+`;
+export const DivHeaderDashboard = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const DivLogo = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+`;
+
+// @media(max-width: 800px){
+
+// }

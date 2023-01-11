@@ -28,6 +28,10 @@ export const GlobalStyle = createGlobalStyle`
   font-family: 'Poppins', sans-serif;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 button{
     cursor: pointer;
   

@@ -7,9 +7,11 @@ import { iDataNewPlayer } from "../../types/TeamContextTypes";
 import { StyledFormInput } from "../../styles/Inputs/style";
 import { ButtonSend } from "../../styles/Buttons/style";
 import { CreatePlayerStyled } from "./style";
+import { TournamentContext } from "../../context/TournamentContext";
 
 export const CreatePlayer = () => {
   const { createNewPlayer } = useContext(TeamContext);
+  const { setDashboardPage } = useContext(TournamentContext);
 
   const {
     register,
@@ -36,7 +38,8 @@ export const CreatePlayer = () => {
               <option value="Zagueiro">Zagueiro</option>
               <option value="Lateral Esquerdo">Lateral Esquerdo</option>
               <option value="Lateral Direito">Lateral Direito</option>
-              <option value="Meia">Meia</option>
+              <option value="Meia Esquerda">Meia Esquerda</option>
+              <option value="Meia Direita">Meia Direita</option>
               <option value="Atacante">Atacante</option>
             </select>
             {errors.position?.message && <span>{errors.position.message}</span>}
@@ -51,7 +54,10 @@ export const CreatePlayer = () => {
             {errors.number?.message && <span>{errors.number.message}</span>}
           </fieldset>
         </div>
-        <ButtonSend type="submit">Cadastrar jogador</ButtonSend>
+        <div>
+          <ButtonSend onClick={() => setDashboardPage(16)}>Voltar</ButtonSend>
+          <ButtonSend type="submit">Cadastrar jogador</ButtonSend>
+        </div>
       </form>
     </CreatePlayerStyled>
   );

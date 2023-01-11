@@ -1,15 +1,29 @@
 import styled from "styled-components";
 
 export const MainNoTournament = styled.main`
-  width: 100%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 60px;
-  h1 {
-    font-size: 22px;
+   animation: translateShow 0.4s ease;
+
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+    text-align: center;
   }
 
   button {

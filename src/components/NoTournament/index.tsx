@@ -7,22 +7,16 @@ export const NoTournament = () => {
   const [creatingTournament, setCreatingTournament] = useState(false);
   return (
     <>
-      {
-        creatingTournament ?
-        (
-          <TournamentCreation />
-        )
-        :
-        (
-          <MainNoTournament>
-            <h1>Você ainda não possui nenhum torneio :/</h1>
-            <ButtonSend onClick={() => setCreatingTournament(true)}>
-              Criar torneio
-            </ButtonSend>
-          </MainNoTournament>
-        )
-      }
-
+      {creatingTournament ? (
+        <TournamentCreation />
+      ) : (
+        <MainNoTournament>
+          <h2>Você ainda não possui nenhum torneio :/</h2>
+          <ButtonSend onClick={() => setCreatingTournament(true)}>
+            Criar torneio
+          </ButtonSend>
+        </MainNoTournament>
+      )}
     </>
   );
 };

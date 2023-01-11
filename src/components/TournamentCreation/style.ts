@@ -6,12 +6,27 @@ export const FormTournamentCreation = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+   animation: translateShow 0.4s ease;
+
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
 
   label {
     font-size: 18px;
   }
   input {
     height: 46px;
+  }
+  @media (max-width: 800px) {
+    width: 100%;
   }
   @media (max-width: 1000px) {
     label {
@@ -60,6 +75,10 @@ export const DivInputDisabled = styled.div`
   max-width: 600px;
   width: 100%;
   align-items: center;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const DivInputInfoTournament = styled.div`

@@ -2,8 +2,10 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
 import { iMatchData, iMatchesContext, iMatchesProvider, iMatchScores, iMatchTeams } from "../types/MatchesContextTypes";
+import { failMatch } from "../utils/toast";
 import { TournamentContext } from "./TournamentContext";
 import { UserContext } from "./UsersContext";
+
 
 export const MatchesContext = createContext({} as iMatchesContext);
 
@@ -42,7 +44,7 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
             });
 
         } catch {
-            toast.error('Falha ao criar partida.');
+            failMatch()
         };
     };
 

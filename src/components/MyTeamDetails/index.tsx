@@ -1,5 +1,4 @@
 import { MainStyled, TeamDetails, TeamHeaderStyled } from "./style";
-import teamlogo from "../../img/teamlogoholder.svg";
 import editIcon from "../../img/edit_icon.svg";
 import { useContext } from "react";
 import { TournamentContext } from "../../context/TournamentContext";
@@ -8,12 +7,14 @@ import { api } from "../../services/api";
 import { UserContext } from "../../context/UsersContext";
 import { TeamContext } from "../../context/TeamContext";
 import { ButtonRight } from "../../styles/Buttons/style";
-import emblem from "../../img/standard_emblem.jpg"
+import emblem from "../../img/standard_emblem.jpg";
+import standard_team_shield from "../../img/standard_team_shield.png";
 
 export const MyTeamDetails = () => {
   const { setDashboardPage } = useContext(TournamentContext);
   const { user } = useContext(UserContext);
-  const { teamData, setTeamData } = useContext(TeamContext);
+  const { teamData, setTeamData, getPlayersFromATeam, playersData } =
+    useContext(TeamContext);
 
   const teamId = user.teamId;
 
@@ -26,17 +27,20 @@ export const MyTeamDetails = () => {
         console.log(err);
       }
     }
+
+    getPlayersFromATeam();
     getMyTeam();
   }, []);
-
-  console.log(teamData);
-  
 
   return (
     <MainStyled>
       <TeamHeaderStyled>
         <figure>
-          <img src={teamData.logo} alt="Team name" />
+          {teamData.logo !== "" ? (
+            <img src={teamData.logo} alt={teamData.name} />
+          ) : (
+            <img src={standard_team_shield} alt={teamData.name}></img>
+          )}
         </figure>
         <h2>{teamData.name}</h2>
         <button>
@@ -48,11 +52,7 @@ export const MyTeamDetails = () => {
         </button>
       </TeamHeaderStyled>
       <TeamDetails>
-        <ButtonRight
-        onClick={() => setDashboardPage(16)}
-        >
-        {">"}
-        </ButtonRight>
+        <ButtonRight onClick={() => setDashboardPage(16)}>{">"}</ButtonRight>
         <h3>
           Dono do time: <span>{user.name}</span>
         </h3>
@@ -64,7 +64,7 @@ export const MyTeamDetails = () => {
             Torneios em andamento: <span>-</span>
           </h4>
           <h4>
-            Quantidade de jogadores: <span>array.length</span>
+            Quantidade de jogadores: <span>{playersData.length}</span>
           </h4>
           <h4>
             Torneios finalizados: <span>-</span>
