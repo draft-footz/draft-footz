@@ -39,7 +39,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
       await api.post("tournaments", newData);
       navigate("/login");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 
@@ -100,7 +100,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         .patch<iUpdateUserResponse>(`users/${user.id}`, data)
         .then((response) => setUser(response.data));
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 

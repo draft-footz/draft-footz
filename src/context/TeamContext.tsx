@@ -8,7 +8,6 @@ import {
   iTeamContext,
   iTeamData,
   iTeamProvider,
-  iUpdatePlayer,
 } from "../types/TeamContextTypes";
 import { TournamentContext } from "./TournamentContext";
 
@@ -25,8 +24,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
 
   const userId = user.id;
   const teamId = user.teamId;
-
-  const [playerId, setPlayerId] = useState<number | null>(null);
 
   async function createNewTeam(data: iDataNewTeam) {
     data.userId = userId;
@@ -123,15 +120,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     }
   }
 
-  async function updatePlayer(data: iUpdatePlayer) {
-    try {
-      api.defaults.headers.common.authorization = `Bearer ${token}`;
-      await api.patch(`players/${playerId}`, data);
-    } catch (err) {
-      toast.error("Ops...algo deu errado!");
-    }
-  }
-
   async function deletePlayer(playerId: number) {
     let data = {
       userId: userId,
@@ -142,9 +130,10 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       await api.delete(`players/${playerId}`, {
         data: data,
       });
+      await getPlayersFromATeam();
       toast.success("Jogador excluído com sucesso!");
     } catch (err) {
-      toast.error("Ops...algo deu errado!");
+      //toast.error("Ops...algo deu errado!");
     }
   }
 
@@ -165,7 +154,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         deleteTeam,
         getAllTeams,
         createNewPlayer,
-        updatePlayer,
         deletePlayer,
         getPlayersFromATeam,
         disableButton,

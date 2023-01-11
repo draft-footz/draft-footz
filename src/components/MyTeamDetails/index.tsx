@@ -24,7 +24,7 @@ export const MyTeamDetails = () => {
         const requisition = await api.get(`teams/${teamId}`);
         setTeamData(requisition.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
 

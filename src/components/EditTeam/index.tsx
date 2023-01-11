@@ -7,9 +7,11 @@ import { EditTeamStyled } from "./style";
 import { StyledFormInput } from "../../styles/Inputs/style";
 import { ButtonSend } from "../../styles/Buttons/style";
 import { editTeamFormSchema } from "./schema";
+import { TournamentContext } from "../../context/TournamentContext";
 
 export const EditTeam = () => {
   const { updateTeam } = useContext(TeamContext);
+  const { setDashboardPage } = useContext(TournamentContext);
 
   const {
     register,
@@ -21,17 +23,17 @@ export const EditTeam = () => {
   });
 
   const handleUpdate = (data: iDataNewTeam) => {
-    if(data.logo === ""){
+    if (data.logo === "") {
       data = {
         name: data.name,
-      }
-    } else if (data.name === ""){
+      };
+    } else if (data.name === "") {
       data = {
-        logo: data.logo
-      }
+        logo: data.logo,
+      };
     }
-    updateTeam(data)
-  }
+    updateTeam(data);
+  };
 
   return (
     <EditTeamStyled>
@@ -50,7 +52,10 @@ export const EditTeam = () => {
           />
           {errors.logo?.message && <span>{errors.logo.message}</span>}
         </div>
-        <ButtonSend type="submit">Salvar alterações</ButtonSend>
+        <div>
+          <ButtonSend onClick={() => setDashboardPage(15)}>Voltar</ButtonSend>
+          <ButtonSend type="submit">Salvar alterações</ButtonSend>
+        </div>
       </form>
     </EditTeamStyled>
   );
