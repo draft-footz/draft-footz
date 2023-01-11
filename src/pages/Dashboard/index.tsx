@@ -38,8 +38,7 @@ export const DashboardPage = () => {
   const { setReadingTournament, dashboardPage, setDashboardPage } =
     useContext(TournamentContext);
 
-  const { logoutDashboard } = useContext(UserContext) 
-
+  const { logoutDashboard } = useContext(UserContext);
 
   function isSelected(pages: number[] | number) {
     if (typeof pages === "number") {
@@ -101,7 +100,7 @@ export const DashboardPage = () => {
               </ButtonMenu>
 
               <ButtonMenu
-                className={dashboardPage === 14 ? "selected" : ""}
+                className={isSelected([14, 15, 16, 17, 18, 19, 20])}
                 onClick={() => setDashboardPage(14)}
               >
                 Meu time
@@ -116,9 +115,7 @@ export const DashboardPage = () => {
             </DivLogoAndButtons>
 
             <DivButtonLogout>
-
               <ButtonLogout onClick={logoutDashboard}>
-              
                 <img src="/logout.png" alt="" />
                 <p>Fazer logout</p>
               </ButtonLogout>
