@@ -79,7 +79,7 @@ export const DashboardPage = () => {
         </div>
       </HeaderDashboard>
       <FigureBackgroundDashboard></FigureBackgroundDashboard>
-      <Main>
+      <Main onClick={() => setOpen(false)}>
         <SectionDashboard>
           <DivMenu>
             <DivLogoAndButtons>
