@@ -9,6 +9,6 @@ const baseUrl = {
 };
 
 export const api = axios.create({
-  baseURL: baseUrl.render,
+  baseURL: baseUrl.localhost,
   timeout: 5000,
 });
