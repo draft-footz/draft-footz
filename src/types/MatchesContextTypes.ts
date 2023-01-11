@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { iDataTournament } from "./TournamentContextTypes";
 
 export interface iMatchesProvider {
     children: ReactNode;
@@ -10,6 +9,8 @@ export interface iMatchesContext {
     createTournamentMatch: (tournamentId: number, order: number) => void;
     deleteAllMatchesFromTournament: (tournamentId: number) => void;
     tournamentMatches: iMatchData[];
+    updateMatchTeams: (matchId: number, data: iMatchTeams) => void;
+    updateMatchScores: (matchId: number, data: iMatchScores) => void;
 };
 
 export interface iMatchData {
@@ -33,10 +34,6 @@ export interface iMatchData {
     scores?: {
         teamA: number;
         teamB: number;
-        penalties?: {
-            teamA: number;
-            teamB: number;
-        };
     };
 };
 
@@ -51,19 +48,16 @@ export interface iMatchTeams {
     }
 }
 
-export interface iMatchScores {
-    winner: {
-        id: number;
-        name: string;
-        team: "teamA" | "teamB";
-    };
+export interface iWinner {
+    id: number;
+    name: string;
+    team: string;
+}
+
+export interface iMatchScores extends iMatchTeams {
+    winner: iWinner;
     scores: {
         teamA: number;
         teamB: number;
-        penalties?: {
-            teamA: number;
-            teamB: number;
-        };
     };
 };
-
