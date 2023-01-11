@@ -51,7 +51,7 @@ export const TournamentCard = ({
       (e: iSubscription) => e.tournament === tournament.id
     );
 
-    if (subscriptionsToThisTournament.find((e: any) => e.teamId === team.id)) {
+    if (subscriptionsToThisTournament.find((e: any) => e.team.id === team.id)) {
       setSubscribed(true);
     }
 

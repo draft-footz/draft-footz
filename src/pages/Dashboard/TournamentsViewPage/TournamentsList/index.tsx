@@ -59,7 +59,6 @@ export const TournamentsList = () => {
   function updateAll() {
     getSubscriptions();
     getTournaments();
-    console.log(subscriptions);
     if (user.teamId != null) {
       getTeam(user.teamId);
     }
