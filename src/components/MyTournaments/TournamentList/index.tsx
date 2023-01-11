@@ -2,7 +2,6 @@ import { StyledTournamentList } from "./style";
 import { useContext, useState, useEffect} from "react";
 import { TournamentContext } from "../../../context/TournamentContext";
 import { TournamentListCard } from "./TournamentListCard";
-import { NoTournament } from "../../NoTournament";
 
 export const TournamentList = () => {
 

@@ -26,8 +26,10 @@ export const AssignTeamsModal = ({ match, changeModalState }: iAssignTeamsModalP
     const [winnerId, setWinnerId ] = useState<number>();
     const [winnerData, setWinnerData ] = useState<iWinner>();
 
-    const filteredSelectTeamA = subscriptions.filter(sub => sub.team.id !== selectedTeamB);
-    const filteredSelectTeamB = subscriptions.filter(sub => sub.team.id !== selectedTeamA);
+    const filteredSelectTeamA = subscriptions.filter(sub => sub.team?.id !== selectedTeamB);
+    const filteredSelectTeamB = subscriptions.filter(sub => sub.team?.id !== selectedTeamA);
+
+
     const winnerOptions = subscriptions.filter(sub => sub.team.id === selectedTeamA || sub.team.id === selectedTeamB);
 
     function updateSubscriptions () {
@@ -55,8 +57,14 @@ export const AssignTeamsModal = ({ match, changeModalState }: iAssignTeamsModalP
             };
 
             setWinnerData(winnerData);
-        }
+        };
+
     }, [winnerId, subscriptions, selectedTeamA])
+
+    useEffect(() => {
+        console.log(subscriptions)
+    }, [subscriptions]);
+    
 
     // Função do evento de selecionar ganhador
     function handleSetWinner (e: React.ChangeEvent<HTMLSelectElement>) {
