@@ -55,6 +55,7 @@ export const PlayerListStyled = styled.section`
   align-items: center;
   gap: 20px;
   position: relative;
+  padding-top: 32px;
 
   h2 {
     font-weight: 700;

@@ -35,7 +35,6 @@ export const TeamHeaderStyled = styled.div`
 
   img {
     width: 100%;
-    border-radius: 100%;
   }
 
   h2 {

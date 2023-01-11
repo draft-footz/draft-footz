@@ -41,7 +41,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         setDashboardPage(15);
       }
     } catch (err) {
-      console.log(err);
       toast.error("Ops...algo deu errado!");
     } finally {
       setDisableButton(true);
@@ -58,7 +57,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         setDashboardPage(15);
       }
     } catch (err) {
-      console.log(err);
       toast.error("Ops...algo deu errado!");
     }
   }
@@ -70,22 +68,20 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
 
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      const requisition = await api.delete(`teams/${teamId}`, {
+      await api.delete(`teams/${teamId}`, {
         data: data,
       });
       updateUserTeam(null);
-      console.log(requisition);
     } catch (err) {
-      console.log(err);
+      toast.error("Ops...algo deu errado!");
     }
   }
 
   async function getAllTeams() {
     try {
-      const requisition = await api.get("teams");
-      console.log(requisition);
+      await api.get("teams");
     } catch (err) {
-      console.log(err);
+      toast.error("Ops...algo deu errado!");
     }
   }
 
@@ -121,7 +117,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
         setDashboardPage(16);
       }
     } catch (err) {
-      console.log(err);
       toast.error("Ops...algo deu errado!");
     } finally {
       setDisableButton(true);
@@ -131,10 +126,9 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   async function updatePlayer(data: iUpdatePlayer) {
     try {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      const requisition = await api.patch(`players/${playerId}`, data);
-      console.log(requisition);
+      await api.patch(`players/${playerId}`, data);
     } catch (err) {
-      console.log(err);
+      toast.error("Ops...algo deu errado!");
     }
   }
 
@@ -150,7 +144,6 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       });
       toast.success("Jogador excluído com sucesso!");
     } catch (err) {
-      console.log(err);
       toast.error("Ops...algo deu errado!");
     }
   }
@@ -159,9 +152,8 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     try {
       const requisition = await api.get(`players?&teamId=${teamId}`);
       setPlayersData(requisition.data);
-      console.log(playersData)
     } catch (err) {
-      console.log(err);
+      toast.error("Ops...algo deu errado!");
     }
   }
 
