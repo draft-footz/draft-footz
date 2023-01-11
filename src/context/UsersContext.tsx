@@ -103,6 +103,12 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     }
   }
 
+  const logoutDashboard: () => void = () => {
+    localStorage.clear()
+    navigate("/");
+  }
+
+
   const [loading, setLoading] = useState(false);
 
   return (
@@ -117,6 +123,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         setLoading,
         login,
         setLogin,
+        logoutDashboard
       }}
     >
       {children}
