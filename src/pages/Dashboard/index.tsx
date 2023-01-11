@@ -37,6 +37,7 @@ import { UserContext } from "../../context/UsersContext";
 export const DashboardPage = () => {
   const { setReadingTournament, dashboardPage, setDashboardPage } =
     useContext(TournamentContext);
+  console.log(dashboardPage);
 
   const { logoutDashboard } = useContext(UserContext);
 

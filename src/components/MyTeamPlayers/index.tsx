@@ -25,7 +25,7 @@ export const MyTeamPlayers = () => {
 
   const handleClick = async (playerId: number) => {
     await deletePlayer(playerId);
-    getPlayersFromATeam();
+    await getPlayersFromATeam();
   };
 
   return (
