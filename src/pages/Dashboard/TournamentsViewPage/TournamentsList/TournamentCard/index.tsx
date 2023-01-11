@@ -53,7 +53,7 @@ export const TournamentCard = ({
       (e: iSubscription) => e.tournament === tournament.id
     );
 
-    if (subscriptionsToThisTournament.find((e: any) => e.teamId === team.id)) {
+    if (subscriptionsToThisTournament.find((e: any) => e.team.id === team.id)) {
       setSubscribed(true);
     }
 
@@ -70,7 +70,10 @@ export const TournamentCard = ({
   async function sendInscription() {
     const data = {
       tournament: tournament.id,
-      teamId: team.id,
+      team: {
+        id: team.id,
+        name: team.name
+      },
       accepted: false,
     };
 
@@ -78,7 +81,7 @@ export const TournamentCard = ({
       (e: iSubscription) => e.tournament === tournament.id
     );
 
-    if (subscriptionsToThisTournament.find((e: any) => e.teamId === team.id)) {
+    if (subscriptionsToThisTournament.find((e: any) => e.team.id === team.id)) {
       setSubscribed(true);
       toast.error("Você já está inscrito");
       return;
