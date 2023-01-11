@@ -13,11 +13,13 @@ import { ButtonMenu } from "../../styles/Buttons/style";
 import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import {
   ButtonLogout,
+  DivBg,
   DivButtonLogout,
   DivHeaderDashboard,
   DivLogo,
   DivLogoAndButtons,
   DivMenu,
+  FigureBg,
   FigureLogo,
   HeaderDashboard,
   Main,
