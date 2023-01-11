@@ -8,6 +8,6 @@ const baseUrl = {
 };
 
 export const api = axios.create({
-  baseURL: baseUrl.render,
+  baseURL: baseUrl.radmin.RenanPC,
   timeout: 5000,
 });
