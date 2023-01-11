@@ -76,7 +76,7 @@ export const DashboardPage = () => {
         </div>
       </HeaderDashboard>
       <FigureBackgroundDashboard>
-        <img src="/bg-dashboard.png" alt="" />
+        {/* <img src="/bg-dashboard.png" alt="" /> */}
       </FigureBackgroundDashboard>
       <Main>
         <SectionDashboard>
