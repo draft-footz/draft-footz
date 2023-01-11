@@ -54,7 +54,8 @@ export const DivLogoAndButtons = styled.div`
 
 export const FigureLogo = styled.figure`
   margin-top: 80px;
-  margin-bottom: 80px;
+  margin-bottom: 10px;
+  
 `;
 
 export const DivButtonLogout = styled.div`
@@ -93,6 +94,19 @@ export const HeaderDashboard = styled.header`
   }
   .img-menu {
     width: 25px;
+  }
+
+   animation: translateShow 0.4s ease;
+
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
   }
 
   position: fixed;

@@ -10,6 +10,22 @@ export const FigureBackground = styled.div`
   position: relative;
 `;
 
+export const BgPosition = styled.div`
+   position: relative;
+   height: 100vh;
+   display: flex;
+`
+
+export const FigureSecBackground = styled.div`
+  background-image: url("./gramado.png");
+  height: 100%;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  filter: brightness(0.3);
+`
+
 export const DivHomeCenter = styled.div`
   font-family: "Poppins";
   font-style: normal;
