@@ -12,7 +12,12 @@ export const MatchesContext = createContext({} as iMatchesContext);
 export const MatchesProvider = ({children}: iMatchesProvider) => {
 
     const { user, token } = useContext(UserContext);
-    const { readingTournament } = useContext(TournamentContext)
+    const { readingTournament } = useContext(TournamentContext);
+    const [ updater, setUpdater ] = useState(true);
+
+    useEffect(() => {
+        api.defaults.headers.common.authorization = `Bearer ${token}`
+    }, [token]);
 
     // Matches Data
     const [tournamentMatches, setTournamentMatches] = useState([] as iMatchData[]);
@@ -21,8 +26,7 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
         if(readingTournament) {
             readThisTournamentMatches(readingTournament.id);
         };
-        console.log(tournamentMatches)
-    }, [readingTournament]);
+    }, [readingTournament, updater]);
 
     // Functions
     async function createTournamentMatch(tournamentId: number, order: number) {
@@ -84,40 +88,38 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
         };
     };
 
-    /* async function updateMatchTeams(matchId: number, data: iMatchTeams) {
+    async function updateMatchTeams(matchId: number, data: iMatchTeams) {
         try {
-            api.patch(`matches/${matchId}`, {
-                headers: { authorization : `Bearer ${token}`},
-                data: data
-            })
+            api.patch(`matches/${matchId}`, data)
             .then(() => {
                 toast.success('Você definiu os times da partida com sucesso!');
+                setUpdater(!updater);
             });
         } catch {
             toast.error('Falha ao definir times da partida.');
         };
-    }; */
+    };
 
-    /* async function updateMatchScores(matchId: number,data: iMatchScores) {
+    async function updateMatchScores(matchId: number,data: iMatchScores) {
         try {
-            api.patch(`matches/${matchId}`, {
-                headers: { authorization : `Bearer ${token}`},
-                data: data
-            })
+            api.patch(`matches/${matchId}`, data)
             .then(() => {
                 toast.success('Você definiu o palcar da partida com sucesso!');
+                setUpdater(!updater);
             });
         } catch {
-            toast.error('Falha ao definir placar da partida.')
+            toast.error('Falha ao definir placar da partida.');
         };
-    }; */
+    };
 
     return (
         <MatchesContext.Provider value={{
             createMultipleTournamentMatches,
             deleteAllMatchesFromTournament,
             createTournamentMatch,
-            tournamentMatches
+            tournamentMatches,
+            updateMatchTeams,
+            updateMatchScores
         }} >
             {children}
         </MatchesContext.Provider>

@@ -28,7 +28,6 @@ export interface iTournamentContext {
     readingTournament: tReadingTournament;
     dashboardPage: number;
 
-
 };
 
 export interface iDataCreateTournament {

@@ -28,17 +28,17 @@ export const TournamentKeys = () => {
                 
                 <div>
                     {
-                        quarterFinals.map(match => <TournamentKey match={match}  onClickFunc={handleClick}/>)
+                        quarterFinals.map(match => <TournamentKey key={match.id} match={match}  onClickFunc={handleClick}/>)
                     }
                 </div>
                 <div>
                     {
-                        semiFinals.map(match => <TournamentKey match={match} onClickFunc={handleClick}/>)
+                        semiFinals.map(match => <TournamentKey key={match.id} match={match} onClickFunc={handleClick}/>)
                     }
                 </div>
                 <div>
                     {
-                        grandFinal && <TournamentKey match={grandFinal} onClickFunc={handleClick}/>
+                        grandFinal && <TournamentKey key={grandFinal.id} match={grandFinal} onClickFunc={handleClick}/>
                     }
                 </div>
             </div>

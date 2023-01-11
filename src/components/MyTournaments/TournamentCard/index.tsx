@@ -15,7 +15,7 @@ export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
     const { setDashboardPage } = useContext(TournamentContext);
     const { subscriptions } = useContext(SubscriptionsContext);
 
-    const totalTeams = subscriptions.map(subscription => subscription.accepted).length;
+    const totalTeams = subscriptions.filter(subscription => subscription.accepted).length;
 
     return (
         <StyledTournamentCard>
