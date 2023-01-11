@@ -9,7 +9,7 @@ export const MainTeamPosition = styled.main`
   min-width: 700px;
   overflow-x: scroll;
   scrollbar-color: green #0202023d;
-   animation: translateShow 0.4s ease;
+  animation: translateShow 0.4s ease;
 
   @keyframes translateShow {
     0% {
@@ -57,19 +57,23 @@ export const DivPlayers = styled.div`
     gap: 20px;
     position: relative;
     li {
-      width: 60px;
+      width: 150px;
       height: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     > :first-child {
       position: absolute;
-      right: 100px;
+      right: 55px;
       top: 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
       div {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
         background-color: #1818d6;
         display: flex;
@@ -82,14 +86,14 @@ export const DivPlayers = styled.div`
     }
     > :nth-child(2) {
       position: absolute;
-      right: 100px;
+      right: 55px;
       top: 340px;
       display: flex;
       flex-direction: column;
       align-items: center;
       div {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
         background-color: #a66004;
         display: flex;
@@ -102,14 +106,14 @@ export const DivPlayers = styled.div`
     }
     > :nth-child(3) {
       position: absolute;
-      right: 70px;
+      right: -10px;
       top: 140px;
       display: flex;
       flex-direction: column;
       align-items: center;
       div {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
         background-color: #24a424;
         display: flex;
@@ -122,14 +126,14 @@ export const DivPlayers = styled.div`
     }
     > :nth-child(4) {
       position: absolute;
-      right: 40px;
+      right: -10px;
       top: 220px;
       display: flex;
       flex-direction: column;
       align-items: center;
       div {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
         background-color: #d69010;
         display: flex;
@@ -142,14 +146,14 @@ export const DivPlayers = styled.div`
     }
     > :nth-child(5) {
       position: absolute;
-      right: 100px;
-      top: 260px;
+      right: 55px;
+      top: 280px;
       display: flex;
       flex-direction: column;
       align-items: center;
       div {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
         background-color: #d69010;
         display: flex;
@@ -162,14 +166,14 @@ export const DivPlayers = styled.div`
     }
     > :nth-child(6) {
       position: absolute;
-      right: 160px;
+      right: 120px;
       top: 220px;
       display: flex;
       flex-direction: column;
       align-items: center;
       div {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
         background-color: #d69010;
         display: flex;
@@ -182,14 +186,14 @@ export const DivPlayers = styled.div`
     }
     > :nth-child(7) {
       position: absolute;
-      right: 132px;
+      right: 120px;
       top: 140px;
       display: flex;
       flex-direction: column;
       align-items: center;
       div {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
         background-color: #24a424;
         display: flex;
@@ -206,7 +210,6 @@ export const DivPlayers = styled.div`
 export const ImgPosition = styled.img`
   position: fixed;
   z-index: 0;
-  
 `;
 
 export const SectionPosition = styled.section`
@@ -232,7 +235,7 @@ export const UlPosition = styled.ul`
 
 export const LiPosition = styled.li`
   display: flex;
-  justify-content: space-between;
+  gap: 32px;
   width: 90%;
   background-color: #2121216b;
   height: 40px;

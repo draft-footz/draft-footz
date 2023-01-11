@@ -35,10 +35,6 @@ export const MyTeamPlayers = () => {
 
   return (
     <MyTeamPlayersStyled>
-      <SearchPlayerStyled>
-        <StyledFormInput placeholder="Nome do jogador"></StyledFormInput>
-        <ButtonSend>Buscar jogador</ButtonSend>
-      </SearchPlayerStyled>
       <PlayerListStyled>
         <ButtonLeft onClick={() => setDashboardPage(15)}>{"<"}</ButtonLeft>
         <ButtonRight onClick={() => setDashboardPage(17)}>{">"}</ButtonRight>
