@@ -13,6 +13,7 @@ export interface iUsersContext {
   login: boolean;
   setLogin: (login: boolean) => void;
   logoutDashboard: () => void;
+
 }
 
 export interface iDataNewUser {

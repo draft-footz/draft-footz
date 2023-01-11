@@ -108,7 +108,6 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     navigate("/");
   }
 
-
   const [loading, setLoading] = useState(false);
 
   return (
@@ -124,6 +123,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         login,
         setLogin,
         logoutDashboard
+
       }}
     >
       {children}

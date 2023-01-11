@@ -40,6 +40,7 @@ export const DashboardPage = () => {
 
   const { logoutDashboard } = useContext(UserContext) 
 
+
   function isSelected(pages: number[] | number) {
     if (typeof pages === "number") {
       return dashboardPage === pages ? "selected" : "";
@@ -81,7 +82,7 @@ export const DashboardPage = () => {
         </div>
       </HeaderDashboard>
       <FigureBackgroundDashboard></FigureBackgroundDashboard>
-      <Main>
+      <Main onClick={() => setOpen(false)}>
         <SectionDashboard>
           <DivMenu>
             <DivLogoAndButtons>
@@ -115,7 +116,9 @@ export const DashboardPage = () => {
             </DivLogoAndButtons>
 
             <DivButtonLogout>
+
               <ButtonLogout onClick={logoutDashboard}>
+              
                 <img src="/logout.png" alt="" />
                 <p>Fazer logout</p>
               </ButtonLogout>

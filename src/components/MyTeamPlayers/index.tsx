@@ -20,15 +20,13 @@ import meia from "../../img/team_positions/meia.svg";
 import ata from "../../img/team_positions/atacante.svg";
 
 export const MyTeamPlayers = () => {
-  const { deletePlayer, teamId, getPlayersFromATeam, playersData } = useContext(TeamContext);
+  const { deletePlayer, teamId, getPlayersFromATeam, playersData } =
+    useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
 
   useEffect(() => {
-
-    getPlayersFromATeam()
-
-  },[])
-
+    getPlayersFromATeam();
+  }, []);
 
   const handleClick = async (playerId: number) => {
     await deletePlayer(playerId);
@@ -37,10 +35,6 @@ export const MyTeamPlayers = () => {
 
   return (
     <MyTeamPlayersStyled>
-      <SearchPlayerStyled>
-        <StyledFormInput placeholder="Nome do jogador"></StyledFormInput>
-        <ButtonSend>Buscar jogador</ButtonSend>
-      </SearchPlayerStyled>
       <PlayerListStyled>
         <ButtonLeft onClick={() => setDashboardPage(15)}>{"<"}</ButtonLeft>
         <ButtonRight onClick={() => setDashboardPage(17)}>{">"}</ButtonRight>
