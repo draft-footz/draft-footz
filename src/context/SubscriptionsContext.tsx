@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
 import { iSubscriptionData, iSubscriptionsContext, iSubscriptionsProvider } from "../types/SubscriptionsContextTypes";
+import { iTeamData } from "../types/TeamContextTypes";
 import { TournamentContext } from "./TournamentContext";
 import { UserContext } from "./UsersContext";
 
@@ -22,6 +23,26 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
     const [subscriptions, setSubscriptions] = useState([] as iSubscriptionData[]);
 
     // Functions
+    async function askToSubscribe(tournamentId: number, team: iTeamData) {
+        let data = {
+            tournament: tournamentId,
+            team: {
+                name: team.name,
+                id: team.id
+            },
+            accepted: false
+        }
+        try {
+            api.post('subscriptions', data, {
+                headers: { authorization: `Bearer ${token}` }
+            })
+            .then(() => {
+                toast.success('Pedido de inscrição feito com sucesso!')
+            })
+        } catch {
+            toast.error('Falha na inscrição')
+        }
+    }
 
     async function getTournamentSubscriptions(tournamentId: number) {
         try {   
@@ -61,14 +82,31 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
             if(tournamentSubscriptions) {
                 tournamentSubscriptions.forEach(subscription => deleteSubscription(subscription.id))
             }
-        }
+        };
     };
+
+    async function updateSubscription(subscriptionId: number, accepted: boolean) {
+        let data = {
+            accepted: accepted
+        };
+        try {
+            api.patch(`subscriptions/${subscriptionId}`, data , {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            })
+        } catch {
+            console.log('deu ruim')
+        }
+    }
 
     return (
         <SubscriptionsContext.Provider value={{
             subscriptions,
             getTournamentSubscriptions,
-            deleteAllTournamentSubscriptions
+            deleteAllTournamentSubscriptions,
+            updateSubscription,
+            askToSubscribe
         }} >
             {children}
         </SubscriptionsContext.Provider>

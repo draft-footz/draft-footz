@@ -40,9 +40,7 @@ export const TournamentCard = ({
   updateAll,
 }: iProps) => {
   let token = localStorage.getItem("@draft-footz/userToken");
-  if (token) {
-    token = JSON.parse(token);
-  }
+
   api.defaults.headers.common.authorization = `Bearer ${token}`;
 
   const [isSubscribed, setSubscribed] = useState(false);
