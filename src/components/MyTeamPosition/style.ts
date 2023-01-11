@@ -10,6 +10,11 @@ export const MainTeamPosition = styled.main`
   overflow-x: scroll;
   scrollbar-color: green #0202023d;
   animation: translateShow 0.4s ease;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    height: 147%;
+    margin-top: 417px;
+  }
 
   @keyframes translateShow {
     0% {
@@ -41,15 +46,28 @@ export const DivPosition = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   position: relative;
+  @media (max-width: 800px) {
+    border-radius: 6px;
+    width: 37%;
+    background-color: transparent;
+    button {
+      top: 20%;
+      z-index: 4;
+    }
+  }
 `;
 
 export const DivPlayers = styled.div`
   width: 85%;
-  height: 60%;
+  height: 68%;
   z-index: 3;
   min-width: 261px;
   max-width: 261px;
   position: relative;
+  @media (max-width: 800px) {
+    top: -25%;
+    height: 46%;
+  }
 
   ul {
     display: flex;
@@ -224,6 +242,9 @@ export const SectionPosition = styled.section`
   border-bottom-right-radius: 6px;
   padding-left: 10px;
   padding-right: 10px;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const UlPosition = styled.ul`

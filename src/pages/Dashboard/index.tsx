@@ -13,11 +13,13 @@ import { ButtonMenu } from "../../styles/Buttons/style";
 import { FigureBackgroundDashboard } from "../../styles/Figures/style";
 import {
   ButtonLogout,
+  DivBg,
   DivButtonLogout,
   DivHeaderDashboard,
   DivLogo,
   DivLogoAndButtons,
   DivMenu,
+  FigureBg,
   FigureLogo,
   HeaderDashboard,
   Main,
@@ -36,7 +38,8 @@ export const DashboardPage = () => {
   const { setReadingTournament, dashboardPage, setDashboardPage } =
     useContext(TournamentContext);
 
-  const { logout } = useContext(UserContext);
+  const { logoutDashboard } = useContext(UserContext) 
+
 
   function isSelected(pages: number[] | number) {
     if (typeof pages === "number") {
@@ -79,7 +82,7 @@ export const DashboardPage = () => {
         </div>
       </HeaderDashboard>
       <FigureBackgroundDashboard></FigureBackgroundDashboard>
-      <Main>
+      <Main onClick={() => setOpen(false)}>
         <SectionDashboard>
           <DivMenu>
             <DivLogoAndButtons>
@@ -113,7 +116,9 @@ export const DashboardPage = () => {
             </DivLogoAndButtons>
 
             <DivButtonLogout>
-              <ButtonLogout onClick={() => logout()}>
+
+              <ButtonLogout onClick={logoutDashboard}>
+              
                 <img src="/logout.png" alt="" />
                 <p>Fazer logout</p>
               </ButtonLogout>

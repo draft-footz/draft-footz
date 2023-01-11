@@ -14,6 +14,20 @@ export const Main = styled.main`
   }
 `;
 
+export const DivBg = styled.div`
+  position: relative;
+`;
+
+export const FigureBg = styled.div`
+  background-image: url("./gramado.png");
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  filter: brightness(0.3);
+`;
+
 export const SectionDashboard = styled.section`
   background-color: #21212191;
   width: 80%;
@@ -55,7 +69,6 @@ export const DivLogoAndButtons = styled.div`
 export const FigureLogo = styled.figure`
   margin-top: 80px;
   margin-bottom: 10px;
-  
 `;
 
 export const DivButtonLogout = styled.div`
@@ -96,7 +109,7 @@ export const HeaderDashboard = styled.header`
     width: 25px;
   }
 
-   animation: translateShow 0.4s ease;
+  animation: translateShow 0.4s ease;
 
   @keyframes translateShow {
     0% {

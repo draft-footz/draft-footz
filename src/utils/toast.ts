@@ -38,3 +38,17 @@ export const sucessLogin = () => {
       theme: "colored",
     });
   };
+
+export const failMatch = () => {
+    toast.error("Falha ao criar partida!", {
+      position: "top-right",
+      autoClose: 500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+  
