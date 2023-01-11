@@ -79,6 +79,9 @@ export const PlayerListStyled = styled.section`
       background: rgba(33, 33, 33, 0.58);
       border-radius: 20px;
       padding: 10px 30px;
+      @media (max-width: 400px) {
+        width: 167%;
+      }
 
       div:nth-child(1) {
         display: flex;

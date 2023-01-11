@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CreatePlayerStyled = styled.section`
-  width: 100%;
+  width: 70%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,12 +42,17 @@ export const CreatePlayerStyled = styled.section`
       display: flex;
       align-items: center;
       gap: 63px;
+      @media (max-width: 800px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
       fieldset {
         display: flex;
         flex-direction: column;
         gap: 15px;
         min-height: 110px;
+        width: 100%;
 
         select {
           width: 100%;
@@ -71,6 +76,9 @@ export const CreatePlayerStyled = styled.section`
       display: flex;
       justify-content: space-between;
       gap: 32px;
+      @media (max-width: 800px) {
+        flex-direction: column;
+      }
     }
 
     span {
