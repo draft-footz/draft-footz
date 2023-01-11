@@ -43,8 +43,12 @@ export const TournamentsList = () => {
   }
 
   async function getSubscriptions() {
-    const { data } = await api.get(`subscriptions`);
-    setSubscriptions(data);
+    try {
+      const { data } = await api.get(`subscriptions`);
+      setSubscriptions(data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async function getTeam(id: number) {
@@ -53,15 +57,20 @@ export const TournamentsList = () => {
   }
 
   function updateAll() {
-    getTournaments();
     getSubscriptions();
+    getTournaments();
+    console.log(subscriptions);
     if (user.teamId != null) {
       getTeam(user.teamId);
     }
   }
 
   useEffect(() => {
-    updateAll()
+    getSubscriptions();
+    getTournaments();
+    if (user.teamId != null) {
+      getTeam(user.teamId);
+    }
   }, []);
 
   return (
@@ -69,8 +78,8 @@ export const TournamentsList = () => {
       {tournaments.map((e, i) => (
         <TournamentCard
           key={i}
-          tournament={e}
           subscriptions={subscriptions}
+          tournament={e}
           team={team}
           updateAll={updateAll}
         />

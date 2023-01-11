@@ -40,11 +40,9 @@ export const TournamentCard = ({
   updateAll,
 }: iProps) => {
   let token = localStorage.getItem("@draft-footz/userToken");
-
   if (token) {
     token = JSON.parse(token);
   }
-
   api.defaults.headers.common.authorization = `Bearer ${token}`;
 
   const [isSubscribed, setSubscribed] = useState(false);
@@ -54,9 +52,6 @@ export const TournamentCard = ({
     const subscriptionsToThisTournament = subscriptions.filter(
       (e: iSubscription) => e.tournament === tournament.id
     );
-
-    console.log(subscriptionsToThisTournament);
-    
 
     if (subscriptionsToThisTournament.find((e: any) => e.teamId === team.id)) {
       setSubscribed(true);
@@ -79,6 +74,16 @@ export const TournamentCard = ({
       accepted: false,
     };
 
+    const subscriptionsToThisTournament = subscriptions.filter(
+      (e: iSubscription) => e.tournament === tournament.id
+    );
+
+    if (subscriptionsToThisTournament.find((e: any) => e.teamId === team.id)) {
+      setSubscribed(true);
+      toast.error("Você já está inscrito");
+      return;
+    }
+
     try {
       await api.post("/subscriptions", data);
       toast.success("Pedido de inscrição enviado");
@@ -90,10 +95,8 @@ export const TournamentCard = ({
   }
 
   useEffect(() => {
-    if (team) {
-      filterData();
-    }
-  }, []);
+    filterData();
+  });
 
   return (
     <StyledTournamentCard>
