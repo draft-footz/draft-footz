@@ -15,7 +15,7 @@ interface iTournament {
 
 interface iSubscription {
   id: number;
-  tournamentId: number;
+  tournament: number;
   teamId: number;
   accepted: boolean;
 }
@@ -28,7 +28,7 @@ interface iTeam {
 }
 
 export const TournamentsList = () => {
-  const token = localStorage.getItem("@authToken");
+  const token = localStorage.getItem("@draft-footz/userToken");
   api.defaults.headers.common.authorization = `Bearer ${token}`;
 
   const { user } = useContext(UserContext);
@@ -52,13 +52,16 @@ export const TournamentsList = () => {
     setTeam(data);
   }
 
-  useEffect(() => {
+  function updateAll() {
     getTournaments();
     getSubscriptions();
-
     if (user.teamId != null) {
       getTeam(user.teamId);
     }
+  }
+
+  useEffect(() => {
+    updateAll()
   }, []);
 
   return (
@@ -69,6 +72,7 @@ export const TournamentsList = () => {
           tournament={e}
           subscriptions={subscriptions}
           team={team}
+          updateAll={updateAll}
         />
       ))}
     </StyledUlTournaments>
