@@ -1,5 +1,4 @@
 import { MainStyled, TeamDetails, TeamHeaderStyled } from "./style";
-import teamlogo from "../../img/teamlogoholder.svg";
 import editIcon from "../../img/edit_icon.svg";
 import { useContext } from "react";
 import { TournamentContext } from "../../context/TournamentContext";
@@ -13,7 +12,7 @@ import emblem from "../../img/standard_emblem.jpg";
 export const MyTeamDetails = () => {
   const { setDashboardPage } = useContext(TournamentContext);
   const { user } = useContext(UserContext);
-  const { teamData, setTeamData } = useContext(TeamContext);
+  const { teamData, setTeamData, getPlayersFromATeam, playersData } = useContext(TeamContext);
 
   const teamId = user.teamId;
 
@@ -26,14 +25,18 @@ export const MyTeamDetails = () => {
         console.log(err);
       }
     }
+
+    getPlayersFromATeam();
     getMyTeam();
+
   }, []);
 
   return (
     <MainStyled>
       <TeamHeaderStyled>
         <figure>
-          <img src={teamData.logo} alt="Team name" />
+          {teamData.logo !== "" ? <img src={teamData.logo} alt={teamData.name} />
+          : <img src={emblem} alt={teamData.name}></img>}          
         </figure>
         <h2>{teamData.name}</h2>
         <button>
@@ -57,7 +60,7 @@ export const MyTeamDetails = () => {
             Torneios em andamento: <span>-</span>
           </h4>
           <h4>
-            Quantidade de jogadores: <span>array.length</span>
+            Quantidade de jogadores: <span>{playersData.length}</span>
           </h4>
           <h4>
             Torneios finalizados: <span>-</span>

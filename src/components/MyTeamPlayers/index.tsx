@@ -13,38 +13,22 @@ import trashIcon from "../../img/trash.svg";
 import { useContext, useEffect, useState } from "react";
 import { TeamContext } from "../../context/TeamContext";
 import { TournamentContext } from "../../context/TournamentContext";
-import { api } from "../../services/api";
 import gk from "../../img/team_positions/goleiro.svg";
 import zag from "../../img/team_positions/zagueiro.svg";
 import lat from "../../img/team_positions/lateral.svg";
 import meia from "../../img/team_positions/meia.svg";
 import ata from "../../img/team_positions/atacante.svg";
 
-interface iPlayer {
-  name: string;
-  position: string;
-  number: string;
-  userId: number;
-  teamId: number;
-  id: number;
-}
-
 export const MyTeamPlayers = () => {
-  const { deletePlayer, teamId, getPlayersFromATeam } = useContext(TeamContext);
+  const { deletePlayer, teamId, getPlayersFromATeam, playersData } = useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
-  const [players, setPlayers] = useState<iPlayer[]>([]);
 
   useEffect(() => {
-    async function getPlayers() {
-      try {
-        const request = await api.get(`players?&teamId=${teamId}`);
-        setPlayers(request.data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    getPlayers();
-  }, [players]);
+
+    getPlayersFromATeam()
+
+  },[])
+
 
   const handleClick = async (playerId: number) => {
     await deletePlayer(playerId);
@@ -60,9 +44,9 @@ export const MyTeamPlayers = () => {
       <PlayerListStyled>
         <ButtonLeft onClick={() => setDashboardPage(15)}>{"<"}</ButtonLeft>
         <ButtonRight onClick={() => setDashboardPage(17)}>{">"}</ButtonRight>
-        <h2>{players.length}/7 Jogadores</h2>
+        <h2>{playersData.length}/7 Jogadores</h2>
         <ul>
-          {players.map((player) => {
+          {playersData.map((player) => {
             return (
               <li key={player.id}>
                 <div>
