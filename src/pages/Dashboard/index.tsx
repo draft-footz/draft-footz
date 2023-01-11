@@ -77,9 +77,7 @@ export const DashboardPage = () => {
           <button>Logout</button>
         </div>
       </HeaderDashboard>
-      <FigureBackgroundDashboard>
-        <img src="/bg-dashboard.png" alt="" />
-      </FigureBackgroundDashboard>
+      <FigureBackgroundDashboard></FigureBackgroundDashboard>
       <Main>
         <SectionDashboard>
           <DivMenu>
