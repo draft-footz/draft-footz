@@ -6,6 +6,18 @@ export const FormTournamentCreation = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+   animation: translateShow 0.4s ease;
+
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
 
   label {
     font-size: 18px;

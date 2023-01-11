@@ -9,6 +9,18 @@ export const MainTeamPosition = styled.main`
   min-width: 700px;
   overflow-x: scroll;
   scrollbar-color: green #0202023d;
+   animation: translateShow 0.4s ease;
+
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
   h3 {
     font-size: 16px;
   }
@@ -194,6 +206,7 @@ export const DivPlayers = styled.div`
 export const ImgPosition = styled.img`
   position: fixed;
   z-index: 0;
+  
 `;
 
 export const SectionPosition = styled.section`
