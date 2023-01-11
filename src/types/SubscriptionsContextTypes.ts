@@ -7,7 +7,8 @@ export interface iSubscriptionsProvider {
 export interface iSubscriptionsContext {
     subscriptions: iSubscriptionData[];
     getTournamentSubscriptions: (tournamentId: number) => void;
-}
+    deleteAllTournamentSubscriptions: (tournamentId: number) => void;
+};
 
 export interface iSubscriptionData {
     team: {
