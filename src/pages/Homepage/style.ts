@@ -11,10 +11,10 @@ export const FigureBackground = styled.div`
 `;
 
 export const BgPosition = styled.div`
-   position: relative;
-   height: 100vh;
-   display: flex;
-`
+  position: relative;
+  height: 100vh;
+  display: flex;
+`;
 
 export const FigureSecBackground = styled.div`
   background-image: url("./gramado.png");
@@ -24,7 +24,7 @@ export const FigureSecBackground = styled.div`
   background-size: cover;
   position: absolute;
   filter: brightness(0.3);
-`
+`;
 
 export const DivHomeCenter = styled.div`
   font-family: "Poppins";
@@ -38,6 +38,19 @@ export const DivHomeCenter = styled.div`
   justify-content: center;
   align-items: center;
   gap: 40px;
+  h1 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    color: #ffffff;
+    max-width: 800px;
+    text-align: center;
+    padding: 10px;
+    @media (max-width: 800px) {
+      font-size: 26px;
+    }
+  }
 
   h2 {
     font-family: "Poppins";
@@ -47,11 +60,11 @@ export const DivHomeCenter = styled.div`
     color: #ffffff;
 
     @media (min-width: 425px) {
-        font-size: 22px;
+      font-size: 22px;
     }
 
     @media (min-width: 768px) {
-        font-size: 25px;
+      font-size: 25px;
     }
   }
 `;
@@ -69,8 +82,6 @@ export const LinkToRegister = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 
   &:hover {
     filter: brightness(0.9);

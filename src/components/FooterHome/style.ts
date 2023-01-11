@@ -9,34 +9,31 @@ export const FooterBackground = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   @media (min-width: 768px) {
-     gap: 30px;      
-    }
+    gap: 30px;
+  }
 
   .one-footer {
-     gap: 14px;
-     margin-left: 50px;
-     display: none;
+    gap: 14px;
+    margin-left: 50px;
+    display: none;
 
-     @media (min-width: 768px) {
-        display: flex;     
+    @media (min-width: 768px) {
+      display: flex;
     }
     @media (min-width: 1000px) {
       width: 400px;
     }
-    
   }
 
   .two-footer {
     display: flex;
-    gap: 14px;    
+    gap: 14px;
 
     @media (min-width: 1000px) {
       width: 400px;
     }
-
-    
   }
 
   .three-footer {
@@ -44,27 +41,32 @@ export const FooterBackground = styled.div`
     gap: 14px;
     margin-right: 50px;
     display: none;
+    width: 500px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
 
     @media (min-width: 768px) {
-        display: flex;        
+      display: flex;
     }
     @media (min-width: 1000px) {
-      width: 400px;
+      width: 500px;
     }
-  
   }
 
   h2 {
     font-size: 14px;
 
     @media (min-width: 768px) {
-        display: flex;
-        font-size: 11px;
+      display: flex;
+      font-size: 11px;
     }
 
     @media (min-width: 1000px) {
-        font-size: 11px;
-}
+      font-size: 11px;
+    }
 
     @media (min-width: 1200px) {
       font-size: 14px;
@@ -72,13 +74,10 @@ export const FooterBackground = styled.div`
   }
 
   @media (min-width: 1000px) {
-        gap: 100px;
-}
+    gap: 100px;
+  }
 
-@media (min-width: 1200px) {
-        gap: 200px;
-}
-  
-
-  
+  @media (min-width: 1200px) {
+    gap: 200px;
+  }
 `;

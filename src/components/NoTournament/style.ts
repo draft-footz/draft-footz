@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const MainNoTournament = styled.main`
-  width: 60%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 60px;
-   animation: translateShow 0.4s ease;
+  animation: translateShow 0.4s ease;
 
   @keyframes translateShow {
     0% {

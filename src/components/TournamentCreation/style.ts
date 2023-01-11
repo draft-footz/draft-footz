@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const FormTournamentCreation = styled.form`
   position: sticky;
-  width: 70%;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-   animation: translateShow 0.4s ease;
+  animation: translateShow 0.4s ease;
 
   @keyframes translateShow {
     0% {
