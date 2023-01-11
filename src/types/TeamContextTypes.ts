@@ -59,3 +59,12 @@ export interface iPlayerData {
   position: null | string;
   id: number;
 }
+
+export interface iPlayer {
+  name: string;
+  position: string;
+  number: string;
+  userId: number;
+  teamId: number;
+  id: number;
+}

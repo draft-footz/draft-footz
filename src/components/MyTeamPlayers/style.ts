@@ -48,7 +48,7 @@ export const PlayerListStyled = styled.section`
 
     ul {
         height: 100%;
-        max-height: 177px;
+        max-height: 210px;
         overflow-y: auto;
         width: 100%;
         display: flex;
