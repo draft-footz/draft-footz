@@ -3,14 +3,9 @@ import {
   ButtonRight,
   ButtonSend,
 } from "../../styles/Buttons/style";
-import { StyledFormInput } from "../../styles/Inputs/style";
-import {
-  MyTeamPlayersStyled,
-  PlayerListStyled,
-  SearchPlayerStyled,
-} from "./style";
+import { MyTeamPlayersStyled, PlayerListStyled } from "./style";
 import trashIcon from "../../img/trash.svg";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { TeamContext } from "../../context/TeamContext";
 import { TournamentContext } from "../../context/TournamentContext";
 import gk from "../../img/team_positions/goleiro.svg";
@@ -20,7 +15,7 @@ import meia from "../../img/team_positions/meia.svg";
 import ata from "../../img/team_positions/atacante.svg";
 
 export const MyTeamPlayers = () => {
-  const { deletePlayer, teamId, getPlayersFromATeam, playersData } =
+  const { deletePlayer, getPlayersFromATeam, playersData } =
     useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
 

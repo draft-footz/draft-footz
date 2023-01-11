@@ -5,7 +5,6 @@ import { ButtonLeft } from "../../styles/Buttons/style";
 import {
   DivPlayers,
   DivPosition,
-  ImgPlayer,
   ImgPosition,
   LiPosition,
   MainTeamPosition,

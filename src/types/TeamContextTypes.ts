@@ -10,7 +10,6 @@ export interface iTeamContext {
   deleteTeam: () => Promise<void>;
   getAllTeams: () => Promise<void>;
   createNewPlayer: (data: iDataNewPlayer) => Promise<void>;
-  updatePlayer: (data: iUpdatePlayer) => Promise<void>;
   deletePlayer: (playerId: number) => Promise<void>;
   getPlayersFromATeam: () => Promise<void>;
   disableButton: boolean;
