@@ -17,7 +17,7 @@ import { UserContext } from "./UsersContext";
 export const TournamentContext = createContext({} as iTournamentContext);
 
 export const TournamentProvider = ({ children }: iTournamentProvider) => {
-  const { user, token } = useContext(UserContext);
+  const { user, token, setLoading } = useContext(UserContext);
   const {
     createMultipleTournamentMatches,
     deleteAllMatchesFromTournament,
@@ -27,7 +27,7 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
   const [myTournaments, setMyTournaments] = useState([] as iDataTournament[]);
   const [allTournaments, setAllTournaments] = useState([] as iDataTournament[]);
   const [tournamentData, setTournamentData] = useState({} as iDataTournament);
-
+  
   // Dashboard page conditional rendering
   const [disableButton, setDisableButton] = useState(false);
   const [readingTournament, setReadingTournament] = useState(
