@@ -121,8 +121,9 @@ export const DashboardPage = () => {
                                 Torneios
                             </ButtonMenu>
                         </DivLogoAndButtons>
-                        <DivButtonLogout>
-                            <ButtonLogout onClick={logoutDashboard}>
+                        <DivButtonLogout onClick={logoutDashboard}>
+                            <ButtonLogout>
+
                                 <img src="/logout.png" alt="" />
                                 <p>Fazer logout</p>
                             </ButtonLogout>
