@@ -82,7 +82,7 @@ export const DashboardPage = () => {
                     <button onClick={() => setDashboardPage(3)}>
                         Torneios
                     </button>
-                    <button>Logout</button>
+                    <button onClick={logoutDashboard}>Logout</button>
                 </div>
             </HeaderDashboard>
             <FigureBackgroundDashboard>

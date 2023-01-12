@@ -7,7 +7,6 @@ import { api } from "../../services/api";
 import { UserContext } from "../../context/UsersContext";
 import { TeamContext } from "../../context/TeamContext";
 import { ButtonRight } from "../../styles/Buttons/style";
-import emblem from "../../img/standard_emblem.jpg";
 import standard_team_shield from "../../img/standard_team_shield.png";
 
 export const MyTeamDetails = () => {

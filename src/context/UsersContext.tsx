@@ -1,6 +1,5 @@
 import { useState, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { api } from "../services/api";
 import {
   iDataLogin,
@@ -22,7 +21,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
 
   useEffect(() => {
     let localToken = localStorage.getItem("@draft-footz/userToken");
-    let localUser = localStorage.getItem("@draft-footz/user");
+    let localUser  = localStorage.getItem("@draft-footz/user");
 
     if (localToken && localUser) {
       let newUser = JSON.parse(localUser);
@@ -57,7 +56,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         sucessLogin()
         setToken(response.data.accessToken)
         setUser(response.data.user)
-        window.localStorage.setItem("@draft-footz/userToken", JSON.stringify(response.data.accessToken));
+        window.localStorage.setItem("@draft-footz/userToken", response.data.accessToken);
         window.localStorage.setItem("@draft-footz/user", JSON.stringify(response.data.user));
         
         navigate("/dashboard") 
@@ -87,6 +86,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     } catch {
       setToken("");
       localStorage.removeItem("@draft-footz/userToken");
+      localStorage.removeItem("@draft-footz/user");
     }
   };
 
@@ -105,7 +105,8 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   }
 
   const logoutDashboard: () => void = () => {
-    localStorage.clear()
+    localStorage.removeItem("@draft-footz/userToken");
+    localStorage.removeItem("@draft-footz/user");
     navigate("/");
   }
 
@@ -124,7 +125,6 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         login,
         setLogin,
         logoutDashboard
-
       }}
     >
       {children}
