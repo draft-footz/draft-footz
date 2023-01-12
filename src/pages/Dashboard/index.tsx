@@ -35,8 +35,7 @@ import { UserContext } from "../../context/UsersContext";
 
 export const DashboardPage = () => {
 
-    const { setReadingTournament, dashboardPage, setDashboardPage } =
-        useContext(TournamentContext);
+  const { setReadingTournament, dashboardPage, setDashboardPage } = useContext(TournamentContext);
 
 
   const { logoutDashboard } = useContext(UserContext);
@@ -97,16 +96,16 @@ export const DashboardPage = () => {
                                 <img src="/logo.svg" alt="" />
                             </FigureLogo>
 
-                            <ButtonMenu
-                                className={isSelected([2, 5, 6])}
-                                onClick={() => {
-                                    setDashboardPage(2);
-                                    setReadingTournament(false);
-                                }}
-                            >
-                                Meus torneios
-                            </ButtonMenu>
 
+              <ButtonMenu
+                className={isSelected([2, 5, 6, 7])}
+                onClick={() => {
+                  setDashboardPage(2);
+                  setReadingTournament(false);
+                }}
+              >
+                Meus torneios
+              </ButtonMenu>
                             <ButtonMenu
                                 className={
                                     dashboardPage === 14 ? "selected" : ""

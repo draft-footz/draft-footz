@@ -96,4 +96,11 @@ export const TeamDetails = styled.section`
     gap: 22px;
     flex-wrap: wrap;
   }
+
+  >div:nth-child(4){
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
 `;

@@ -11,7 +11,7 @@ import emblem from "../../img/standard_emblem.jpg";
 import standard_team_shield from "../../img/standard_team_shield.png";
 
 export const MyTeamDetails = () => {
-  const { setDashboardPage } = useContext(TournamentContext);
+  const { setDashboardPage, allTournaments} = useContext(TournamentContext);
   const { user } = useContext(UserContext);
   const { teamData, setTeamData, getPlayersFromATeam, playersData } =
     useContext(TeamContext);
@@ -31,6 +31,8 @@ export const MyTeamDetails = () => {
     getPlayersFromATeam();
     getMyTeam();
   }, []);
+
+  const tournamentsWin = allTournaments.filter(tournament => tournament.champion?.id === user.teamId).length
 
   return (
     <MainStyled>
@@ -71,8 +73,8 @@ export const MyTeamDetails = () => {
           </h4>
         </div>
         <div>
-          <h4>Títulos:</h4>
-          <span>-</span>
+          <h4> Torneios Vencidos: </h4>
+          {tournamentsWin}
         </div>
       </TeamDetails>
     </MainStyled>
