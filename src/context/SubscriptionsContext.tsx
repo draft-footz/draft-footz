@@ -20,8 +20,8 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
     useEffect(() => {
         if(readingTournament) {
             getTournamentSubscriptions(readingTournament.id);
-            console.log(subscriptions)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [readingTournament, updater]);
 
     // Subscriptions Data
@@ -67,7 +67,7 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
 
     async function deleteAllTournamentSubscriptions(tournamentId: number) {
         let tournamentSubscriptions = [] as iSubscriptionData[];
-        
+
         try {   
             await api.get<iSubscriptionData[]>(`subscriptions?&tournamentId=${tournamentId}`, {
                 headers: { authorization: `Bearer ${token}`}

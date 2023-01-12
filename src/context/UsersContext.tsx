@@ -1,6 +1,5 @@
 import { useState, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { api } from "../services/api";
 import {
   iDataLogin,
@@ -87,6 +86,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     } catch {
       setToken("");
       localStorage.removeItem("@draft-footz/userToken");
+      localStorage.removeItem("@draft-footz/user");
     }
   };
 
@@ -105,7 +105,8 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   }
 
   const logoutDashboard: () => void = () => {
-    localStorage.clear()
+    localStorage.removeItem("@draft-footz/userToken");
+    localStorage.removeItem("@draft-footz/user");
     navigate("/");
   }
 
@@ -124,7 +125,6 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         login,
         setLogin,
         logoutDashboard
-
       }}
     >
       {children}
