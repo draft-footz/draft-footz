@@ -1,20 +1,13 @@
 import axios from "axios";
 
-// const baseUrl = {
-//   render: "https://draft-footz.onrender.com/",
-//   radmin: {
-//     RenanPC: "http://26.38.126.227:3001",
-//   },
-//   localhost: "http://localhost:3001",
-// };
-
-// Validando se está no PC do Renan
-// caso seja o PC do Renan a baseUrl deve ser localhost,
-// caso contrário, IP do radmin
-
-// const RenanPC = localStorage.getItem('@RenanPC');
+const baseUrl = () => {
+  let config = localStorage.getItem('@apiConfig');
+  if (config === 'renan') return 'http://127.0.0.1:3001';
+  if (config === 'radmin') return 'http://26.38.126.227:3001';
+  return 'https://draft-footz.onrender.com/';
+};
 
 export const api = axios.create({
-  baseURL: "https://draft-footz.onrender.com/",
+  baseURL: baseUrl(),
   timeout: 5000,
 });
