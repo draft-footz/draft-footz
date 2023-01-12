@@ -37,7 +37,7 @@ export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
             setDisabled(false);
             setButtonText("Entrar");
         }
-    }, [tournamentSubs])
+    }, [tournamentSubs, teamData])
 
 
     function handleClick () {
