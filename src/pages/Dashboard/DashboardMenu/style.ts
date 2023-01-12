@@ -45,6 +45,7 @@ export const StyledDashboardMenu = styled.div`
             background-color: rgba(33,33,33,95%);
             display: none;
             flex-direction: column;
+            z-index: 2;
 
             width: max-content;
             position: absolute;
@@ -74,6 +75,10 @@ export const StyledDashboardMenu = styled.div`
                 padding: 0.5rem 2.5rem;
                 border-bottom-left-radius: 1.5em;
                 border-bottom-right-radius: 1.5em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
             }
             }
 

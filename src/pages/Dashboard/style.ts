@@ -17,14 +17,17 @@ export const StyledDashboard = styled.div`
     flex-direction: column;
     width: 100%;
 
+
     >div:nth-child(2) {
       background-color: rgba(21, 21, 21, 70%);
       margin: auto;
-      width: 95vw;
+      width: calc(100vw - 3.25rem);
       padding: 1rem 2rem;
       box-sizing: border-box;
       height: calc( 95vh - 5rem);
       margin-top: 2.5vh;
+      border-radius: 1.5rem;
+      position: relative;
 
       display: flex;
       align-items: center;
@@ -47,6 +50,9 @@ export const StyledDashboard = styled.div`
       >div:nth-child(2) {
         margin-top: 0;
         height: 40rem;
+        border-radius: 0;
+        border-top-right-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
       }
     }
 

@@ -74,45 +74,66 @@ export const ButtonSent = styled.button`
 // button de navegar para ESQUERDA
 export const ButtonLeft = styled.button`
   position: absolute;
-  top: calc(50% - 2rem);
-  left: -2rem;
-  width: 4rem;
-  height: 4rem;
-  z-index: 1;
+  top: calc(50% - 3rem);
+  left: 0;
+  width: 1.5rem;
+  height: 6rem;
+  z-index: 2;
 
-  border-radius: 50%;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
 
-  background-color: rgba(217, 217, 217, 10%);
+  background-color: rgba(7, 7, 7, 30%);
   color: white;
 
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 400;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+
+  @media (max-width: 800px) {
+    top: calc(50% - 3rem);
+    left: 0;
+    height: 6rem;
+    width: 1.25rem;
+  }
 `;
 
 // button de navegar para DIREITA
 export const ButtonRight = styled.button`
   position: absolute;
-  top: calc(50% - 2rem);
-  right: -2rem;
-  width: 4rem;
-  height: 4rem;
-  z-index: 1;
+  top: calc(50% - 3rem);
+  right: 0;
+  width: 1.5rem;
+  height: 6rem;
+  z-index: 2;
 
-  border-radius: 50%;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
 
-  background-color: rgba(217, 217, 217, 10%);
+  background-color: rgba(7, 7, 7, 30%);
   color: white;
 
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 400;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  :hover {
+    background-color: rgba(7,7,7, 100%);
+  }
+
+  @media (max-width: 800px) {
+    top: calc(50% - 3rem);
+    right: 0;
+    height: 6rem;
+    width: 1.25rem;
+  }
 `;
 
 // Button close modal

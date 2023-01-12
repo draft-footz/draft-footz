@@ -7,7 +7,7 @@ import { UserContext } from "../../../context/UsersContext";
 
 export const DashboardMenu = () => {
 
-    const { dashboardPage, setDashboardPage } = useContext(TournamentContext);
+    const { dashboardPage, setDashboardPage, setReadingTournament } = useContext(TournamentContext);
 
     function isSelected(pages: number[] | number) {
         if (typeof pages === "number") {
@@ -18,6 +18,11 @@ export const DashboardMenu = () => {
     };
 
     const { logoutDashboard } = useContext(UserContext);
+
+    function handleClickMyTournaments() {
+        setDashboardPage(2);
+        setReadingTournament(false);
+    };
 
     return (
         <StyledDashboardMenu>
@@ -32,7 +37,7 @@ export const DashboardMenu = () => {
                 <GiHamburgerMenu />
                 <div>
                     <nav>
-                        <button className={isSelected([2,5,6,7])}        onClick={() => setDashboardPage(2)} > Meus torneios </button>
+                        <button className={isSelected([2,5,6,7])}        onClick={handleClickMyTournaments}  > Meus torneios </button>
                         <button className={isSelected([14,15,16,17,19])} onClick={() => setDashboardPage(14)}> Meu time      </button>
                         <button className={isSelected(3)}                onClick={() => setDashboardPage(3)} > Torneios      </button>
                     </nav>

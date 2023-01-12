@@ -19,7 +19,6 @@ export const StyledTournamentCard = styled.li`
 
     >div:nth-child(1) {
         >img {
-            display: none;
             height: 2rem;
             width: 2rem;
             border-radius: 50%;
@@ -35,7 +34,6 @@ export const StyledTournamentCard = styled.li`
         >span {
             font-size: 1rem;
             font-weight: 400;
-            display: none;
         }
 
         >button {
@@ -59,8 +57,23 @@ export const StyledTournamentCard = styled.li`
         }
     }
 
+    @media (max-width: 1050px) {
+        >div:nth-child(2) {
+            >span {
+                display: none;
+            }
+        }
+    }
 
-    @media (min-width: 768px) {
+    @media (max-width: 900px) {
+        >div:nth-child(1) {
+            >img {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
         >div:nth-child(1) {
             >img {
                 display: block;
@@ -72,4 +85,41 @@ export const StyledTournamentCard = styled.li`
             }
         }
     }
+
+    @media (max-width: 730px) {
+        >div:nth-child(1) {
+            >img {
+                display: block;
+            }
+        }
+        >div:nth-child(2) {
+            >span {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 550px) {
+        >div:nth-child(1) {
+            >img {
+                display: none;
+            }
+        }
+        >div:nth-child(2) {
+            >span {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 500px) {
+        padding: 0.75rem 1rem 0.75rem 1.5rem;
+        >div:nth-child(1) >h2 {
+            font-size: 0.875rem;
+        }
+        >div:nth-child(2) >button {
+            font-size: 0.875rem;
+        }
+    }
+
 `;
