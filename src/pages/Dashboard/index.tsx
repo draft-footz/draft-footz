@@ -37,9 +37,6 @@ export const DashboardPage = () => {
 
   const { setReadingTournament, dashboardPage, setDashboardPage } = useContext(TournamentContext);
 
-
-  const { logoutDashboard } = useContext(UserContext);
-
     function isSelected(pages: number[] | number) {
         if (typeof pages === "number") {
             return dashboardPage === pages ? "selected" : "";
