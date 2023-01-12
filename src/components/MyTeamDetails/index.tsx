@@ -11,11 +11,11 @@ import standard_team_shield from "../../img/standard_team_shield.png";
 import { SubscriptionsContext } from "../../context/SubscriptionsContext";
 
 export const MyTeamDetails = () => {
-  const { setDashboardPage, allTournaments} = useContext(TournamentContext);
+  const { setDashboardPage, allTournaments } = useContext(TournamentContext);
   const { user } = useContext(UserContext);
   const { teamData, setTeamData, getPlayersFromATeam, playersData } =
     useContext(TeamContext);
-  const { allSubscriptions } = useContext(SubscriptionsContext)
+  const { allSubscriptions } = useContext(SubscriptionsContext);
 
   const teamId = user.teamId;
 
@@ -33,12 +33,16 @@ export const MyTeamDetails = () => {
     getMyTeam();
   }, []);
 
-  const tournamentsWin = allTournaments.filter(tournament => tournament.champion?.id === user.teamId).length
-  const tournamentsCurrent = allSubscriptions.filter(sub => sub.team.id === teamData.id)
+  const tournamentsWin = allTournaments.filter(
+    (tournament) => tournament.champion?.id === user.teamId
+  ).length;
+  const tournamentsCurrent = allSubscriptions.filter(
+    (sub) => sub.team.id === teamData.id
+  );
 
   return (
     <MainStyled>
-              <ButtonRight onClick={() => setDashboardPage(16)}>{">"}</ButtonRight>
+      <ButtonRight onClick={() => setDashboardPage(16)}>{">"}</ButtonRight>
       <TeamHeaderStyled>
         <figure>
           {teamData.logo !== "" ? (
@@ -48,6 +52,13 @@ export const MyTeamDetails = () => {
           )}
         </figure>
         <h2>{teamData.name}</h2>
+        <button>
+          <img
+            src={editIcon}
+            alt="Editar Time"
+            onClick={() => setDashboardPage(19)}
+          />
+        </button>
       </TeamHeaderStyled>
       <TeamDetails>
         <h3>

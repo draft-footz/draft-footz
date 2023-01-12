@@ -13,7 +13,7 @@ import zag from "../../img/team_positions/zagueiro.svg";
 import lat from "../../img/team_positions/lateral.svg";
 import meia from "../../img/team_positions/meia.svg";
 import ata from "../../img/team_positions/atacante.svg";
-import { FaTrash } from "react-icons/fa"
+import { FaTrash } from "react-icons/fa";
 
 export const MyTeamPlayers = () => {
   const { deletePlayer, getPlayersFromATeam, playersData } =
@@ -32,6 +32,7 @@ export const MyTeamPlayers = () => {
   return (
     <MyTeamPlayersStyled>
       <ButtonLeft onClick={() => setDashboardPage(15)}>{"<"}</ButtonLeft>
+      <ButtonRight onClick={() => setDashboardPage(17)}>{">"}</ButtonRight>
       <PlayerListStyled>
         <h2>{playersData.length}/7 Jogadores</h2>
         <ul>
@@ -65,7 +66,7 @@ export const MyTeamPlayers = () => {
                 <div>
                   <h3>{player.position}</h3>
                   <h4>{player.number}</h4>
-                  <FaTrash onClick={() => handleClick(player.id)}/>
+                  <FaTrash onClick={() => handleClick(player.id)} />
                 </div>
               </li>
             );
