@@ -21,6 +21,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   const [disableButton, setDisableButton] = useState(false);
   const [teamData, setTeamData] = useState({} as iTeamData);
   const [playersData, setPlayersData] = useState<iPlayerData[]>([]);
+  const { setLoading } = useContext(UserContext)
 
   const userId = user.id;
   const teamId = user.teamId;
@@ -28,7 +29,8 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   async function createNewTeam(data: iDataNewTeam) {
     data.userId = userId;
     setDisableButton(true);
-    try {
+    try {  
+      setLoading(true)
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("teams", data);
       if (requisition.status === 201) {
@@ -41,12 +43,14 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       toast.error("Ops...algo deu errado!");
     } finally {
       setDisableButton(true);
+      setLoading(false)
     }
   }
 
   async function updateTeam(data: iDataNewTeam) {
     data.userId = userId;
     try {
+      setLoading(true)
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.patch(`teams/${teamId}`, data);
       if (requisition.status === 200) {
@@ -55,6 +59,8 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       }
     } catch (err) {
       toast.error("Ops...algo deu errado!");
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -64,6 +70,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
     };
 
     try {
+      setLoading(true)
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       await api.delete(`teams/${teamId}`, {
         data: data,
@@ -71,6 +78,8 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       updateUserTeam(null);
     } catch (err) {
       toast.error("Ops...algo deu errado!");
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -107,6 +116,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
 
     setDisableButton(true);
     try {
+      setLoading(true)
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const requisition = await api.post("players", data);
       if (requisition.status === 201) {
@@ -117,6 +127,7 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       toast.error("Ops...algo deu errado!");
     } finally {
       setDisableButton(true);
+      setLoading(false)
     }
   }
 

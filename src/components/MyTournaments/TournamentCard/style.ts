@@ -57,13 +57,13 @@ export const StyledTournamentCard = styled.div`
         display: flex;
         align-items: center;
         gap: 2.875rem;
-        font-size: 1.25rem;
+        font-size: 18px;
         font-weight: 500;
         @media (max-width: 800px) {
           font-size: 14px;
         }
         > h2 {
-          font-size: 1.25rem;
+          font-size: 18px;
           font-weight: 400;
           color: #b6b6b6;
           @media (max-width: 800px) {
@@ -108,13 +108,13 @@ export const StyledTournamentCard = styled.div`
       > span {
         display: flex;
         gap: 2.875rem;
-        font-size: 1.25rem;
+        font-size: 18px;
         font-weight: 600;
         @media (max-width: 800px) {
           font-size: 14px;
         }
         > h2 {
-          font-size: 1.25rem;
+          font-size: 18px;
           color: #b6b6b6;
           font-weight: 500;
           @media (max-width: 800px) {

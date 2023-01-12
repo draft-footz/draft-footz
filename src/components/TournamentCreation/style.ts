@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const FormTournamentCreation = styled.form`
   position: sticky;
-  width: 70%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-   animation: translateShow 0.4s ease;
+  animation: translateShow 0.4s ease;
+  margin-top: 40px;
 
   @keyframes translateShow {
     0% {
@@ -73,7 +74,8 @@ export const DivInputDisabled = styled.div`
   display: flex;
   justify-content: space-between;
   max-width: 600px;
-  width: 100%;
+  width: 80%;
+  
   align-items: center;
   @media (max-width: 800px) {
     flex-direction: column;
@@ -90,11 +92,10 @@ export const DivInputInfoTournament = styled.div`
 `;
 
 export const InputTournamentType = styled.input`
-  width: 60%;
+  width: 80%;
   height: 40px;
   background-color: var(--inputsBackground);
   border-radius: 4px;
-  padding-left: 10px;
   color: white;
   font-size: 12px;
   outline: none;
@@ -104,9 +105,9 @@ export const InputTournamentType = styled.input`
 export const DivButtonCreateTournament = styled.div`
   display: flex;
   justify-content: center;
-
+  width: 75%;
   button {
-    width: 50%;
+    width: 60%;
     max-width: 284px;
     height: 44px;
   }
