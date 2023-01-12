@@ -22,6 +22,7 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
     createMultipleTournamentMatches,
     deleteAllMatchesFromTournament,
   } = useContext(MatchesContext);
+
   const { deleteAllTournamentSubscriptions } = useContext(SubscriptionsContext);
 
   const [myTournaments, setMyTournaments] = useState([] as iDataTournament[]);
@@ -117,13 +118,13 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
     try {
       await api
         .delete(`tournaments/${tournamentId}`, { data: data })
-        .then(() => {
+        .then(async () => {
           toast.success("Torneio deletado com sucesso!");
           getMyTournaments();
-          deleteAllMatchesFromTournament(tournamentId);
-          deleteAllTournamentSubscriptions(tournamentId);
-        });
-    } catch {
+        })
+        .then(() => deleteAllMatchesFromTournament(tournamentId))
+        .then(() => deleteAllTournamentSubscriptions(tournamentId))
+    } catch (err){
       toast.error("Falha ao deletar torneio.");
     }
   }
@@ -148,9 +149,9 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
 
   async function getAllTournaments() {
     try {
-      await api.get<iDataTournament[]>(`tournaments`).then((response) => {
-        setAllTournaments(response.data);
-      });
+      await api.get<iDataTournament[]>(`tournaments`)
+      .then((response) => { setAllTournaments(response.data) });
+
     } catch {
       toast.error("Falha no servidor ao ler torneios.");
     }

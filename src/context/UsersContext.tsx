@@ -22,7 +22,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
 
   useEffect(() => {
     let localToken = localStorage.getItem("@draft-footz/userToken");
-    let localUser = localStorage.getItem("@draft-footz/user");
+    let localUser  = localStorage.getItem("@draft-footz/user");
 
     if (localToken && localUser) {
       let newUser = JSON.parse(localUser);
@@ -57,7 +57,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
         sucessLogin()
         setToken(response.data.accessToken)
         setUser(response.data.user)
-        window.localStorage.setItem("@draft-footz/userToken", JSON.stringify(response.data.accessToken));
+        window.localStorage.setItem("@draft-footz/userToken", response.data.accessToken);
         window.localStorage.setItem("@draft-footz/user", JSON.stringify(response.data.user));
         
         navigate("/dashboard") 
