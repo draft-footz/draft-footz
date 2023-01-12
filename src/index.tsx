@@ -4,6 +4,7 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import { GlobalStyle } from "./styles/global";
 import { BrowserRouter } from "react-router-dom";
+import { UsersProvider } from "./context/UsersContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,9 +12,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+          <BrowserRouter>
+            <UsersProvider>
+              <App />
+            </UsersProvider>
+          </BrowserRouter>
   </React.StrictMode>
 );
 reportWebVitals();

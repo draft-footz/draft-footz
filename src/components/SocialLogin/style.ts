@@ -9,10 +9,14 @@ export const SocialLoginButton = styled.button`
   font-size: 14px;
   line-height: 21px;
 
-  width: 150px;
+  width: 130px;
   padding: 10px;
   gap: 10px;
 
   background: var(--inputsBackground);
   border-radius: 6px;
+
+  @media (min-width: 375px) {
+    width: 145px;
+  }
 `;

@@ -1,53 +1,60 @@
 import styled from "styled-components";
 
-export const Main = styled.main`
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+export const StyledDashboard = styled.div`
+  background-image: url('./bg-dashboard.png');
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  overflow: auto;
 
-  .section-dashboard {
-    background-color: #21212191;
-    width: 80%;
-    height: 80%;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .div-menu {
-    background-color: #1e1e1e;
+  >main {
     display: flex;
     flex-direction: column;
-    width: 30%;
-    height: 100%;
-    align-items: center;
-  }
-  .div-menu button {
     width: 100%;
+
+
+    >div:nth-child(2) {
+      background-color: rgba(21, 21, 21, 70%);
+      margin: auto;
+      width: calc(100vw - 3.25rem);
+      padding: 1rem 2rem;
+      box-sizing: border-box;
+      height: calc( 95vh - 5rem);
+      margin-top: 2.5vh;
+      border-radius: 1.5rem;
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
-  .logo {
-    margin-top: 40px;
-    margin-bottom: 33px;
-  }
-  .first-button-menu {
-    margin-top: 60px;
-  }
-  .button-logout {
-    height: 51px;
-  }
-  .div-logo-and-buttons {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .div-button-logout {
-    display: flex;
-    align-items: flex-end;
-    width: 100%;
-    height: 100%;
-    background-color: #1e1e1e;
+
+
+
+  @media (min-width: 800px) {
+    
+    >main {
+      margin: auto;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 64rem;
+      max-width: 95%;
+
+      >div:nth-child(2) {
+        margin-top: 0;
+        height: 40rem;
+        border-radius: 0;
+        border-top-right-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+      }
+    }
+
   }
 `;
