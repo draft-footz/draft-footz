@@ -94,8 +94,9 @@ export const PlayerListStyled = styled.section`
         align-items: center;
         gap: 27px;
 
-        img:hover {
+        svg:hover {
           cursor: pointer;
+          filter: brightness(0.9);
         }
       }
 

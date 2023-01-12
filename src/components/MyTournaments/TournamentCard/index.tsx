@@ -1,4 +1,4 @@
-import { StyledTournamentCard } from "./style"
+import { StyledTournamentCard } from "./style";
 import { iDataTournament } from "../../../types/TournamentContextTypes";
 import { ButtonRight } from "../../../styles/Buttons/style";
 import { useContext } from "react";
@@ -6,11 +6,10 @@ import { TournamentContext } from "../../../context/TournamentContext";
 import { SubscriptionsContext } from "../../../context/SubscriptionsContext";
 
 interface iTournamentCardProps {
-    tournament: iDataTournament;
+  tournament: iDataTournament;
 }
 
 export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
-
     const { setDashboardPage } = useContext(TournamentContext);
     const { subscriptions } = useContext(SubscriptionsContext);
 
@@ -39,3 +38,4 @@ export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
         </StyledTournamentCard>
     );
 };
+

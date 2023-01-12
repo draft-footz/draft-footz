@@ -6,7 +6,6 @@ import { failMatch } from "../utils/toast";
 import { SubscriptionsContext } from "./SubscriptionsContext";
 import { TournamentContext } from "./TournamentContext";
 import { UserContext } from "./UsersContext";
-
 export const MatchesContext = createContext({} as iMatchesContext);
 
 export const MatchesProvider = ({children}: iMatchesProvider) => {
@@ -17,7 +16,6 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
 
     // Matches Data
     const [tournamentMatches, setTournamentMatches] = useState([] as iMatchData[]);
-
     useEffect(() => {
         if(readingTournament) {
             readThisTournamentMatches(readingTournament.id);
@@ -27,7 +25,6 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
     const semiFinalsI  = tournamentMatches.find(match => match.order === 5);
     const semiFinalsII = tournamentMatches.find(match => match.order === 6);
     const grandFinal   = tournamentMatches.find(match => match.order === 7);
-
     // Functions
     async function createTournamentMatch(tournamentId: number, order: number) {
         let data = {
@@ -43,7 +40,6 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
             failMatch()
         };
     };
-
     async function createMultipleTournamentMatches(tournamentId: number, numberOfMatches: number) {
         let created = 0;
         while ( numberOfMatches > created){
@@ -51,14 +47,12 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
             created++
         };
     };
-
     async function deleteTournamentMatch(matchId: number) {
         api.delete(`matches/${matchId}`, {
             headers : { authorization: `Bearer ${token}`},
             data: { userId: user.id }
         })
     };
-
     async function deleteAllMatchesFromTournament(tournamentId: number) {
         await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
         .then((response) => response.data.map(match => match.id))
@@ -66,12 +60,10 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
             deleteTournamentMatch(id);
         }));
     };
-
     async function readThisTournamentMatches(tournamentId: number) {
         await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
         .then((response) => setTournamentMatches(response.data));
     };
-
     async function updateMatchTeams(matchId: number, data: iMatchTeams, subscriptions?: number[]) {
         try {
             api.patch(`matches/${matchId}`, data, { headers: { authorization: `Bearer ${token}`}})
