@@ -7,7 +7,6 @@ export const MyTeamPlayersStyled = styled.main`
   justify-content: center;
   align-items: center;
   gap: 28px;
-  animation: translateShow 0.4s ease;
 
   @keyframes translateShow {
     0% {

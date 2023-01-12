@@ -38,6 +38,7 @@ export const MyTeamDetails = () => {
 
   return (
     <MainStyled>
+              <ButtonRight onClick={() => setDashboardPage(16)}>{">"}</ButtonRight>
       <TeamHeaderStyled>
         <figure>
           {teamData.logo !== "" ? (
@@ -49,7 +50,6 @@ export const MyTeamDetails = () => {
         <h2>{teamData.name}</h2>
       </TeamHeaderStyled>
       <TeamDetails>
-        <ButtonRight onClick={() => setDashboardPage(16)}>{">"}</ButtonRight>
         <h3>
           Dono do time: <span>{user.name}</span>
         </h3>
