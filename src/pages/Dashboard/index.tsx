@@ -30,8 +30,8 @@ import { NoTournament } from "../../components/NoTournament";
 import { TeamTournament } from "../../components/TeamTournament";
 import { MyTeamPosition } from "../../components/MyTeamPosition";
 import { MatchesProvider } from "../../context/MatchesContext";
-import { TournamentsViewPage } from "./TournamentsViewPage";
 import { UserContext } from "../../context/UsersContext";
+import { TournamentsView } from "../../components/TournamentsView";
 
 export const DashboardPage = () => {
 
@@ -46,6 +46,8 @@ export const DashboardPage = () => {
     }
     
     const [open, setOpen] = useState(false);
+
+    const { logoutDashboard } = useContext(UserContext);
     return (
         <>
             <HeaderDashboard>
@@ -79,7 +81,7 @@ export const DashboardPage = () => {
                     <button onClick={() => setDashboardPage(3)}>
                         Torneios
                     </button>
-                    <button onClick={logoutDashboard}>Logout</button>
+                    <button onClick={() => logoutDashboard()}>Logouteeee</button>
                 </div>
             </HeaderDashboard>
             <FigureBackgroundDashboard>
@@ -92,17 +94,15 @@ export const DashboardPage = () => {
                             <FigureLogo onClick={() => setDashboardPage(0)}>
                                 <img src="/logo.svg" alt="" />
                             </FigureLogo>
-
-
-              <ButtonMenu
-                className={isSelected([2, 5, 6, 7])}
-                onClick={() => {
-                  setDashboardPage(2);
-                  setReadingTournament(false);
-                }}
-              >
-                Meus torneios
-              </ButtonMenu>
+                            <ButtonMenu
+                                className={isSelected([2, 5, 6, 7])}
+                                onClick={() => {
+                                setDashboardPage(2);
+                                setReadingTournament(false);
+                                }}
+                            >
+                                Meus torneios
+                            </ButtonMenu>
                             <ButtonMenu
                                 className={
                                     dashboardPage === 14 ? "selected" : ""
@@ -121,9 +121,8 @@ export const DashboardPage = () => {
                                 Torneios
                             </ButtonMenu>
                         </DivLogoAndButtons>
-
                         <DivButtonLogout>
-                            <ButtonLogout>
+                            <ButtonLogout onClick={logoutDashboard}>
                                 <img src="/logout.png" alt="" />
                                 <p>Fazer logout</p>
                             </ButtonLogout>
@@ -134,7 +133,7 @@ export const DashboardPage = () => {
                             {dashboardPage === 0 && <Welcome />}
                             {dashboardPage === 1 && <TournamentCreation />}
                             {dashboardPage === 2 && <MyTournaments />}
-                            {dashboardPage === 3 && <TournamentsViewPage />}
+                            {dashboardPage === 3 && <TournamentsView />}
                             {dashboardPage === 5 && <NoTournament />}
                             {dashboardPage === 6 && <TournamentKeys />}
                             {dashboardPage === 7 && <TeamTournament />}

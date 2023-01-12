@@ -70,7 +70,6 @@ export const TournamentKeys = () => {
                             </div>
                         }
                 </div>
-                <ButtonRight onClick={() => setDashboardPage(7)}> {">"} </ButtonRight>
             </div>
             {
                 isModalOpen &&

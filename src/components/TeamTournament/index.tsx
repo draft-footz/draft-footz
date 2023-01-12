@@ -20,9 +20,7 @@ export const TeamTournament = () => {
     const { subscriptions } = useContext(SubscriptionsContext);
     const { playersData } = useContext(TeamContext);
 
-    const approvedSubscriptions = subscriptions.filter(
-        (subscription) => subscription.accepted === true
-    );
+    const approvedSubscriptions = subscriptions.filter(subscription => subscription.accepted);
 
     return (
         <>

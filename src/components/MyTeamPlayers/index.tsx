@@ -33,7 +33,6 @@ export const MyTeamPlayers = () => {
     <MyTeamPlayersStyled>
       <PlayerListStyled>
         <ButtonLeft onClick={() => setDashboardPage(15)}>{"<"}</ButtonLeft>
-        <ButtonRight onClick={() => setDashboardPage(17)}>{">"}</ButtonRight>
         <h2>{playersData.length}/7 Jogadores</h2>
         <ul>
           {playersData.map((player) => {

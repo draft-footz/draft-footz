@@ -50,12 +50,23 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
 
     async function getTournamentSubscriptions(tournamentId: number) {
         try {   
-            api.get<iSubscriptionData[]>(`subscriptions?&tournamentId=${tournamentId}`)
+            await api.get<iSubscriptionData[]>(`subscriptions?&tournamentId=${tournamentId}`)
             .then((response) => {
                 setSubscriptions(response.data);
             });
         } catch {
             toast.error('Falha ao ler pedidos de inscrição do torneio.');
+        };
+    };
+
+    async function returnTournamentSubscriptions(tournamentId: number, setState: React.Dispatch<React.SetStateAction<iSubscriptionData[]>>) {
+        try {   
+            const response = await api.get<iSubscriptionData[]>(`subscriptions?&tournamentId=${tournamentId}`)
+            if(response.status === 200) {
+                setState(response.data);
+            }
+        } catch {
+            setState([]);
         };
     };
 
@@ -108,7 +119,8 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
             deleteAllTournamentSubscriptions,
             updateSubscription,
             askToSubscribe,
-            refreshSubscriptions
+            refreshSubscriptions,
+            returnTournamentSubscriptions
         }} >
             {children}
         </SubscriptionsContext.Provider>
