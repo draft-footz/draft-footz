@@ -69,7 +69,7 @@ export const MyTeamDetails = () => {
             Torneios Disputados: <span> {tournamentsCurrent.length}</span>
           </h4>
           <h4>
-            Quantidade de jogadores: <span>{playersData.length}</span>
+            Jogadores: <span>{playersData.length}</span>
           </h4>
         </div>
         <div>

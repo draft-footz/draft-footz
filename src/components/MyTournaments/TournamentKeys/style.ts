@@ -40,6 +40,7 @@ const options = {
     }
   `,
 };
+
 export const StyledTournamentKeys = styled.div<iProps>`
   display: flex;
   flex-direction: column;
@@ -59,6 +60,7 @@ export const StyledTournamentKeys = styled.div<iProps>`
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     display: flex;
+
     > a {
       width: 33%;
       height: 100%;
@@ -109,9 +111,24 @@ export const StyledTournamentKeys = styled.div<iProps>`
       padding: 2rem 4rem;
       position: relative;
       overflow-y: auto;
+      transition: .5s;
 
       height: 100%;
       justify-content: center;
+
+      @media (max-width: 1050px) {
+        gap: 2rem;
+        padding: 1rem;
+
+        >div {
+          width: 100%;
+          align-items: center;
+        }
+
+        >div > div {
+          width: 95%;
+        }
+      }
 
       > div {
         display: flex;

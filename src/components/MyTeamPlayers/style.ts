@@ -57,7 +57,7 @@ export const PlayerListStyled = styled.section`
     }
   }
   @media (max-width: 800px) {
-    width: 110%;
+    width: 90%;
   }
   max-width: 710px;
   display: flex;

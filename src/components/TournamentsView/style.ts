@@ -10,6 +10,10 @@ export const StyledTournamentsView = styled.div`
     align-items: center;
     gap: 3rem;
 
+    @media (max-width: 800px) {
+        padding: 2rem .5rem;
+    }
+
 
     >h1 {
         font-weight: 400;
