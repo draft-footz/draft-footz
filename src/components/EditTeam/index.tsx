@@ -14,7 +14,7 @@ import { UserContext } from "../../context/UsersContext";
 export const EditTeam = () => {
   const { updateTeam } = useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
-  const { loading } = useContext(UserContext)
+  const { loading } = useContext(UserContext);
 
   const {
     register,
@@ -56,8 +56,10 @@ export const EditTeam = () => {
           {errors.logo?.message && <span>{errors.logo.message}</span>}
         </div>
         <div>
-          <ButtonSent onClick={() => setDashboardPage(15)}>Voltar</ButtonSent>
-          <ButtonSend type="submit">{loading ? <Loading src="/spinner.png" /> : "Salvar alterações"}</ButtonSend>
+          <ButtonSend onClick={() => setDashboardPage(15)}>Voltar</ButtonSend>
+          <ButtonSend type="submit">
+            {loading ? <Loading src="/spinner.png" /> : "Salvar alterações"}
+          </ButtonSend>
         </div>
       </form>
     </EditTeamStyled>
