@@ -12,7 +12,7 @@ Draft Footz é um projeto desenvolvido em React + Typescript com o objetivo de f
 
 [Figma](https://www.figma.com/file/JcuZkWrF8DFVWx9xIhFxWA/Draft-Footz?node-id=212%3A1488)
 <br>
-[Deploy da aplicação](https://draft-footz.vercel.app/)
+[Deploy da aplicação](https://a-five-vert.vercel.app/)
 
 # 🤔 Por quê o Draft Footz?
 
@@ -92,6 +92,74 @@ Durante o desenvolvimento do Draft Footz, foram utilizadas as seguintes dependê
     "yup": "^0.32.11"
   }
 ```
+
+# 👨‍👨‍👦‍👦 Desenvolvedores
+
+<img align="left" width="180" src="https://ca.slack-edge.com/TQZR39SET-U03LP2TTUTZ-8ad150453df2-512" />
+<h2>Tech Lead</h2>
+<p>Victor Lima, São Paulo</p>
+
+[Linkedin](https://www.linkedin.com/in/vitor-lima/) <br>
+[Github](https://github.com/victorglim)
+
+<br><br>
+
+<img align="right" width="180" src="https://ca.slack-edge.com/TQZR39SET-U03K5DP1Y2E-1e53532065f1-512" />
+<h2>Scrum Master & QA</h2>
+<p>Richard Jacomo, São Paulo</p>
+
+[Linkedin](https://www.linkedin.com/in/richard-jacomo/) <br>
+[Github](https://github.com/RichardJacomo)
+
+<br><br>
+
+<img align="left" width="180" src="https://i.imgur.com/qheLGC6.jpg" />
+<h2>Product Owner & QA</h2>
+<p>Augusto Matavelli, São Paulo</p>
+
+[Linkedin](https://www.linkedin.com/in/augustomatavelli/) <br>
+[Github](https://github.com/augustomatavelli)
+
+<br><br>
+
+<img align="right" width="210" src="https://i.imgur.com/AJt6pI8.png" />
+<h2>Quality Assurance</h2>
+<p>Renan Dutra, Rio Grande do Sul</p>
+
+[Linkedin](https://www.linkedin.com/in/renangdutra/) <br>
+[Github](https://github.com/rgranatodutra)
+
+<br><br>
+
+<img align="left" width="180" src="https://ca.slack-edge.com/TQZR39SET-U03KJRXENFN-7b7ae959cf2a-512" />
+<h2>Quality Assurance</h2>
+<p>Arthur Vinicius, Minas Gerais</p>
+
+[Linkedin](https://www.linkedin.com/in/ferreiraarthurvinicius/) <br>
+[Github](https://github.com/ArthurViniciusBA1)
+
+<br><br>
+
+<img align="right" width="180" src="https://ca.slack-edge.com/TQZR39SET-U03MMGSA0RJ-93bbbbcc469b-512" />
+<h2>Quality Assurance</h2>
+<p>Leonardo Cunha, Paraná</p>
+
+[Linkedin](https://www.linkedin.com/in/leonardo-cunha-balhana-487612116/) <br>
+[Github](https://github.com/leonardo-cb)
+
+<br><br>
+
+<img align="left" width="180" src="https://avatars.githubusercontent.com/u/106606239?v=4" />
+<h2>Quality Assurance</h2>
+<p>Neilson Oliveira, Bahia</p>
+
+[Linkedin](https://www.linkedin.com/in/neilson-oliveira/) <br>
+[Github](https://github.com/neyprodigio)
+
+<br><br>
+
+
+
 
 
 
