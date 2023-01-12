@@ -50,13 +50,25 @@ export const ButtonSend = styled.button`
   height: 46px;
   border-radius: 4px;
   border: none;
-  padding-left: 10px;
   color: white;
   background-color: var(--primary);
   font-size: 15px;
   font-weight: 600;
   min-width: 200px;
   transition: 0.5s;
+`;
+
+export const ButtonSent = styled.button`
+  width: 100%;
+  height: 46px;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  min-width: 200px;
+  transition: 0.5s;
+  background-color: #1e1e1e;
 `;
 
 // button de navegar para ESQUERDA

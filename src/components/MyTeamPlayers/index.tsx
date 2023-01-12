@@ -13,6 +13,7 @@ import zag from "../../img/team_positions/zagueiro.svg";
 import lat from "../../img/team_positions/lateral.svg";
 import meia from "../../img/team_positions/meia.svg";
 import ata from "../../img/team_positions/atacante.svg";
+import { FaTrash } from "react-icons/fa"
 
 export const MyTeamPlayers = () => {
   const { deletePlayer, getPlayersFromATeam, playersData } =
@@ -65,11 +66,7 @@ export const MyTeamPlayers = () => {
                 <div>
                   <h3>{player.position}</h3>
                   <h4>{player.number}</h4>
-                  <img
-                    src={trashIcon}
-                    alt="Apagar jogador"
-                    onClick={() => handleClick(player.id)}
-                  />
+                  <FaTrash onClick={() => handleClick(player.id)}/>
                 </div>
               </li>
             );

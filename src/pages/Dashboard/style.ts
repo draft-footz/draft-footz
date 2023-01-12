@@ -39,6 +39,7 @@ export const SectionDashboard = styled.section`
 
   > main {
     width: 70%;
+    overflow-x: hidden;
   }
   @media (max-width: 800px) {
     justify-content: center;

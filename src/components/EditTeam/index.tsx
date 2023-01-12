@@ -5,13 +5,16 @@ import { useForm } from "react-hook-form";
 import { iDataNewTeam } from "../../types/TeamContextTypes";
 import { EditTeamStyled } from "./style";
 import { StyledFormInput } from "../../styles/Inputs/style";
-import { ButtonSend } from "../../styles/Buttons/style";
+import { ButtonSend, ButtonSent } from "../../styles/Buttons/style";
 import { editTeamFormSchema } from "./schema";
 import { TournamentContext } from "../../context/TournamentContext";
+import { Loading } from "../../pages/Register/style";
+import { UserContext } from "../../context/UsersContext";
 
 export const EditTeam = () => {
   const { updateTeam } = useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
+  const { loading } = useContext(UserContext)
 
   const {
     register,
@@ -53,8 +56,8 @@ export const EditTeam = () => {
           {errors.logo?.message && <span>{errors.logo.message}</span>}
         </div>
         <div>
-          <ButtonSend onClick={() => setDashboardPage(15)}>Voltar</ButtonSend>
-          <ButtonSend type="submit">Salvar alterações</ButtonSend>
+          <ButtonSent onClick={() => setDashboardPage(15)}>Voltar</ButtonSent>
+          <ButtonSend type="submit">{loading ? <Loading src="/spinner.png" /> : "Salvar alterações"}</ButtonSend>
         </div>
       </form>
     </EditTeamStyled>

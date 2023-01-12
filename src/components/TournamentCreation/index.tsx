@@ -13,34 +13,35 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { tournamentSchema } from "./schema";
-import { useContext } from "react"
+import { useContext } from "react";
 import { TournamentContext } from "../../context/TournamentContext";
 import { iDataCreateTournament } from "../../types/TournamentContextTypes";
 
 export const TournamentCreation = () => {
-
   const { createNewTournament, disableButton } = useContext(TournamentContext);
 
-  const { register, 
+  const {
+    register,
     handleSubmit,
-    formState: {
-      errors
-    }
+    formState: { errors },
   } = useForm<iDataCreateTournament>({
-    resolver: yupResolver(tournamentSchema)
+    resolver: yupResolver(tournamentSchema),
   });
 
-  function onSubmit (data: iDataCreateTournament) {
+  function onSubmit(data: iDataCreateTournament) {
     createNewTournament(data);
-  };
-
+  }
 
   return (
     <FormTournamentCreation onSubmit={handleSubmit(onSubmit)} noValidate>
       <DivGlobalTournament>
         <DivInputTitle>
           <label htmlFor="name"> Nome do torneio </label>
-          <InputTournamentCreation type="text" placeholder="Título" {...register("name")} />
+          <InputTournamentCreation
+            type="text"
+            placeholder="Título"
+            {...register("name")}
+          />
           {errors.name && <span> errors.name.message </span>}
         </DivInputTitle>
         <DivInputDisabled>

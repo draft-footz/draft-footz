@@ -38,8 +38,8 @@ export const StyledTournamentListCard = styled.li`
     }
 
     > svg {
-      width: 2em;
-      height: 2em;
+      width: 21px;
+      height: 21px;
       opacity: 65%;
 
       :hover {

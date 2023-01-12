@@ -8,10 +8,13 @@ import { StyledFormInput } from "../../styles/Inputs/style";
 import { ButtonSend } from "../../styles/Buttons/style";
 import { CreatePlayerStyled } from "./style";
 import { TournamentContext } from "../../context/TournamentContext";
+import { UserContext } from "../../context/UsersContext";
+import { Loading } from "../../pages/Register/style";
 
 export const CreatePlayer = () => {
   const { createNewPlayer } = useContext(TeamContext);
   const { setDashboardPage } = useContext(TournamentContext);
+  const { loading } = useContext(UserContext)
 
   const {
     register,
@@ -56,7 +59,7 @@ export const CreatePlayer = () => {
         </div>
         <div>
           <ButtonSend onClick={() => setDashboardPage(16)}>Voltar</ButtonSend>
-          <ButtonSend type="submit">Cadastrar jogador</ButtonSend>
+          <ButtonSend type="submit">{loading ? <Loading src="/spinner.png" /> : "Cadastrar jogador"}</ButtonSend>
         </div>
       </form>
     </CreatePlayerStyled>
