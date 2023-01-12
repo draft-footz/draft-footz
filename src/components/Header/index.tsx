@@ -33,7 +33,7 @@ const Header = () => {
       </div>
       <div className={open ? "div-menu" : "none"}>
         <div>
-          <button onClick={() => setOpen(false)}>X</button>
+          <button className="x" onClick={() => setOpen(false)}>X</button>
         </div>
         <button>Início</button>
         <button>Quem somos</button>

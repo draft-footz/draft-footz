@@ -35,30 +35,32 @@ export const TournamentCreation = () => {
   return (
     <FormTournamentCreation onSubmit={handleSubmit(onSubmit)} noValidate>
       <DivGlobalTournament>
-        <DivInputTitle>
-          <label htmlFor="name"> Nome do torneio </label>
-          <InputTournamentCreation
-            type="text"
-            placeholder="Título"
-            {...register("name")}
-          />
-          {errors.name && <span> errors.name.message </span>}
-        </DivInputTitle>
-        <DivInputDisabled>
-          <DivInputInfoTournament>
-            <label htmlFor="step">Fases do campeonato</label>
-            <InputTournamentType
-              className="input-tournament-type"
+       
+          <DivInputTitle>
+            <label htmlFor="name"> Nome do torneio </label>
+            <InputTournamentCreation
               type="text"
-              disabled
-              placeholder="Eliminatórias"
+              placeholder="Título"
+              {...register("name")}
             />
-          </DivInputInfoTournament>
-          <DivInputInfoTournament>
-            <label htmlFor="teams">Número de times</label>
-            <InputTournamentType type="text" disabled placeholder="8" />
-          </DivInputInfoTournament>
-        </DivInputDisabled>
+            {errors.name && <span> errors.name.message </span>}
+          </DivInputTitle>
+          <DivInputDisabled>
+            <DivInputInfoTournament>
+              <label htmlFor="step">Fases do campeonato</label>
+              <InputTournamentType
+                className="input-tournament-type"
+                type="text"
+                disabled
+                placeholder="Eliminatórias"
+              />
+            </DivInputInfoTournament>
+            <DivInputInfoTournament>
+              <label htmlFor="teams">Número de times</label>
+              <InputTournamentType type="text" disabled placeholder="8" />
+            </DivInputInfoTournament>
+          </DivInputDisabled>
+        
         <DivButtonCreateTournament>
           <ButtonSend disabled={disableButton}>Criar torneio</ButtonSend>
         </DivButtonCreateTournament>

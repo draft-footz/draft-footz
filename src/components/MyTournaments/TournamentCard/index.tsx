@@ -24,12 +24,12 @@ export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
 
             <div>
                 <div>
-                    <span> Administrador do torneio: <h2> {tournament.userName} </h2></span>
+                    <span className="tst"><span className="adm">Administrador do torneio:</span> <h2> {tournament.userName} </h2></span>
                 </div>
 
                 <div>
-                    <span> Tipo de campeonato: <h2> Eliminatórias </h2></span>
-                    <span> Total de times: <h2>  {totalTeams}/8 </h2></span>
+                    <span className="vtg"><span className="adm">Tipo de campeonato: </span> <h2> Eliminatórias </h2></span>
+                    <span className="vbg"><span className="md">Total de times:</span> {totalTeams}/8 </span>
                 </div>
                 <ButtonRight onClick={() => {
                     setDashboardPage(6);

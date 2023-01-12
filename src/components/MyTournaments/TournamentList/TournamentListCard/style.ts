@@ -30,11 +30,15 @@ export const StyledTournamentListCard = styled.li`
     align-items: center;
     gap: 1.5rem;
     > span {
+      display: none;
       font-size: 0.875rem;
       font-weight: 500;
-      @media (max-width: 800px) {
-        font-size: 12px;
+ 
+      @media (min-width: 500px) {
+        display: block;
       }
+
+      
     }
 
     > svg {

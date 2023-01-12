@@ -9,6 +9,24 @@ export const StyledTournamentCard = styled.div`
   margin: auto;
   height: 100%;
 
+  .adm {
+    display: none;
+  }
+
+  .vbg {
+    width: 300px;
+    display: flex;
+    gap: 1px;
+    
+    h2 {
+      margin-right: 50px;
+    }
+  }
+
+  .md {
+    width: 500px;
+  }
+
   > div {
     display: flex;
     align-items: center;
@@ -56,8 +74,8 @@ export const StyledTournamentCard = styled.div`
       > span {
         display: flex;
         align-items: center;
-        gap: 2.875rem;
-        font-size: 18px;
+        gap: 20px;
+        font-size: 13px;
         font-weight: 500;
         @media (max-width: 800px) {
           font-size: 14px;
@@ -107,7 +125,7 @@ export const StyledTournamentCard = styled.div`
 
       > span {
         display: flex;
-        gap: 2.875rem;
+        
         font-size: 18px;
         font-weight: 600;
         @media (max-width: 800px) {
@@ -129,4 +147,6 @@ export const StyledTournamentCard = styled.div`
       width: 90%;
     }
   }
+
+ 
 `;

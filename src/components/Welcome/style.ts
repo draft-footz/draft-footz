@@ -8,9 +8,21 @@ export const SectionWelcome = styled.div`
   align-items: center;
 
   h2 {
-    font-size: 18px;
+    font-size: 14px;
     text-align: center;
     margin-top: 30px;
     color: #ffffff;
+
+    @media (min-width: 375px) {
+      font-size: 15px;
+    }
+
+     @media (min-width: 425px) {
+      font-size: 17px;
+    }
+
+    @media (min-width: 700px) {
+      font-size: 20px;
+    }
   }
 `;

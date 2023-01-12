@@ -7,7 +7,15 @@ export const FormTournamentCreation = styled.form`
   justify-content: center;
   align-items: center;
   animation: translateShow 0.4s ease;
-  margin-top: 40px;
+  margin-top: 20px;
+
+  @media (min-width: 700px) {
+    margin-top: 5px;
+  }
+
+  @media (min-width: 800px) {
+    margin-top: 40px;
+  }
 
   @keyframes translateShow {
     0% {
@@ -41,27 +49,64 @@ export const FormTournamentCreation = styled.form`
   }
 `;
 export const DivGlobalTournament = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 50px;
+
+  @media (min-width: 700px) {
+    width: 90%;
+    
+  }
+
+  .flex-dr {
+    display: flex;
+  }
 `;
 
 export const DivInputTitle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+   
+  
+  @media (min-width: 375px) {
+    margin-left: 10px;
+  }
+
+  @media (min-width: 700px) {
+    justify-content: flex-start;
+    align-items: flex-start;
+   
+  }
 `;
 
 export const InputTournamentCreation = styled.input`
-  width: 70%;
+  width: 220px;
   height: 40px;
   background-color: var(--inputsBackground);
   border-radius: 4px;
-  padding-left: 10px;
+  padding-left: 20px;
   color: white;
   font-size: 12px;
   outline: none;
+
+  @media (min-width: 375px) {
+    width: 280px;
+  }
+
+  @media (min-width: 425px) {
+    width: 300px;
+  }
+
+  @media (min-width: 700px) {
+    width: 60%;
+  }
+
+  
 
   :focus {
     border: 2px solid #9f9f9f;
@@ -73,26 +118,35 @@ export const InputTournamentCreation = styled.input`
 export const DivInputDisabled = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: -20px;
   max-width: 600px;
-  width: 80%;
+  width: 100%;
   
   align-items: center;
-  @media (max-width: 800px) {
-    flex-direction: column;
+
+  @media (min-width: 700px) {
+    justify-content: flex-start;
     align-items: flex-start;
+    flex-direction: row;
+    width: 90%;
+    gap: 70px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+  
   }
+  
 `;
 
 export const DivInputInfoTournament = styled.div`
-  display: flex;
-  flex-direction: column;
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
 export const InputTournamentType = styled.input`
-  width: 80%;
+  width: 100%;
   height: 40px;
   background-color: var(--inputsBackground);
   border-radius: 4px;
@@ -105,7 +159,13 @@ export const InputTournamentType = styled.input`
 export const DivButtonCreateTournament = styled.div`
   display: flex;
   justify-content: center;
-  width: 75%;
+  width: 100%;
+  margin-top: -20px;
+
+  @media (min-width: 1000px) {
+    width: 80%;
+  }
+  
   button {
     width: 60%;
     max-width: 284px;

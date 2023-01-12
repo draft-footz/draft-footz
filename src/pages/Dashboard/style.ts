@@ -9,6 +9,10 @@ export const Main = styled.main`
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 800px) {
+    margin-top: 30px;
+  }
+
   .selected {
     background-color: var(--primary);
   }
@@ -101,6 +105,9 @@ export const ButtonLogout = styled.button`
 `;
 
 export const HeaderDashboard = styled.header`
+
+
+
   button {
     background-color: transparent;
   }
@@ -132,6 +139,7 @@ export const HeaderDashboard = styled.header`
     z-index: 5;
     width: 100vw;
     padding: 20px;
+    margin-bottom: 15px;
   }
 
   .div-open {

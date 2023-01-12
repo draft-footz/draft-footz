@@ -23,7 +23,8 @@ export const HeaderNav = styled.header`
 
     button {
       margin-top: 10px;
-      font-size: 20px;
+      font-size: 18px;
+      height: 30px;
     }
     > div {
       display: flex;
@@ -34,6 +35,10 @@ export const HeaderNav = styled.header`
         font-size: 24px;
       }
     }
+  }
+
+  .x {
+    position: absolute;
   }
 
   .div-header {
