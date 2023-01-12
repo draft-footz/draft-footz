@@ -80,7 +80,11 @@ export const TeamDetails = styled.section`
   }
 
   @media (max-width: 800px) {
-    width: 110%;
+    width: 90%;
+
+    > div {
+      padding: .5rem;
+    }
   }
   
   background: rgba(7, 6, 6, 0.37);

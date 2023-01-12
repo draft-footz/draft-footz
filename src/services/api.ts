@@ -8,6 +8,6 @@ const baseUrl = () => {
 };
 
 export const api = axios.create({
-  baseURL: 'https://draft-footz.onrender.com/',
+  baseURL: 'http://localhost:3001',
   timeout: 5000,
 });

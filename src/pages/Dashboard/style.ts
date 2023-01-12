@@ -33,6 +33,19 @@ export const StyledDashboard = styled.div`
       align-items: center;
       justify-content: center;
     }
+
+    @media (max-width: 800px) {
+      >div:nth-child(2) {
+        padding: 1rem;
+        width: calc(100vw - 2rem);
+      }
+    }
+    @media (max-width: 400px) {
+      >div:nth-child(2) {
+        padding: .25rem;
+        width: calc(100vw - 1rem);
+      }
+    }
   }
 
 
