@@ -7,7 +7,6 @@ export const MainStyled = styled.main`
   align-items: center;
   justify-content: center;
   gap: 60px;
-  animation: translateShow 0.4s ease;
 
   @keyframes translateShow {
     0% {

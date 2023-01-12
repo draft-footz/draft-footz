@@ -31,8 +31,8 @@ export const MyTeamPlayers = () => {
 
   return (
     <MyTeamPlayersStyled>
+      <ButtonLeft onClick={() => setDashboardPage(15)}>{"<"}</ButtonLeft>
       <PlayerListStyled>
-        <ButtonLeft onClick={() => setDashboardPage(15)}>{"<"}</ButtonLeft>
         <h2>{playersData.length}/7 Jogadores</h2>
         <ul>
           {playersData.map((player) => {
