@@ -125,7 +125,7 @@ export const DashboardPage = () => {
                             </ButtonMenu>
                         </DivLogoAndButtons>
 
-                        <DivButtonLogout>
+                        <DivButtonLogout onClick={logoutDashboard}>
                             <ButtonLogout>
                                 <img src="/logout.png" alt="" />
                                 <p>Fazer logout</p>
