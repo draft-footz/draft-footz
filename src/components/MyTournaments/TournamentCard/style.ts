@@ -8,6 +8,21 @@ export const StyledTournamentCard = styled.div`
   gap: 2.25rem;
   margin: auto;
   height: 100%;
+ 
+
+  .av {
+    animation: translateShow 0.4s ease;
+    @keyframes translateShow {
+      0% {
+        opacity: 0;
+        transform: translateX(-70%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0%);
+      }
+    }
+  }
 
   > div {
     display: flex;
@@ -40,7 +55,6 @@ export const StyledTournamentCard = styled.div`
     > div:nth-child(1) {
       box-sizing: border-box;
       width: 100%;
-
 
       padding: 1.25rem 2.5rem;
       background-color: rgba(7, 6, 6, 37%);

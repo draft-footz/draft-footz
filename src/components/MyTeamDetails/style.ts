@@ -26,6 +26,17 @@ export const TeamHeaderStyled = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
+  animation: translateShow 0.4s ease;
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
 
   figure {
     width: 100%;
@@ -56,6 +67,17 @@ export const TeamHeaderStyled = styled.div`
 export const TeamDetails = styled.section`
   width: 80%;
   max-width: 700px;
+  animation: translateShow 0.4s ease;
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
 
   @media (max-width: 800px) {
     width: 110%;
