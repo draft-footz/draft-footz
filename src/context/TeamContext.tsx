@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
 import {
@@ -26,6 +26,10 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
   const userId = user.id;
   const teamId = user.teamId;
 
+  useEffect(() => {
+    if(user.teamId) getPlayerTeam(user.teamId);
+  }, [user, token])
+
   async function createNewTeam(data: iDataNewTeam) {
     data.userId = userId;
     setDisableButton(true);
@@ -46,6 +50,11 @@ export const TeamProvider = ({ children }: iTeamProvider) => {
       setLoading(false)
     }
   }
+
+  async function getPlayerTeam(teamId: number) {
+      api.get<iTeamData>(`teams/${teamId}`)
+      .then((response) => setTeamData(response.data));
+  };
 
   async function updateTeam(data: iDataNewTeam) {
     data.userId = userId;

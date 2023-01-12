@@ -30,7 +30,7 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
     // Functions
     async function askToSubscribe(tournamentId: number, team: iTeamData) {
         let data = {
-            tournament: tournamentId,
+            tournamentId: tournamentId,
             team: {
                 name: team.name,
                 id: team.id
@@ -40,8 +40,8 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
         try {
             api.defaults.headers.common.authorization = `Bearer ${token}`;
             api.post('subscriptions', data)
-            .then(() => {
-                toast.success('Pedido de inscrição feito com sucesso!')
+            .then((res) => {
+                toast.success('Pedido de inscrição feito com sucesso!');   
             })
         } catch {
             toast.error('Falha na inscrição')
@@ -84,10 +84,7 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
                 headers: { authorization: `Bearer ${token}`}
             })
             .then((response) => { tournamentSubscriptions = response.data})
-            .then((response) => console.log(response));
 
-        } catch(err) {
-            console.log(err)
         } finally {
             if(tournamentSubscriptions) {
                 tournamentSubscriptions.forEach(subscription => deleteSubscription(subscription.id))
@@ -105,8 +102,6 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
                     authorization: `Bearer ${token}`
                 }
             })
-        } catch {
-            console.log('deu ruim')
         } finally {
             refreshSubscriptions();
         }

@@ -30,11 +30,6 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    console.log(token)
-    console.log(user)
-  }, [token, user])
-
   async function createNewUser(data: iDataNewUser) {
     let newData = { ...data, teamId: null };
 
