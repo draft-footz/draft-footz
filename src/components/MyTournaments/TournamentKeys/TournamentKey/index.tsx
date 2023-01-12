@@ -12,18 +12,18 @@ export const TournamentKey = ({ match, onClickFunc}: iMatchProps) => {
         <StyledTournamentKey winner={match.winner? match.winner.team : null} onClick={() => onClickFunc(match)}>
             <div>
                 <div>
-                    {match.teamA ? match.teamA.name : 'À definir'}
+                    {match.teamA ? match.teamA.name : 'À definir...'}
                 </div>
                 <div>
-                    {match.scores ? match.scores.teamA : 0}
+                    {match.scores ? match.scores.teamA : ''}
                 </div>
             </div>
             <div>
                 <div>
-                    {match.teamB ? match.teamB.name : 'À definir'}
+                    {match.teamB ? match.teamB.name : 'À definir...'}
                 </div>
                 <div>
-                    {match.scores ? match.scores.teamB : 0}
+                    {match.scores ? match.scores.teamB : ''}
                 </div>
             </div>
         </StyledTournamentKey>

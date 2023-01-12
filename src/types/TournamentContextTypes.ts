@@ -11,7 +11,7 @@ export interface iTournamentContext {
 
     createNewTournament: (data: iDataCreateTournament) => void;
     updateTournament: (data: iDataUpdateTournament) => void;
-    setTournamentChampion: (teamId: number, tournamentId: number) => void;
+    setTournamentChampion: (winner: iChampion, tournamentId: number) => void;
     deleteTournament: (teamId: number) => void;
     getMyTournaments: () => void;
     getAllTournaments: () => void;
@@ -34,7 +34,6 @@ export interface iDataCreateTournament {
     name: string;
     type?: tTournamentType;
     numberOfTeams?: tNumberOfTeams;
-    champion?: number | null;
     userId: number;
     userName: string;
     id: number;
@@ -47,7 +46,10 @@ export interface iDataTournament {
     name: string;
     type: tTournamentType;
     numberOfTeams: tNumberOfTeams;
-    champion?: number | null;
+    champion?: {
+        id: number;
+        name: string
+    }
 };
 
 export interface iDataUpdateTournament {
@@ -55,7 +57,15 @@ export interface iDataUpdateTournament {
     name?: string;
     type?: tTournamentType;
     numberOfTeams?: tNumberOfTeams;
-    champion?: number | null;
+    champion?: {
+        id: number;
+        name: string
+    }
 };
+
+export interface iChampion {
+    id: number;
+    name: string;
+}
 
 export type tReadingTournament = false | iDataTournament;

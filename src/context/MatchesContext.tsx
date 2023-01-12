@@ -7,14 +7,13 @@ import { SubscriptionsContext } from "./SubscriptionsContext";
 import { TournamentContext } from "./TournamentContext";
 import { UserContext } from "./UsersContext";
 export const MatchesContext = createContext({} as iMatchesContext);
+
 export const MatchesProvider = ({children}: iMatchesProvider) => {
-    const { user, token } = useContext(UserContext);
-    const { readingTournament } = useContext(TournamentContext);
-    const { updateSubscription } = useContext(SubscriptionsContext);
+    const { user, token }         = useContext(UserContext);
+    const { readingTournament }   = useContext(TournamentContext);
+    const { updateSubscription }  = useContext(SubscriptionsContext);
     const [ updater, setUpdater ] = useState(true);
-    useEffect(() => {
-        api.defaults.headers.common.authorization = `Bearer ${token}`
-    }, [token]);
+
     // Matches Data
     const [tournamentMatches, setTournamentMatches] = useState([] as iMatchData[]);
     useEffect(() => {
@@ -22,6 +21,7 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
             readThisTournamentMatches(readingTournament.id);
         };
     }, [readingTournament, updater]);
+
     const semiFinalsI  = tournamentMatches.find(match => match.order === 5);
     const semiFinalsII = tournamentMatches.find(match => match.order === 6);
     const grandFinal   = tournamentMatches.find(match => match.order === 7);
@@ -33,7 +33,6 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
             order: order,
         };
         try {
-            console.log(`Criando partida ${order}`)
             api.post<iMatchData>('matches', data, {
                 headers: { authorization: `Bearer ${token}`}
             });
@@ -49,37 +48,25 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
         };
     };
     async function deleteTournamentMatch(matchId: number) {
-        try {
-            api.delete(`matches/${matchId}`, {
-                headers : { authorization: `Bearer ${token}`},
-                data: { userId: user.id }
-            })
-        } catch {
-            console.log('deu ruim');
-        };
+        api.delete(`matches/${matchId}`, {
+            headers : { authorization: `Bearer ${token}`},
+            data: { userId: user.id }
+        })
     };
     async function deleteAllMatchesFromTournament(tournamentId: number) {
-        try {
-            await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
-            .then((response) => response.data.map(match => match.id))
-            .then((response) => response.forEach(id => {
-                deleteTournamentMatch(id);
-            }));
-        } catch {
-            console.log('Falha ao deletar partidas do torneio.');
-        };
+        await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
+        .then((response) => response.data.map(match => match.id))
+        .then((response) => response.forEach(id => {
+            deleteTournamentMatch(id);
+        }));
     };
     async function readThisTournamentMatches(tournamentId: number) {
-        try {
-            await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
-            .then((response) => setTournamentMatches(response.data));
-        } catch {
-            console.log('Falha ao ler partidas do torenio.');
-        };
+        await api.get<iMatchData[]>(`matches?&tournamentId=${tournamentId}`)
+        .then((response) => setTournamentMatches(response.data));
     };
     async function updateMatchTeams(matchId: number, data: iMatchTeams, subscriptions?: number[]) {
         try {
-            api.patch(`matches/${matchId}`, data)
+            api.patch(`matches/${matchId}`, data, { headers: { authorization: `Bearer ${token}`}})
             .then(() => {
                 toast.success('Você definiu os times da partida com sucesso!');
                 setUpdater(!updater);
@@ -91,9 +78,10 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
             toast.error('Falha ao definir times da partida.');
         };
     };
+
     async function updateMatchScores(matchId: number,data: iMatchScores, order: number) {
         try {
-            api.patch(`matches/${matchId}`, data)
+            api.patch(`matches/${matchId}`, data, { headers: { authorization: `Bearer ${token}`}})
             .then(() => {
                 toast.success('Você definiu o palcar da partida com sucesso!');
                 setUpdater(!updater);
@@ -145,6 +133,7 @@ export const MatchesProvider = ({children}: iMatchesProvider) => {
                         }
                     })};
                  };
+                 
             });
         } catch {
             toast.error('Falha ao definir placar da partida.');

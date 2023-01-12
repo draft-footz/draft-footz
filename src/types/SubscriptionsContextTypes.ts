@@ -11,6 +11,7 @@ export interface iSubscriptionsContext {
     deleteAllTournamentSubscriptions: (tournamentId: number) => void;
     updateSubscription: (subscriptionId: number, accepted: boolean) => void;
     askToSubscribe: (tournamentId: number, team: iTeamData) => void;
+    refreshSubscriptions: () => void;
 };
 
 export interface iSubscriptionData {
