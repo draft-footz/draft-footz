@@ -56,6 +56,17 @@ export const ButtonSend = styled.button`
   font-weight: 600;
   min-width: 200px;
   transition: 0.5s;
+  animation: translateShow 0.4s ease;
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
 `;
 
 export const ButtonSent = styled.button`

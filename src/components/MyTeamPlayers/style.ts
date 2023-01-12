@@ -45,6 +45,17 @@ export const PlayerListStyled = styled.section`
   border-radius: 6px;
   padding: 14px 34px;
   width: 80%;
+  animation: translateShow 0.4s ease;
+  @keyframes translateShow {
+    0% {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
   @media (max-width: 800px) {
     width: 110%;
   }

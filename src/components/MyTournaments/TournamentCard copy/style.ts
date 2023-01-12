@@ -9,6 +9,7 @@ export const StyledTournamentCard = styled.div`
   margin: auto;
   height: 100%;
 
+
   > div {
     display: flex;
     align-items: center;

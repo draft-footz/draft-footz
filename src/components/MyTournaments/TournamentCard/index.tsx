@@ -22,7 +22,7 @@ export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
                 <h1> {tournament.name} </h1>
             </div>
 
-            <div>
+            <div className="av">
                 <div>
                     <span> Administrador do torneio: <h2> {tournament.userName} </h2></span>
                 </div>
