@@ -1,46 +1,108 @@
-# Getting Started with Create React App
+<h1 align="center">
+  Draft Footz ⚽
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align = "center">
+Draft Footz é um projeto desenvolvido em React + Typescript com o objetivo de facilitar a organização de torneios de futebol entre amigos ou clubes menores. Com o Draft Footz, os usuários podem criar e entrar em torneios de Fut7 de maneira organizada e simples.
+</p>
 
-## Available Scripts
+![Screenshot_5](https://user-images.githubusercontent.com/109770689/212016652-7a6c5177-6b29-402b-b819-7fea7beb0bc5.png)
 
-In the project directory, you can run:
+# 📁 Acesso ao projeto
 
-### `yarn start`
+[Figma](https://www.figma.com/file/JcuZkWrF8DFVWx9xIhFxWA/Draft-Footz?node-id=212%3A1488)
+<br>
+[Deploy da aplicação](https://draft-footz.vercel.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# 🤔 Por quê o Draft Footz?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+O gerenciamento de torneios e jogos é essencial para qualquer equipe esportiva. Com nosso aplicativo, você pode facilmente cadastrar seu time e participar de campeonatos, tornando a organização e planejamento dos jogos muito mais fácil. Além disso, o aplicativo fornece uma plataforma centralizada para que todos os jogadores e membros da equipe possam se comunicar e ficar atualizados sobre as próximas partidas e eventos. Não perca mais tempo lidando com papelada desnecessária e dificuldades de comunicação - nosso aplicativo é a solução perfeita para tornar sua equipe mais organizada e eficiente. Crie sua conta agora e experimente a praticidade e facilidade de gerenciar seus jogos e torneios com nosso aplicativo.
 
-### `yarn test`
+![Screenshot_7](https://user-images.githubusercontent.com/109770689/212016708-b3bca245-b82d-4ec7-8c5d-2034180589c0.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+# 🏆 Como utilizar o Draft Footz?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para utilizar o Draft Footz, é necessário que somente líderes de torneios ou donos de times se cadastrem no site para criar torneios, times ou até mesmo entrar em torneios de outros usuários. Dessa maneira, é possível solucionar a problemática da falta de organização nos jogos de futebol entre amigos.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Screenshot_6](https://user-images.githubusercontent.com/109770689/212016765-7ec40b99-757e-477b-b7f7-7a68d45bdff4.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+# 🛠️ Como faço para executar em minha máquina?
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Para rodar o projeto, é necessário ter o Node.js e o yarn instalados em sua máquina.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone o repositório:
+```  
+git clone https://github.com/draft-footz/draft-footz.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. Acesse a pasta do projeto:
+```  
+cd draft-footz
+```
+3. Instale as dependências:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```  
+yarn install
+```
 
-## Learn More
+4. Execute o projeto:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```  
+yarn start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. Acesse a url http://localhost:3000 para visualizar o projeto.
+
+
+# 🔔 Dependências externas
+
+Durante o desenvolvimento do Draft Footz, foram utilizadas as seguintes dependências:
+
+```json
+{
+    "@hookform/resolvers": "^2.9.10",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-bootstrap": "^0.32.32",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-icons": "^3.0.0",
+    "@types/react-lottie": "^1.2.6",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.26",
+    "@types/yup": "^0.32.0",
+    "framer-motion": "^8.1.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.41.5",
+    "react-input-mask": "^2.0.4",
+    "react-router-dom": "^6.6.1",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.1",
+    "styled-components": "^5.3.6",
+    "typescript": "^4.4.2",
+    "web-vitals": "^2.1.0",
+    "yarn": "^1.22.19",
+    "yup": "^0.32.11"
+  }
+```
+
+# 👨‍👨‍👦‍👦 Colaboradores
+
+<img align="left" width="300" src="https://i.imgur.com/6kgJgrq.jpg" /><br><br><br><br><br><br>
+
+<img align="left" width="300" src="https://i.imgur.com/AJt6pI8.png" /><br><br><br><br><br><br>
+
+<img align="right" width="300" src="https://ca.slack-edge.com/TQZR39SET-U03K5DP1Y2E-1e53532065f1-512" /><br><br><br><br><br>
+
+
+
+
+
+
