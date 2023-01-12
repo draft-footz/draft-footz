@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState} from "react";
 import { SubscriptionsContext } from "../../../../context/SubscriptionsContext";
 import { ButtonCloseModal, ButtonSend } from "../../../../styles/Buttons/style";
 import { StyledAssignTeamsModal } from "./style";
 import { GoArrowSmallDown } from "react-icons/go"
-import { iMatchData, iWinner } from "../../../../types/MatchesContextTypes";
+import { iMatchData } from "../../../../types/MatchesContextTypes";
 import { TournamentContext } from "../../../../context/TournamentContext";
 import { MdOutlineUpdate } from "react-icons/md";
 import { MatchesContext } from "../../../../context/MatchesContext";
@@ -16,7 +16,7 @@ interface iAssignTeamsModalProps {
 export const AssignTeamsModal = ({ match, changeModalState }: iAssignTeamsModalProps) => {
 
     // Context functions and states
-    const { subscriptions, getTournamentSubscriptions  } = useContext(SubscriptionsContext);
+    const { subscriptions, refreshSubscriptions  } = useContext(SubscriptionsContext);
     const { updateMatchTeams } = useContext(MatchesContext);
     const { readingTournament } = useContext(TournamentContext);
 
@@ -28,14 +28,8 @@ export const AssignTeamsModal = ({ match, changeModalState }: iAssignTeamsModalP
     const findSelectedSubA = subscriptions.find(sub => sub.team?.id === selectedTeamA);
     const findSelectedSubB = subscriptions.find(sub => sub.team?.id === selectedTeamB);
 
-    function updateSubscriptions () {
-        if (readingTournament) {
-            getTournamentSubscriptions(readingTournament.id);
-        };
-    };
-
     function handleUpdateMatch () {
-        if( findSelectedSubA && findSelectedSubB ) {
+        if( findSelectedSubA && findSelectedSubB && readingTournament) {
             let matchData = {
                 teamA: {
                     id: findSelectedSubA.team.id,
@@ -65,13 +59,13 @@ export const AssignTeamsModal = ({ match, changeModalState }: iAssignTeamsModalP
             (
                 <span>
                     Seu torneio ainda não tem nenhum time inscrito.
-                    <MdOutlineUpdate onClick={updateSubscriptions}/>
+                    <MdOutlineUpdate onClick={refreshSubscriptions}/>
                 </span>
             )
             :
             (   
             <>
-                <h3> {matchesArr[match.order]} <MdOutlineUpdate onClick={updateSubscriptions}/> </h3>
+                <h3> {matchesArr[match.order]} <MdOutlineUpdate onClick={refreshSubscriptions}/> </h3>
                 <div>
                     <label> Time A </label>
                     <div>

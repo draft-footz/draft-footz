@@ -66,6 +66,7 @@ export const ButtonLeft = styled.button`
   left: -2rem;
   width: 4rem;
   height: 4rem;
+  z-index: 1;
 
   border-radius: 50%;
 
@@ -87,6 +88,7 @@ export const ButtonRight = styled.button`
   right: -2rem;
   width: 4rem;
   height: 4rem;
+  z-index: 1;
 
   border-radius: 50%;
 

@@ -34,11 +34,14 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
     false as tReadingTournament
   );
   const [dashboardPage, setDashboardPage] = useState(0);
+  const [updater, setUpdater] = useState(0);
 
+  const refreshMyTournaments = () => setUpdater(updater+1)
+  
   useEffect(() => {
     getMyTournaments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  }, [token, updater]);
 
   // Functions
   async function createNewTournament(data: iDataCreateTournament) {
@@ -92,11 +95,15 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
 
   async function setTournamentChampion(champion: iChampion, tournamentId: number) {
     api.defaults.headers.common.authorization = `Bearer ${token}`;
-    let data = { champion: champion };
+    let data = { 
+      userId: user.id,
+      champion: champion 
+    };
 
     try {
       await api.patch(`tournaments/${tournamentId}`, data).then(() => {
         toast.success("Campeão do torneio foi definido com sucesso!");
+        refreshMyTournaments()
       });
     } catch {
       toast.error("Falha ao definir campeão do torneio.");

@@ -11,13 +11,20 @@ export const SubscriptionsContext = createContext({} as iSubscriptionsContext);
 export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
 
     const { readingTournament } = useContext(TournamentContext);
-    const { token, user } = useContext(UserContext);
+    const { token } = useContext(UserContext);
+    const [ updater, setUpdater ] = useState(0);
+
+    const refreshSubscriptions = () => setUpdater(updater+1);
+    
 
     useEffect(() => {
+        console.log(`readingTournament`, readingTournament);
+        console.log(`updater`, updater)
         if(readingTournament) {
             getTournamentSubscriptions(readingTournament.id);
+            console.log(subscriptions)
         }
-    }, [readingTournament]);
+    }, [readingTournament, updater]);
 
     // Subscriptions Data
     const [subscriptions, setSubscriptions] = useState([] as iSubscriptionData[]);
@@ -46,15 +53,12 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
 
     async function getTournamentSubscriptions(tournamentId: number) {
         try {   
-            api.get<iSubscriptionData[]>('subscriptions', {
-                params: { tournamentId: tournamentId }
-            })
+            api.get<iSubscriptionData[]>(`subscriptions?&tournamentId=${tournamentId}`)
             .then((response) => {
                 setSubscriptions(response.data);
             });
         } catch {
             toast.error('Falha ao ler pedidos de inscrição do torneio.');
-            setSubscriptions([]);
         };
     };
 
@@ -91,6 +95,8 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
             })
         } catch {
             console.log('deu ruim')
+        } finally {
+            refreshSubscriptions();
         }
     }
 
@@ -100,7 +106,8 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
             getTournamentSubscriptions,
             deleteAllTournamentSubscriptions,
             updateSubscription,
-            askToSubscribe
+            askToSubscribe,
+            refreshSubscriptions
         }} >
             {children}
         </SubscriptionsContext.Provider>

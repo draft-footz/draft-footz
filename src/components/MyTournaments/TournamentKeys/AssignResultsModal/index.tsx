@@ -23,25 +23,25 @@ export const AssignResultsModal = ({ match, changeModalState }: iAssignResultsMo
 
     const matchesArr = ["", "Quartas de Final 1", "Quartas de Final 2", "Quartas de Final 3", "Quartas de Final 4", "Semi Final 1", "Semi Final 2", "Final"];
 
+    // Função do evento de selecionar ganhador
+    function handleSetWinner (e: React.ChangeEvent<HTMLSelectElement>) {
+        setWinnerId(Number(e.target.value));
+    };
+
     // Selecionar WinnerId automaticamente baseado na diferença do placar
     useEffect(() => {
         if(scoreTeamA !== undefined && scoreTeamB !== undefined && match.teamA && match.teamB){
             if(scoreTeamA > scoreTeamB ){ 
                 setWinnerId(match.teamA.id);
-                let data = {...match.teamA, team: "teamA"}
-                setWinnerData(data);
             };
             if(scoreTeamB > scoreTeamA) { 
                 setWinnerId(match.teamB.id);
-                let data = {...match.teamB, team: "teamB"}
-                setWinnerData(data);
             };
         };
-    }, [scoreTeamA, scoreTeamB, match.teamA, match.teamB]);
+    }, [scoreTeamA, scoreTeamB, match]);
 
-    // Função do evento de selecionar ganhador
-    function handleSetWinner (e: React.ChangeEvent<HTMLSelectElement>) {
-        setWinnerId(Number(e.target.value));
+    // Setar WinnerData automaticamente baseado no winnerId
+    useEffect(() => {
         if(match.teamA && match.teamB && match.teamA.id === winnerId) {
             let data = {...match.teamA, team: "teamA"};
             setWinnerData(data);
@@ -50,7 +50,7 @@ export const AssignResultsModal = ({ match, changeModalState }: iAssignResultsMo
             let data = {...match.teamB, team: "teamB"};
             setWinnerData(data)  ;
         };
-    };
+    }, [winnerId, match]);
 
     // Função do botão de salvar 
     function handleSaveButton () {
@@ -65,12 +65,10 @@ export const AssignResultsModal = ({ match, changeModalState }: iAssignResultsMo
             updateMatchScores(match.id, data, match.order);
 
             if( match.order === 7) {
-                
                 const champion = {
                     id: winnerData.id,
                     name: winnerData.name
-                }
-
+                };
                 setTournamentChampion(champion, readingTournament.id )
             };
 

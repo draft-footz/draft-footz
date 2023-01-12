@@ -20,8 +20,9 @@ export const StyledTournamentKeys = styled.div`
         transform: translateX(0%);
     }
     }
-    
-    >div {
+    >div{
+        position: relative;
+        >div {
         width: max-content;
         height: max-content;
         display: flex;
@@ -80,4 +81,6 @@ export const StyledTournamentKeys = styled.div`
             }
         }
     }
+    }
+    
 `;

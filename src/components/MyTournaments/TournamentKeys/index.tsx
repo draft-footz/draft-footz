@@ -1,5 +1,7 @@
 import { ReactNode, useContext, useEffect, useState } from "react";
 import { MatchesContext } from "../../../context/MatchesContext";
+import { TournamentContext } from "../../../context/TournamentContext";
+import { ButtonLeft, ButtonRight } from "../../../styles/Buttons/style";
 import { iMatchData } from "../../../types/MatchesContextTypes";
 import { ModalWrapper } from "../../ModalWrapper";
 import { AssignResultsModal } from "./AssignResultsModal";
@@ -10,6 +12,7 @@ import { TournamentKey } from "./TournamentKey";
 export const TournamentKeys = () => {
 
     const { tournamentMatches } = useContext(MatchesContext);
+    const { setDashboardPage } = useContext(TournamentContext);
 
     const quarterFinals = tournamentMatches.filter(match => match.order <=4 ).sort((matchA, matchB) => {
         if ( matchA.order < matchB.order ) { return -1 };
@@ -38,31 +41,36 @@ export const TournamentKeys = () => {
         <StyledTournamentKeys>
             <h1> Chaves do Torneio </h1>
             <div>
+                 <ButtonLeft onClick={() => setDashboardPage(2)}> {"<"} </ButtonLeft>
                 <div>
-                    {
-                        quarterFinals.map(match => <TournamentKey key={match.id} match={match}  onClickFunc={handleClick}/>)
-                    }
+                    
+                    <div>
+                        {
+                            quarterFinals.map(match => <TournamentKey key={match.id} match={match}  onClickFunc={handleClick}/>)
+                        }
+                    </div>
+                    <div>
+                        {
+                            semiFinals.map(match => <TournamentKey key={match.id} match={match} onClickFunc={handleClick}/>)
+                        }
+                    </div>
+                    <div>
+                        {
+                            grandFinal && <TournamentKey key={grandFinal.id} match={grandFinal} onClickFunc={handleClick}/>
+                        }
+                    </div>
+                        {
+                            grandFinal?.winner &&
+                            <div>
+                                <h2> Vencedor: </h2>
+                                <span> 
+                                    <img src="./trofeu.svg" alt="troféu"/> 
+                                    <h2> {grandFinal.winner.name} </h2>
+                                </span>
+                            </div>
+                        }
                 </div>
-                <div>
-                    {
-                        semiFinals.map(match => <TournamentKey key={match.id} match={match} onClickFunc={handleClick}/>)
-                    }
-                </div>
-                <div>
-                    {
-                        grandFinal && <TournamentKey key={grandFinal.id} match={grandFinal} onClickFunc={handleClick}/>
-                    }
-                </div>
-                    {
-                        grandFinal?.winner &&
-                        <div>
-                            <h2> Vencedor: </h2>
-                            <span> 
-                                <img src="./trofeu.svg" alt="troféu"/> 
-                                <h2> {grandFinal.winner.name} </h2>
-                            </span>
-                        </div>
-                    }
+                <ButtonRight onClick={() => setDashboardPage(7)}> {">"} </ButtonRight>
             </div>
             {
                 isModalOpen &&
