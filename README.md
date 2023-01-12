@@ -93,13 +93,7 @@ Durante o desenvolvimento do Draft Footz, foram utilizadas as seguintes dependê
   }
 ```
 
-# 👨‍👨‍👦‍👦 Colaboradores
 
-<img align="left" width="300" src="https://i.imgur.com/6kgJgrq.jpg" /><br><br><br><br><br><br>
-
-<img align="left" width="300" src="https://i.imgur.com/AJt6pI8.png" /><br><br><br><br><br><br>
-
-<img align="right" width="300" src="https://ca.slack-edge.com/TQZR39SET-U03K5DP1Y2E-1e53532065f1-512" /><br><br><br><br><br>
 
 
 
