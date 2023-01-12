@@ -23,12 +23,12 @@ const options = {
 
 export const StyledTournamentKey = styled.div<iMatchProps>`
     border: 2px solid #E5E5E5;
-    border-radius: 1.75rem;
+    border-radius: 1rem;
     background-color: #212121;
 
     // Tamanho das chaves
-    width: 15rem;
-    height: 5.25rem;
+    width: 9em;
+    height: 3.25rem;
 
     display: flex;
     flex-direction: column;
@@ -50,6 +50,8 @@ export const StyledTournamentKey = styled.div<iMatchProps>`
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 400;
         }
 
         // Time A - GOLS
@@ -59,6 +61,8 @@ export const StyledTournamentKey = styled.div<iMatchProps>`
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 400;
         }
     }
 
@@ -76,6 +80,8 @@ export const StyledTournamentKey = styled.div<iMatchProps>`
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 400;
 
         }
         
@@ -86,6 +92,15 @@ export const StyledTournamentKey = styled.div<iMatchProps>`
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 400;
         }
+    }
+
+    @media (max-width: 799px) {
+        // Tamanho das chaves
+        width: 20rem;
+        min-height: 6rem;
+
     }
 `

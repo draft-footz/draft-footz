@@ -25,6 +25,7 @@ export const TournamentKeys = () => {
 
     const [isModalOpen, changeModalState] = useState(false);
     const [currentModal, setCurrentModal] = useState(null as ReactNode);
+    const [showingPhase, changePhase] = useState<"quarters" | "semi" | "final">("quarters");
 
     function handleClick (match: iMatchData) {
         if(match.order <= 4 && (!match.teamA || !match.teamB)) {
@@ -38,37 +39,40 @@ export const TournamentKeys = () => {
     };
 
     return (
-        <StyledTournamentKeys>
+        <StyledTournamentKeys showingPhase={showingPhase}>
+            
             <h1> Chaves do Torneio </h1>
+            <nav>
+                <a href="#quarter-finals" onClick={() => changePhase("quarters")}> Quartas </a>
+                <a href="#semi-finals"    onClick={() => changePhase("semi")}> Semi </a>
+                <a href="#final"          onClick={() => changePhase("final")}> Final </a>
+            </nav>
+            <ButtonLeft onClick={() => setDashboardPage(2)}> {"<"} </ButtonLeft>
             <div>
-                 <ButtonLeft onClick={() => setDashboardPage(2)}> {"<"} </ButtonLeft>
                 <div>
-                    
-                    <div>
+                    <div id="quarter-finals">
                         {
                             quarterFinals.map(match => <TournamentKey key={match.id} match={match}  onClickFunc={handleClick}/>)
                         }
                     </div>
-                    <div>
+                    <div id="semi-finals">
                         {
                             semiFinals.map(match => <TournamentKey key={match.id} match={match} onClickFunc={handleClick}/>)
                         }
                     </div>
-                    <div>
+                    <div id="final">
+                        {
+                            grandFinal?.winner &&
+                            <aside className="champion">
+                                <img src="./trofeu.svg" alt="troféu"/> 
+                                <h2> {grandFinal.winner.name} </h2>
+                            </aside>
+                        }
                         {
                             grandFinal && <TournamentKey key={grandFinal.id} match={grandFinal} onClickFunc={handleClick}/>
                         }
                     </div>
-                        {
-                            grandFinal?.winner &&
-                            <div>
-                                <h2> Vencedor: </h2>
-                                <span> 
-                                    <img src="./trofeu.svg" alt="troféu"/> 
-                                    <h2> {grandFinal.winner.name} </h2>
-                                </span>
-                            </div>
-                        }
+
                 </div>
             </div>
             {

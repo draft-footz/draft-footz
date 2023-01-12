@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledTournamentList = styled.div`
     display: flex;
     flex-direction: column;
-    
+    width: 100%;
 
     >h1 {
         font-size: 1.5rem;
@@ -24,6 +24,7 @@ export const StyledTournamentList = styled.div`
         display: flex;
         flex-direction: column;
         gap: 8px;
+        width: 100%;
 
         height: calc( 62vh - 11rem);
         overflow: auto;

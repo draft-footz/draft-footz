@@ -8,12 +8,14 @@ import { UserContext } from "../../context/UsersContext";
 import { TeamContext } from "../../context/TeamContext";
 import { ButtonRight } from "../../styles/Buttons/style";
 import standard_team_shield from "../../img/standard_team_shield.png";
+import { SubscriptionsContext } from "../../context/SubscriptionsContext";
 
 export const MyTeamDetails = () => {
   const { setDashboardPage, allTournaments} = useContext(TournamentContext);
   const { user } = useContext(UserContext);
   const { teamData, setTeamData, getPlayersFromATeam, playersData } =
     useContext(TeamContext);
+  const { allSubscriptions } = useContext(SubscriptionsContext)
 
   const teamId = user.teamId;
 
@@ -32,6 +34,7 @@ export const MyTeamDetails = () => {
   }, []);
 
   const tournamentsWin = allTournaments.filter(tournament => tournament.champion?.id === user.teamId).length
+  const tournamentsCurrent = allSubscriptions.filter(sub => sub.team.id === teamData.id)
 
   return (
     <MainStyled>
@@ -44,13 +47,6 @@ export const MyTeamDetails = () => {
           )}
         </figure>
         <h2>{teamData.name}</h2>
-        <button>
-          <img
-            src={editIcon}
-            alt="Editar"
-            onClick={() => setDashboardPage(19)}
-          />
-        </button>
       </TeamHeaderStyled>
       <TeamDetails>
         <ButtonRight onClick={() => setDashboardPage(16)}>{">"}</ButtonRight>
@@ -59,16 +55,10 @@ export const MyTeamDetails = () => {
         </h3>
         <div>
           <h4>
-            Gols em campeonatos: <span>-</span>
-          </h4>
-          <h4>
-            Torneios em andamento: <span>-</span>
+            Torneios Disputados: <span> {tournamentsCurrent.length}</span>
           </h4>
           <h4>
             Quantidade de jogadores: <span>{playersData.length}</span>
-          </h4>
-          <h4>
-            Torneios finalizados: <span>-</span>
           </h4>
         </div>
         <div>

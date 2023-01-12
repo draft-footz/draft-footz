@@ -41,7 +41,6 @@ export const StyledTournamentCard = styled.div`
       box-sizing: border-box;
       width: 100%;
 
-
       padding: 1.25rem 2.5rem;
       background-color: rgba(7, 6, 6, 37%);
       height: 30%;

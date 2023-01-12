@@ -26,6 +26,7 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
 
     // Subscriptions Data
     const [subscriptions, setSubscriptions] = useState([] as iSubscriptionData[]);
+    const [allSubscriptions, setAllSubscriptions] = useState([] as iSubscriptionData[]);
 
     // Functions
     async function askToSubscribe(tournamentId: number, team: iTeamData) {
@@ -48,11 +49,19 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
         }
     }
 
+    async function getAllSubscriptions() {
+        await api.get<iSubscriptionData[]>(`subscriptions`)
+        .then((response) => {
+            setAllSubscriptions(response.data);
+        });
+    }
+
     async function getTournamentSubscriptions(tournamentId: number) {
         try {   
             await api.get<iSubscriptionData[]>(`subscriptions?&tournamentId=${tournamentId}`)
             .then((response) => {
                 setSubscriptions(response.data);
+                getAllSubscriptions();
             });
         } catch {
             toast.error('Falha ao ler pedidos de inscrição do torneio.');
@@ -115,7 +124,8 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
             updateSubscription,
             askToSubscribe,
             refreshSubscriptions,
-            returnTournamentSubscriptions
+            returnTournamentSubscriptions,
+            allSubscriptions
         }} >
             {children}
         </SubscriptionsContext.Provider>

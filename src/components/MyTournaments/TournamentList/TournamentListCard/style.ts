@@ -5,6 +5,7 @@ export const StyledTournamentListCard = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   background-color: rgba(7, 6, 6, 37%);
   width: 100%;
   border-radius: 0.25rem;
@@ -52,5 +53,29 @@ export const StyledTournamentListCard = styled.li`
     background-color: rgba(7, 6, 6, 74%);
     transform: scale(1.0125);
     cursor: pointer;
+  }
+
+  @media (max-width: 799px) {
+    >div:nth-child(2) {
+      >span {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    >div:nth-child(1) {
+      >img {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 320px) {
+    >div:nth-child(1) {
+      >h2 {
+        font-size: 0.875rem;
+      }
+    }
   }
 `;

@@ -10,13 +10,16 @@ interface iTournamentCardProps {
 }
 
 export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
-    const { setDashboardPage, setReadingTournament} = useContext(TournamentContext);
+    const { setDashboardPage } = useContext(TournamentContext);
     const { subscriptions } = useContext(SubscriptionsContext);
 
     const totalTeams = subscriptions.filter(subscription => subscription.accepted).length;
 
     return (
         <StyledTournamentCard>
+                <ButtonLeft onClick={() => {
+                    setDashboardPage(2);
+                }}> {'<'} </ButtonLeft>
             <div>
                 <img src="./trofeu.svg" alt="troféu"/>
                 <h1> {tournament.name} </h1>
@@ -31,18 +34,11 @@ export const TournamentCard = ({ tournament }: iTournamentCardProps) => {
                     <span> Tipo de campeonato: <h2> Eliminatórias </h2></span>
                     <span> Total de times: <h2>  {totalTeams}/8 </h2></span>
                 </div>
+            
             </div>
             <ButtonRight onClick={() => {
                     setDashboardPage(6);
-            }}> 
-                {'>'} 
-            </ButtonRight>
-            <ButtonLeft onClick={() => {
-                    setDashboardPage(2);
-                    setReadingTournament(false);
-            }}> 
-                {'<'} 
-            </ButtonLeft>
+                }}> {'>'} </ButtonRight>
         </StyledTournamentCard>
     );
 };

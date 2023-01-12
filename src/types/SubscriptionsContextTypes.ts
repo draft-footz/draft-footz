@@ -13,6 +13,7 @@ export interface iSubscriptionsContext {
     askToSubscribe: (tournamentId: number, team: iTeamData) => void;
     refreshSubscriptions: () => void;
     returnTournamentSubscriptions: (tournamentId: number, setState: React.Dispatch<React.SetStateAction<iSubscriptionData[]>>) => void;
+    allSubscriptions: iSubscriptionData[];
 };
 
 export interface iSubscriptionData {

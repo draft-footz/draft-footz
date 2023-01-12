@@ -68,6 +68,8 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
             getAllTournaments();
 
             createMultipleTournamentMatches(response.data.id, 7);
+            setDashboardPage(2);
+            setReadingTournament(response.data)
           });
       } catch {
         toast.error("Falha ao criar torneio...");

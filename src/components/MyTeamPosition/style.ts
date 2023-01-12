@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MainTeamPosition = styled.main`
-  width: 80%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;

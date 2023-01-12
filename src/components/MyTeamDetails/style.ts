@@ -90,14 +90,12 @@ export const TeamDetails = styled.section`
   }
 
   div {
+    display: flex;
+    flex-direction: column;
     border-top: 2px solid rgba(255, 255, 255, 0.06);
+    gap: 1.5rem;
   }
 
-  div:first-of-type {
-    display: flex;
-    gap: 22px;
-    flex-wrap: wrap;
-  }
 
   >div:nth-child(4){
     display: flex;
