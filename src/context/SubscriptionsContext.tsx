@@ -18,12 +18,10 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
     
 
     useEffect(() => {
-        console.log(`readingTournament`, readingTournament);
-        console.log(`updater`, updater)
         if(readingTournament) {
             getTournamentSubscriptions(readingTournament.id);
-            console.log(subscriptions)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [readingTournament, updater]);
 
     // Subscriptions Data
@@ -40,9 +38,8 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
             accepted: false
         }
         try {
-            api.post('subscriptions', data, {
-                headers: { authorization: `Bearer ${token}` }
-            })
+            api.defaults.headers.common.authorization = `Bearer ${token}`;
+            api.post('subscriptions', data)
             .then(() => {
                 toast.success('Pedido de inscrição feito com sucesso!')
             })
@@ -70,12 +67,16 @@ export const SubscriptionsProvider = ({children}: iSubscriptionsProvider) => {
 
     async function deleteAllTournamentSubscriptions(tournamentId: number) {
         let tournamentSubscriptions = [] as iSubscriptionData[];
+
         try {   
-            api.get<iSubscriptionData[]>(`subscriptions?&tournamentId=${tournamentId}`)
-            .then((response) => {
-                tournamentSubscriptions = response.data;
-                console.log(tournamentSubscriptions);
+            await api.get<iSubscriptionData[]>(`subscriptions?&tournamentId=${tournamentId}`, {
+                headers: { authorization: `Bearer ${token}`}
             })
+            .then((response) => { tournamentSubscriptions = response.data})
+            .then((response) => console.log(response));
+
+        } catch(err) {
+            console.log(err)
         } finally {
             if(tournamentSubscriptions) {
                 tournamentSubscriptions.forEach(subscription => deleteSubscription(subscription.id))
