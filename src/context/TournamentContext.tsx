@@ -41,6 +41,7 @@ export const TournamentProvider = ({ children }: iTournamentProvider) => {
   
   useEffect(() => {
     getMyTournaments();
+    getAllTournaments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, updater]);
 

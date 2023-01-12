@@ -107,6 +107,7 @@ export const UsersProvider = ({ children }: iUsersProvider) => {
   const logoutDashboard: () => void = () => {
     localStorage.removeItem("@draft-footz/userToken");
     localStorage.removeItem("@draft-footz/user");
+    console.log('rodou!')
     navigate("/");
   }
 
