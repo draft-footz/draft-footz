@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainTeamsTournament = styled.main`
   position: sticky;
-  width: 70%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
